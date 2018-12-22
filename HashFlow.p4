@@ -94,9 +94,9 @@ control ingress {
 		if (0 == measurement_meta.status) {
 			stage2();
 		} 
-		if (0 == measurement_meta.status) {
-			stage3();
-		} 
+//		if (0 == measurement_meta.status) {
+//			stage3();
+//		} 
 		if (0 == measurement_meta.status) {
 			stage4();
 		}
@@ -125,12 +125,12 @@ control stage2 {
 	apply(process_flow_proto_t_2);
 	apply(process_flow_srcport_t_2);
 	apply(process_flow_dstport_t_2);
-	apply(compare_t_2);// {
-//		read_pktcnt_2 {
-	//		apply(min_value_subtract_pktcnt_t_2);
-//			apply(update_min_two_t);
-//		}
-//	}
+	apply(compare_t_2) {
+		read_pktcnt_2 {
+			apply(min_value_subtract_pktcnt_t_2);
+			apply(update_min_two_t);
+		}
+	}
 }
 control stage3 {
 	apply(process_flow_srcip_t_3);
@@ -138,18 +138,18 @@ control stage3 {
 	apply(process_flow_proto_t_3);
 	apply(process_flow_srcport_t_3);
 	apply(process_flow_dstport_t_3);
-	apply(compare_t_3);
-//		read_pktcnt_3 {
-//			apply(min_value_subtract_pktcnt_t_3);
-//			apply(update_min_three_t);
-//		}
-//	}
+	apply(compare_t_3) {
+		read_pktcnt_3 {
+			apply(min_value_subtract_pktcnt_t_3);
+			apply(update_min_three_t);
+		}
+	}
 }
 control stage4 {
 	apply(process_digest_t);
 	apply(ancillary_compare_t) {
 		incre_temp_pktcnt {
-//			apply(temp_pktcnt_subtract_min_value_t);
+			apply(temp_pktcnt_subtract_min_value_t);
 			apply(do_resubmit_t);
 		}
 	}
