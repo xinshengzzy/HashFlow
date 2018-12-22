@@ -90,8 +90,7 @@ table set_promotion_flag_t {
 	reads {
 		measurement_meta.flag mask 0x80000000: exact;
 	}
-	actions {set_promotion_flag;}
-	default_action: set_promotion_flag;
+	actions {set_promotion_flag; set_status;}
 	size: 2;
 }
 
@@ -108,6 +107,16 @@ blackbox stateful_alu test_reg_alu {
 register flow_srcip_1 {
 	width: 32;
 	instance_count: SUB_TABLE_A_SIZE;
+}
+blackbox stateful_alu write_flow_srcip_alu_1 {
+	reg: flow_srcip_1;
+	update_lo_1_value: ipv4.srcip;
+}
+action write_flow_srcip_1() {
+	write_flow_srcip_alu_1.execute_stateful_alu_from_hash(main_hash_1);
+}
+table write_flow_srcip_t_1 {
+	actions {write_flow_srcip_1;}
 }
 blackbox stateful_alu flow_srcip_one_alu {
 	reg: flow_srcip_1;
@@ -130,31 +139,31 @@ table process_flow_srcip_one_t {
 	actions {process_flow_srcip_1;}
 	default_action: process_flow_srcip_1;
 }
-blackbox stateful_alu write_flow_srcip_alu_1 {
-	reg: flow_srcip_1;
-	update_lo_1_value: ipv4.srcip;
-}
-action write_flow_srcip_1() {
-	write_flow_srcip_alu_1.execute_stateful_alu_from_hash(main_hash_1);
-}
-table write_flow_srcip_t_1 {
-	actions {write_flow_srcip_1;}
-}
 table process_flow_srcip_t_1 {
 	reads {measurement_meta.promotion: exact;}
 	actions {
 		process_flow_srcip_1;
 		write_flow_srcip_1;	
 	}
+	size: 2;
 }
-
-action m_action() {
-	test_reg_alu.execute_stateful_alu(0);
+register count {
+	width: 6;
+	instance_count: 10;
 }
-
+blackbox stateful_alu incre_count_alu {
+	reg: count;
+	update_lo_1_value: register_lo + 1;	   
+}
+action m_action_1() {
+	incre_count_alu.execute_stateful_alu(0);
+}
+action m_action_2() {
+	incre_count_alu.execute_stateful_alu(1);
+}
 table m_table {
-	actions {m_action;}
-	default_action: m_action;
+	reads {ipv4.dstip: exact;}
+	actions {m_action_1; m_action_2;}
 }
 
 register flow_dstip_1 {
@@ -197,6 +206,7 @@ table process_flow_dstip_t_1 {
 		process_flow_dstip_1;
 		write_flow_dstip_1;	
 	}
+	size: 2;
 }
 
 register flow_proto_1 {
@@ -239,6 +249,7 @@ table process_flow_proto_t_1 {
 		process_flow_proto_1;
 		write_flow_proto_1;	
 	}
+	size: 2;
 }
 
 register flow_srcport_1 {
@@ -281,6 +292,7 @@ table process_flow_srcport_t_1 {
 		process_flow_srcport_1;
 		write_flow_srcport_1;	
 	}
+	size: 2;
 }
 
 register flow_dstport_1 {
@@ -323,6 +335,7 @@ table process_flow_dstport_t_1 {
 		process_flow_dstport_1;
 		write_flow_dstport_1;	
 	}
+	size: 2;
 }
 
 register flow_pktcnt_1 {
@@ -347,47 +360,55 @@ blackbox stateful_alu incre_flow_pktcnt_one_alu {
 	output_value: alu_lo;
 	output_dst: measurement_meta.pktcnt;
 }
-action set_one_flow_pktcnt_1() {
-	set_one_flow_pktcnt_one_alu.execute_stateful_alu_from_hash(main_hash_1);
-//	set_one_flow_pktcnt_one_alu.execute_stateful_alu(measurement_meta.m_idx_1);
-}
-action incre_flow_pktcnt_1() {
-	incre_flow_pktcnt_one_alu.execute_stateful_alu_from_hash(main_hash_1);
-//	incre_flow_pktcnt_one_alu.execute_stateful_alu(measurement_meta.m_idx_1);
-}
+//action set_one_flow_pktcnt_1() {
+//	set_one_flow_pktcnt_one_alu.execute_stateful_alu_from_hash(main_hash_1);
+//}
+//action incre_flow_pktcnt_1() {
+//	incre_flow_pktcnt_one_alu.execute_stateful_alu_from_hash(main_hash_1);
+//}
 action find_matching_entry_1() {
-//	incre_flow_pktcnt_1();
 	incre_flow_pktcnt_one_alu.execute_stateful_alu_from_hash(main_hash_1);
-//	incre_flow_pktcnt_one_alu.execute_stateful_alu(measurement_meta.m_idx_1);
 	modify_field(measurement_meta.status, 1);
 }
-table compare_t_1 {
-	reads {
-		measurement_meta.promotion: exact;
-		measurement_meta.srcip_flag: exact;
-		measurement_meta.dstip_flag: exact;
-		measurement_meta.srcport_flag: exact;
-		measurement_meta.dstport_flag: exact;
-		measurement_meta.proto_flag: exact;
-	}
-	actions {
-		find_matching_entry_1;
-		update_min_1;
-		promote_flow_pktcnt_1;
-	}
-//	default_action: update_min_1;
-	size: 4;
+action find_empty_entry_1() {
+	set_one_flow_pktcnt_one_alu.execute_stateful_alu_from_hash(main_hash_1);
+	modify_field(measurement_meta.status, 1);
+}
+action update_min_1() {
+	record_flow_pktcnt_one_alu.execute_stateful_alu_from_hash(main_hash_1);
+	modify_field(measurement_meta.stage, 1);
 }
 blackbox stateful_alu promote_flow_pktcnt_alu_1 {
 	reg: flow_pktcnt_1;
 	update_lo_1_value: measurement_meta.temp_pktcnt + 1;
 }
 action promote_flow_pktcnt_1() {
+	modify_field(measurement_meta.status, 1);
+	modify_field(measurement_meta.flow_table_no, 0);
 	promote_flow_pktcnt_alu_1.execute_stateful_alu_from_hash(main_hash_1);
 }
-table promote_flow_pktcnt_t_1 {
-	actions {promote_flow_pktcnt_1;}
+table compare_t_1 {
+	reads {
+		measurement_meta.stage: exact;
+		measurement_meta.promotion: exact;
+		measurement_meta.srcip_flag: exact;
+		measurement_meta.dstip_flag: exact;
+		measurement_meta.proto_flag: exact;
+		measurement_meta.srcport_flag: exact;
+		measurement_meta.dstport_flag: exact;
+	}
+	actions {
+		find_empty_entry_1;
+		find_matching_entry_1;
+		update_min_1;
+		promote_flow_pktcnt_1;
+	}
+	size: 4;
 }
+
+//table promote_flow_pktcnt_t_1 {
+//	actions {promote_flow_pktcnt_1;}
+//}
 
 // register for stage II:
 register flow_srcip_2 {
@@ -430,6 +451,7 @@ table process_flow_srcip_t_2 {
 		process_flow_srcip_2;
 		write_flow_srcip_2;	
 	}
+	size: 2;
 }
 
 register flow_dstip_2 {
@@ -472,6 +494,7 @@ table process_flow_dstip_t_2 {
 		process_flow_dstip_2;
 		write_flow_dstip_2;	
 	}
+	size: 2;
 }
 
 
@@ -515,6 +538,7 @@ table process_flow_proto_t_2 {
 		process_flow_proto_2;
 		write_flow_proto_2;	
 	}
+	size: 2;
 }
 
 register flow_srcport_2 {
@@ -557,6 +581,7 @@ table process_flow_srcport_t_2 {
 		process_flow_srcport_2;
 		write_flow_srcport_2;	
 	}
+	size: 2;
 }
 
 register flow_dstport_2 {
@@ -599,12 +624,14 @@ table process_flow_dstport_t_2 {
 		process_flow_dstport_2;
 		write_flow_dstport_2;	
 	}
+	size: 2;
 }
 
 register flow_pktcnt_2 {
 	width: 32;	
 	instance_count: SUB_TABLE_B_SIZE;
 }
+
 blackbox stateful_alu set_one_flow_pktcnt_two_alu {
 	reg: flow_pktcnt_2;
 	update_lo_1_value: 	1;
@@ -617,54 +644,95 @@ blackbox stateful_alu incre_flow_pktcnt_two_alu {
 	output_value: alu_lo;
 	output_dst: measurement_meta.pktcnt;
 }
-blackbox stateful_alu read_flow_pktcnt_two_alu {
+blackbox stateful_alu read_pktcnt_alu_2 {
 	reg: flow_pktcnt_2;
+	condition_lo: register_lo >= 0;
 	update_lo_1_value: register_lo;
-	output_value: alu_lo;
+	condition_hi: measurement_meta.min_value > register_lo;
+//	output_value: measurement_meta.min_value - alu_lo;
+//	output_value: alu_lo;
+	output_value: predicate;
 	output_dst: measurement_meta.pktcnt;
 }
-action set_one_flow_pktcnt_2() {
-	set_one_flow_pktcnt_two_alu.execute_stateful_alu_from_hash(main_hash_2);
+action read_pktcnt_2() {
+	read_pktcnt_alu_2.execute_stateful_alu_from_hash(main_hash_2);
+}
+//action set_one_flow_pktcnt_2() {
+//	set_one_flow_pktcnt_two_alu.execute_stateful_alu_from_hash(main_hash_2);
 //	set_one_flow_pktcnt_two_alu.execute_stateful_alu(measurement_meta.m_idx_2);
-}
-action incre_flow_pktcnt_2() {
-	incre_flow_pktcnt_two_alu.execute_stateful_alu_from_hash(main_hash_2);
+//}
+//action incre_flow_pktcnt_2() {
+//	incre_flow_pktcnt_two_alu.execute_stateful_alu_from_hash(main_hash_2);
 //	incre_flow_pktcnt_two_alu.execute_stateful_alu(measurement_meta.m_idx_2);
-}
+//}
 action find_matching_entry_2() {
-	incre_flow_pktcnt_2();
+	incre_flow_pktcnt_two_alu.execute_stateful_alu_from_hash(main_hash_2);
 	modify_field(measurement_meta.status, 1);
 }
-action read_pktcnt_2() {
-	read_flow_pktcnt_two_alu.execute_stateful_alu_from_hash(main_hash_2);
+action find_empty_entry_2() {
+	set_one_flow_pktcnt_two_alu.execute_stateful_alu_from_hash(main_hash_2);
+	modify_field(measurement_meta.status, 1);
+}
+//action read_pktcnt_2() {
+//	read_flow_pktcnt_two_alu.execute_stateful_alu_from_hash(main_hash_2);
 //	read_flow_pktcnt_two_alu.execute_stateful_alu(measurement_meta.m_idx_2);
-}
-table compare_t_2 {
-	reads {
-		measurement_meta.promotion: exact;
-		measurement_meta.srcip_flag: exact;
-		measurement_meta.dstip_flag: exact;
-		measurement_meta.srcport_flag: exact;
-		measurement_meta.dstport_flag: exact;
-		measurement_meta.proto_flag: exact;
-	}
-	actions {
-		find_matching_entry_2;
-		read_pktcnt_2;
-		promote_flow_pktcnt_2;
-	}
-//	default_action: read_pktcnt_2;
-	size: 4;
-}
+//}
 blackbox stateful_alu promote_flow_pktcnt_alu_2 {
 	reg: flow_pktcnt_2;
 	update_lo_1_value: measurement_meta.temp_pktcnt + 1;
 }
 action promote_flow_pktcnt_2() {
+	modify_field(measurement_meta.status, 1);
+	modify_field(measurement_meta.flow_table_no, 1);
 	promote_flow_pktcnt_alu_2.execute_stateful_alu_from_hash(main_hash_2);
 }
-table promote_flow_pktcnt_t_2 {
-	actions {promote_flow_pktcnt_2;}
+//blackbox stateful_alu update_min_alu_2 {
+//	reg: flow_pktcnt_2;
+//	condition_lo: register_lo < measurement_meta.min_value;
+//	update_lo_1_value: register_lo;
+//	output_predicate: condition_lo;
+//	output_value: alu_lo;
+//	output_dst: measurement_meta.min_value;
+//}
+//action update_min_2() {
+//	update_min_alu_2.execute_stateful_alu_from_hash(main_hash_2);
+//	modify_field(measurement_meta.stage, 2);
+//}
+table compare_t_2 {
+	reads {
+		measurement_meta.stage: exact;
+		measurement_meta.promotion: exact;
+		measurement_meta.srcip_flag: exact;
+		measurement_meta.dstip_flag: exact;
+		measurement_meta.proto_flag: exact;
+		measurement_meta.srcport_flag: exact;
+		measurement_meta.dstport_flag: exact;
+	}
+	actions {
+		find_empty_entry_2;
+		find_matching_entry_2;
+		read_pktcnt_2;
+	//	min_value_subtract_pktcnt_2;
+	//	update_min_2;
+		promote_flow_pktcnt_2;
+	}
+	size: 4;
+}
+
+action min_value_subtract_pktcnt() {
+	subtract(measurement_meta.flag, measurement_meta.min_value, measurement_meta.pktcnt);
+}
+table min_value_subtract_pktcnt_t_2 {
+	actions {min_value_subtract_pktcnt;}
+}
+table min_value_subtract_pktcnt_t_3 {
+	actions {min_value_subtract_pktcnt;}
+}
+action temp_pktcnt_subtract_min_value() {
+	subtract(measurement_meta.flag, measurement_meta.temp_pktcnt, measurement_meta.min_value);
+}
+table temp_pktcnt_subtract_min_value_t {
+	actions {temp_pktcnt_subtract_min_value;}
 }
 
 // register for stage III:
@@ -708,6 +776,7 @@ table process_flow_srcip_t_3 {
 		process_flow_srcip_3;
 		write_flow_srcip_3;	
 	}
+	size: 2;
 }
 
 register flow_dstip_3 {
@@ -750,6 +819,7 @@ table process_flow_dstip_t_3 {
 		process_flow_dstip_3;
 		write_flow_dstip_3;	
 	}
+	size: 2;
 }
 
 register flow_proto_3 {
@@ -792,6 +862,7 @@ table process_flow_proto_t_3 {
 		process_flow_proto_3;
 		write_flow_proto_3;	
 	}
+	size: 2;
 }
 
 register flow_srcport_3 {
@@ -834,6 +905,7 @@ table process_flow_srcport_t_3 {
 		process_flow_srcport_3;
 		write_flow_srcport_3;	
 	}
+	size: 2;
 }
 
 register flow_dstport_3 {
@@ -876,6 +948,7 @@ table process_flow_dstport_t_3 {
 		process_flow_dstport_3;
 		write_flow_dstport_3;
 	}
+	size: 2;
 }
 
 register flow_pktcnt_3 {
@@ -894,55 +967,77 @@ blackbox stateful_alu incre_flow_pktcnt_three_alu {
 	output_value: alu_lo;
 	output_dst: measurement_meta.pktcnt;
 }
-blackbox stateful_alu read_flow_pktcnt_three_alu {
+blackbox stateful_alu read_pktcnt_alu_3 {
 	reg: flow_pktcnt_3;
 	update_lo_1_value: register_lo;
 	output_value: alu_lo;
 	output_dst: measurement_meta.pktcnt;
 }
-action set_one_flow_pktcnt_3() {
-	set_one_flow_pktcnt_three_alu.execute_stateful_alu_from_hash(main_hash_3);
+action read_pktcnt_3() {
+	read_pktcnt_alu_3.execute_stateful_alu_from_hash(main_hash_3);
+}
+//action set_one_flow_pktcnt_3() {
+//	set_one_flow_pktcnt_three_alu.execute_stateful_alu_from_hash(main_hash_3);
 //	set_one_flow_pktcnt_three_alu.execute_stateful_alu(measurement_meta.m_idx_3);
-}
-action incre_flow_pktcnt_3() {
-	incre_flow_pktcnt_three_alu.execute_stateful_alu_from_hash(main_hash_3);
+//}
+//action incre_flow_pktcnt_3() {
+//	incre_flow_pktcnt_three_alu.execute_stateful_alu_from_hash(main_hash_3);
 //	incre_flow_pktcnt_three_alu.execute_stateful_alu(measurement_meta.m_idx_3);
-}
-action find_matching_entry_3() {
-	incre_flow_pktcnt_3();
+//}
+action find_empty_entry_3() {
+	set_one_flow_pktcnt_three_alu.execute_stateful_alu_from_hash(main_hash_3);
 	modify_field(measurement_meta.status, 1);
 }
-action read_pktcnt_3() {
-	read_flow_pktcnt_three_alu.execute_stateful_alu_from_hash(main_hash_3);
+action find_matching_entry_3() {
+	incre_flow_pktcnt_three_alu.execute_stateful_alu_from_hash(main_hash_3);
+	modify_field(measurement_meta.status, 1);
+}
+//action read_pktcnt_3() {
+//	read_flow_pktcnt_three_alu.execute_stateful_alu_from_hash(main_hash_3);
 //	read_flow_pktcnt_three_alu.execute_stateful_alu(measurement_meta.m_idx_3);
-}
-table compare_t_3 {
-	reads {
-		measurement_meta.promotion: exact;
-		measurement_meta.srcip_flag: exact;
-		measurement_meta.dstip_flag: exact;
-		measurement_meta.srcport_flag: exact;
-		measurement_meta.dstport_flag: exact;
-		measurement_meta.proto_flag: exact;
-	}
-	actions {
-		find_matching_entry_3;
-		read_pktcnt_3;
-		promote_flow_pktcnt_3;
-	}
-//	default_action: read_pktcnt_3;
-	size: 4;
-}
+//}
 blackbox stateful_alu promote_flow_pktcnt_alu_3 {
 	reg: flow_pktcnt_3;
 	update_lo_1_value: measurement_meta.temp_pktcnt + 1;
 }
 action promote_flow_pktcnt_3() {
+	modify_field(measurement_meta.status, 1);
+	modify_field(measurement_meta.flow_table_no, 2);
 	promote_flow_pktcnt_alu_3.execute_stateful_alu_from_hash(main_hash_3);
 }
-table promote_flow_pktcnt_t_3 {
-	actions {promote_flow_pktcnt_3;}
+//blackbox stateful_alu update_min_alu_3 {
+//	reg: flow_pktcnt_3;
+//	condition_lo: register_lo < measurement_meta.min_value;
+//	update_lo_1_value: register_lo;
+//	output_predicate: condition_lo;
+//	output_value: alu_lo;
+//	output_dst: measurement_meta.min_value;
+//}
+//action update_min_3() {
+//	update_min_alu_3.execute_stateful_alu(main_hash_3);
+//	modify_field(measurement_meta.stage, 3);
+//}
+table compare_t_3 {
+	reads {
+		measurement_meta.stage: exact;
+		measurement_meta.promotion: exact;
+		measurement_meta.srcip_flag: exact;
+		measurement_meta.dstip_flag: exact;
+		measurement_meta.proto_flag: exact;
+		measurement_meta.srcport_flag: exact;
+		measurement_meta.dstport_flag: exact;
+	}
+	actions {
+		find_empty_entry_3;
+		find_matching_entry_3;
+		//min_value_subtract_pktcnt_3;
+		read_pktcnt_3;
+	//	update_min_3;
+		promote_flow_pktcnt_3;
+	}
+	size: 4;
 }
+
 
 // register for stage IV:
 register digest {
@@ -951,10 +1046,9 @@ register digest {
 }
 blackbox stateful_alu process_digest_alu {
 	reg: digest;
-	update_lo_1_value: measurement_meta.current_digest;
 	condition_lo: 0 == register_lo;
 	condition_hi: measurement_meta.current_digest == register_lo;
-	output_predicate: condition_lo or condition_hi;
+	update_lo_1_value: measurement_meta.current_digest;
 	output_value: predicate;
 	output_dst: measurement_meta.digest_flag;
 }
@@ -974,6 +1068,7 @@ register temp_pktcnt {
 blackbox stateful_alu incre_temp_pktcnt_alu {
 	reg: temp_pktcnt;
 	update_lo_1_value: register_lo + 1;
+//	output_value: alu_lo - measurement_meta.min_value;
 	output_value: alu_lo;
 	output_dst: measurement_meta.temp_pktcnt;
 }
@@ -989,6 +1084,7 @@ action incre_temp_pktcnt() {
 }
 action set_one_temp_pktcnt() {
 	set_one_temp_pktcnt_alu.execute_stateful_alu_from_hash(ancillary_hash);
+	modify_field(measurement_meta.status, 1);
 //	set_one_temp_pktcnt_alu.execute_stateful_alu(measurement_meta.a_idx);
 }
 table ancillary_compare_t {
@@ -998,12 +1094,9 @@ table ancillary_compare_t {
 		set_one_temp_pktcnt;
 	}
 //	default_action: set_one_temp_pktcnt;
-	size: 2;
+	size: 3;
 }
 
-action min_value_subtract_pktcnt() {
-	subtract(measurement_meta.flag, measurement_meta.min_value, measurement_meta.pktcnt);
-}
 //register flag_1 {
 //	width: 32;
 //	instance_count: 1;
@@ -1018,13 +1111,6 @@ action min_value_subtract_pktcnt() {
 //	output_value: alu_lo;
 //	output_dst: measurement_meta.flag;
 //}
-//action set_flag_1() {
-//	set_flag_alu_1.execute_stateful_alu(0);
-//}
-table set_flag_one_t {
-	actions {min_value_subtract_pktcnt;}
-	default_action: min_value_subtract_pktcnt;
-}
 
 //register flag_2 {
 //	width: 32;
@@ -1040,22 +1126,6 @@ table set_flag_one_t {
 //	output_value: alu_lo;
 //	output_dst: measurement_meta.flag;
 //}
-//action set_flag_2() {
-//	set_flag_alu_2.execute_stateful_alu(0);
-//}
-table set_flag_two_t {
-	actions {min_value_subtract_pktcnt;}
-	default_action: min_value_subtract_pktcnt;
-}
-
-//register flag_3 {
-//	width: 32;
-//	instance_count: 1;
-//}
-action temp_pktcnt_subtract_min_value() {
-	subtract(measurement_meta.flag, measurement_meta.temp_pktcnt,
-		measurement_meta.min_value);
-}
 //blackbox stateful_alu set_flag_alu_3 {
 //	reg: flag_3;
 //	condition_lo: measurement_meta.temp_pktcnt >= measurement_meta.min_value;
@@ -1069,10 +1139,6 @@ action temp_pktcnt_subtract_min_value() {
 //action set_flag_3() {
 //	set_flag_alu_3.execute_stateful_alu(0);
 //}
-table set_flag_three_t {
-	actions {temp_pktcnt_subtract_min_value;}
-	default_action: temp_pktcnt_subtract_min_value;
-}
 
 //register flag_4 {
 //	width: 32;
@@ -1098,33 +1164,28 @@ action set_status() {
 
 table set_status_t_1 {
 	reads {measurement_meta.promotion: exact;}
-	actions {set_status;}
-	default_action: set_status;
+	actions {set_status; _nop;}
 }
 table set_status_t_2 {
 	reads {measurement_meta.promotion: exact;}
-	actions {set_status;}
-	default_action: set_status;
+	actions {set_status; _nop;}
 }
 table set_status_t_3 {
 	reads {measurement_meta.promotion: exact;}
-	actions {set_status;}
-	default_action: set_status;
+	actions {set_status; _nop;}
 }
 
-action update_min_1() {
-	record_flow_pktcnt_one_alu.execute_stateful_alu_from_hash(main_hash_1);
-//	record_flow_pktcnt_one_alu.execute_stateful_alu(measurement_meta.m_idx_1);
-//	modify_field(measurement_meta.min_idx, measurement_meta.m_idx_1);
-}
+
 
 action update_min_2() {
 	modify_field(measurement_meta.min_value, measurement_meta.pktcnt);
+	modify_field(measurement_meta.stage, 2);
 //	modify_field(measurement_meta.min_idx, measurement_meta.m_idx_2);
 }
 
 action update_min_3() {
 	modify_field(measurement_meta.min_value, measurement_meta.pktcnt);
+	modify_field(measurement_meta.stage, 2);
 //	modify_field(measurement_meta.min_idx, measurement_meta.m_idx_3);
 }
 
@@ -1533,9 +1594,9 @@ table update_min_two_t {
 		measurement_meta.flag mask 0x80000000: exact;
 	}
 	actions {
-		update_min_2;
+		update_min_2; _nop;
 	}
-	default_action: update_min_2;
+	default_action: _nop;
 	size: 2;
 }
 
@@ -1544,9 +1605,9 @@ table update_min_three_t {
 		measurement_meta.flag mask 0x80000000: exact;
 	}
 	actions {
-		update_min_3;
+		update_min_3; _nop;
 	}
-	default_action: update_min_3;
+	default_action: _nop;
 	size: 2;
 }
 
@@ -1562,63 +1623,54 @@ field_list resubmit_fields_1 {
 	measurement_meta.stage;
 	measurement_meta.promotion;
 	measurement_meta.min_value;
-//	measurement_meta.status;
-//	measurement_meta.temp;
 }
 field_list resubmit_fields_2 {
 	measurement_meta.stage;
 	measurement_meta.promotion;
 	measurement_meta.temp_pktcnt;
+	measurement_meta.flow_table_no;
 }
-field_list resubmit_fields {
-	measurement_meta.stage;
-	measurement_meta.promotion;
-}
+//field_list resubmit_fields {
+//	measurement_meta.stage;
+//	measurement_meta.promotion;
+//}
 
-action do_resubmit() {
-	add_to_field(measurement_meta.stage, 1);
-    resubmit(resubmit_fields);
+//action do_resubmit() {
+//	add_to_field(measurement_meta.stage, 1);
+//    resubmit(resubmit_fields);
 //	resubmit();
+//}
+action do_resubmit_0() {//for promotion
+	modify_field(measurement_meta.promotion, 1);	
+	modify_field(measurement_meta.stage, 0);
+	resubmit(resubmit_fields_2);
 }
-
-action do_resubmit_1() {
+action do_resubmit_1() {//for promotion
+	modify_field(measurement_meta.promotion, 1);	
 	modify_field(measurement_meta.stage, 1);
-	resubmit(resubmit_fields_1);
+	resubmit(resubmit_fields_2);
 }
-action do_resubmit_2() {
+action do_resubmit_2() {//for promotion
+	modify_field(measurement_meta.promotion, 1);	
 	modify_field(measurement_meta.stage, 2);
-	resubmit(resubmit_fields_1);
+	resubmit(resubmit_fields_2);
 }
 action do_resubmit_3() {
-	modify_field(measurement_meta.stage, 3);
+	modify_field(measurement_meta.promotion, 1);	
+	add_to_field(measurement_meta.stage, 1);
 	resubmit(resubmit_fields_1);
-}
-action do_resubmit_4() {
-	modify_field(measurement_meta.stage, 1);
-	resubmit(resubmit_fields_2);
-}
-action do_resubmit_5() {
-	modify_field(measurement_meta.stage, 2);
-	resubmit(resubmit_fields_2);
-}
-action do_resubmit_6() {
-	modify_field(measurement_meta.stage, 3);
-	resubmit(resubmit_fields_2);
 }
 table do_resubmit_t {
     reads {
         measurement_meta.status: exact;
-		measurement_meta.promotion: exact;
 		measurement_meta.flow_table_no: exact;
     }
     actions {
         _nop;
+		do_resubmit_0;
         do_resubmit_1;
 		do_resubmit_2;
 		do_resubmit_3;
-		do_resubmit_4;
-		do_resubmit_5;
-		do_resubmit_6;
     }
     size : 12;
 }

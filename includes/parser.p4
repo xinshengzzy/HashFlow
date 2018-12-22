@@ -30,11 +30,11 @@ header ethernet_t ethernet;
 
 parser parse_ethernet {
     extract(ethernet);
-//    return select(latest.etherType) {
-//        ETHERTYPE_IPV4 : parse_ipv4;
-//        default: ingress;
-//    }
-	return parse_ipv4;
+    return select(latest.etherType) {
+        ETHERTYPE_IPV4 : parse_ipv4;
+        default: ingress;
+    }
+//	return parse_ipv4;
 }
 
 header ipv4_t ipv4;
@@ -68,11 +68,11 @@ calculated_field ipv4.hdrChecksum  {
 
 parser parse_ipv4 {
     extract(ipv4);
-//    return select(latest.protocol){
-//		IPV4_TCP : parse_tcp;
-//		default: ingress;
-//	}
-	return parse_tcp;
+    return select(latest.proto){
+		IPV4_TCP : parse_tcp;
+		default: ingress;
+	}
+//	return parse_tcp;
 }
 
 header tcp_t tcp;

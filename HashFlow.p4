@@ -17,9 +17,10 @@ limitations under the License.
 /*
  * Modified by Yuliang Li liyuliang001@gmail.com;
  */
-#include "tofino/intrinsic_metadata.p4"
 #include "tofino/stateful_alu_blackbox.p4"
 #include "tofino/pktgen_headers.p4"
+#include <tofino/constants.p4>
+#include <tofino/intrinsic_metadata.p4>
 
 #include "includes/headers.p4"
 #include "includes/parser.p4"
@@ -86,25 +87,30 @@ table send_frame {
 }*/
 
 control ingress {
-/*	if (1 == measurement_meta.stage) {
-		stage1();
-	} else if (2 == measurement_meta.stage) {
-		stage2();
-	} else if (3 == measurement_meta.stage) {
-		stage3();
-	} else if (4 == measurement_meta.stage) {
-		stage4();
+	if (valid(tcp)) {
+		if (0 == measurement_meta.status) {
+			stage1();
+		} 
+		if (0 == measurement_meta.status) {
+			stage2();
+		} 
+		if (0 == measurement_meta.status) {
+			stage3();
+		} 
+		if (0 == measurement_meta.status) {
+			stage4();
+		}
+//		apply(do_resubmit_t);
 	}
-	apply(do_resubmit_t);*/
-//	apply(ipv4_lpm);
-	apply(forward);
+//	apply(forward);
+//	apply(m_table);
 }
 
 control egress {
 //    apply(send_frame);
 }
 control stage1 {
-	apply(set_status_t_1);
+	apply(digest_calc_t);
 	apply(process_flow_srcip_t_1);
 	apply(process_flow_dstip_t_1);
 	apply(process_flow_proto_t_1);
@@ -114,68 +120,40 @@ control stage1 {
 }
 
 control stage2 {
-	apply(set_status_t_2);
 	apply(process_flow_srcip_t_2);
 	apply(process_flow_dstip_t_2);
 	apply(process_flow_proto_t_2);
 	apply(process_flow_srcport_t_2);
 	apply(process_flow_dstport_t_2);
-	apply(compare_t_2) {
-		read_pktcnt_2 {
-			apply(set_flag_one_t);
-			apply(update_min_two_t);
-		}
-	}
+	apply(compare_t_2);// {
+//		read_pktcnt_2 {
+	//		apply(min_value_subtract_pktcnt_t_2);
+//			apply(update_min_two_t);
+//		}
+//	}
 }
 control stage3 {
-	apply(set_status_t_3);
 	apply(process_flow_srcip_t_3);
 	apply(process_flow_dstip_t_3);
 	apply(process_flow_proto_t_3);
 	apply(process_flow_srcport_t_3);
 	apply(process_flow_dstport_t_3);
-	apply(compare_t_3) {
-		read_pktcnt_3 {
-			apply(set_flag_two_t);
-			apply(update_min_three_t);
-		}
-	}
+	apply(compare_t_3);
+//		read_pktcnt_3 {
+//			apply(min_value_subtract_pktcnt_t_3);
+//			apply(update_min_three_t);
+//		}
+//	}
 }
 control stage4 {
-	apply(digest_calc_t);
 	apply(process_digest_t);
 	apply(ancillary_compare_t) {
 		incre_temp_pktcnt {
-			apply(set_flag_three_t);	
-			apply(set_promotion_flag_t);
+//			apply(temp_pktcnt_subtract_min_value_t);
+			apply(do_resubmit_t);
 		}
 	}
 }
-//control stage5 {//promote the flow record
-//	apply(set_status_t);
-//	if (1 == measurement_meta.flow_table_no) {
-//		apply(write_flow_srcip_t_1);
-//		apply(write_flow_dstip_t_1);
-//		apply(write_flow_proto_t_1);
-//		apply(write_flow_srcport_t_1);
-//		apply(write_flow_dstport_t_1);
-//		apply(promote_flow_pktcnt_t_1);
-//	} else if (1 == measurement_meta.flow_table_no) {
-//		apply(write_flow_srcip_t_2);
-//		apply(write_flow_dstip_t_2);
-//		apply(write_flow_proto_t_2);
-//		apply(write_flow_srcport_t_2);
-//		apply(write_flow_dstport_t_2);
-//		apply(promote_flow_pktcnt_t_2);
-//	} else if (1 == measurement_meta.flow_table_no) {
-//		apply(write_flow_srcip_t_3);
-//		apply(write_flow_dstip_t_3);
-//		apply(write_flow_proto_t_3);
-//		apply(write_flow_srcport_t_3);
-//		apply(write_flow_dstport_t_3);
-//		apply(promote_flow_pktcnt_t_3);
-//	}
-//}
 
 action set_egr(egress_spec) {
     modify_field(ig_intr_md_for_tm.ucast_egress_port, egress_spec);
@@ -183,7 +161,6 @@ action set_egr(egress_spec) {
 
 action nop() {
 }
-
 
 table forward {
     reads {
