@@ -1,0 +1,33 @@
+\documentclass{article}
+\title{Experiments Plan}
+\author{Zhao Zongyi}
+\date{Dec. 22nd, 2018}
+\begin{document}
+\maketitle
+\section*{Exp \#84491}
+\begin{itemize}
+	\item Use the simulator of HashFlow implemented in python.
+	\item Set the memory size to be 1 MB, so it can accommodate around 55K flow records.
+	\item Select 10 trace files from each of the four traces.
+	\item Initiate 50K flows from each trace file.
+	\item Increase the depth of HashFlow from 1 to 4. 
+	\item Count the packets processed by the simulator, i.e., the number of original packets plus the resubmitted packets.
+\end{itemize}
+
+\section*{Exp \#84492}
+\begin{itemize}
+	\item Select a file from the CAIDA trace (equinix-nyc.dirA.20180315-125910.UTC.anon.pcap), extract the first 2.5 million packets, classify the TCP/UDP packets into flows, and then calculate the average size as well as the maximum size of the flows.
+	\item Select a file from the HGC trace (20080415000.pcap), extract the first 2.5 million packets, classify the TCP/UDP packets into flows, and then calculate the average size as well as the maximum size of the flows.
+	\item Calculate the average as well as maximum size of a file from China Telecom trace (nfcapd.201601022000).
+	\item Calculate the average as well as maximum size of a file from Tsinghua campus trace (20140206-6). 
+\end{itemize}
+
+\section*{Exp \#84493}
+\begin{itemize}
+	\item Set the memory size to be 1MB. 
+	\item Increase the number of flows from 10K to 100K, in the step size of 10K.
+	\item Use a trace file from CAIDA and HGC respectively.
+	\item Use four versions of HashFlow. In the versions the number of buckets in the ancillary table is $0.25\times$, $0.5\times$, $1.0\times$, and $2\times$ respectively of the number of buckets in main table.
+	\item Calculate the average relative error for flow size estimation.
+\end{itemize}
+\end{document}
