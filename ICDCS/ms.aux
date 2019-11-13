@@ -19,40 +19,52 @@
 \citation{li_flowradar:_2016}
 \citation{sivaraman_heavy-hitter_2017}
 \citation{yang_elastic_2018}
-\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}}
-\newlabel{section:introduction}{{I}{1}}
 \citation{bosshart_p4:_2014}
 \citation{noauthor_bmv2:_2018}
 \citation{noauthor_barefoot_nodate}
 \citation{noauthor_edgecore_nodate}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}}
+\newlabel{section:introduction}{{I}{1}}
 \citation{pagh_cuckoo_2004}
 \citation{sivaraman_heavy-hitter_2017}
 \citation{yang_elastic_2018}
 \citation{li_flowradar:_2016}
 \citation{sivaraman_heavy-hitter_2017}
 \citation{yang_elastic_2018}
-\citation{cormode_countmin_2005}
 \citation{li_flowradar:_2016}
-\citation{bloom_space/time_1970}
+\citation{urn}
 \@writefile{toc}{\contentsline {section}{\numberline {II}Background and Basic Ideas}{2}}
 \newlabel{section:background}{{II}{2}}
-\citation{urn}
 \@writefile{toc}{\contentsline {section}{\numberline {III}Algorithm Details}{3}}
 \newlabel{section:algorithmoverview}{{III}{3}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-A}}Data Structures and Algorithm}{3}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Update Algorithm of HashFlow on arrival of $p$}}{3}}
+\newlabel{alg: process_packet}{{1}{3}}
 \citation{urn}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Update Algorithm of HashFlow on arrival of $p$}}{4}}
-\newlabel{alg: process_packet}{{1}{4}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces An example of HashFlow}}{4}}
 \newlabel{fig:datastructure}{{1}{4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-B}}Analysis}{4}}
 \newlabel{analysis}{{\unhbox \voidb@x \hbox {III-B}}{4}}
 \newlabel{equation1}{{\unhbox \voidb@x \hbox {III-B}}{4}}
+\newlabel{xx1}{{1}{4}}
+\newlabel{xxx1}{{2}{4}}
+\newlabel{xxx2}{{3}{4}}
 \citation{noauthor_edgecore_nodate}
 \citation{zhao_hashflow_2018}
-\newlabel{xx1}{{1}{5}}
-\newlabel{xxx1}{{2}{5}}
-\newlabel{xxx2}{{3}{5}}
+\newlabel{multihash}{{2(a)}{5}}
+\newlabel{sub@multihash}{{(a)}{5}}
+\newlabel{pipeline1}{{2(b)}{5}}
+\newlabel{sub@pipeline1}{{(b)}{5}}
+\newlabel{pipeline2}{{2(c)}{5}}
+\newlabel{sub@pipeline2}{{(c)}{5}}
+\newlabel{improvement}{{2(d)}{5}}
+\newlabel{sub@improvement}{{(d)}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Utilization of the multi-hash table and the pipelined tables}}{5}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Multi-hash Table}}}{5}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Pipelined Tables}}}{5}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Pipelined Tables}}}{5}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Improvement on Utilization}}}{5}}
+\newlabel{fig:pipelinedtablesutilizationratio}{{2}{5}}
 \newlabel{xxx3}{{4}{5}}
 \newlabel{pipelineutil}{{5}{5}}
 \@writefile{toc}{\contentsline {section}{\numberline {IV}Implementation in P4 Hardware Switch}{5}}
@@ -61,56 +73,53 @@
 \citation{sivaraman_heavy-hitter_2017}
 \citation{yang_elastic_2018}
 \citation{noauthor_bmv2:_2018}
-\citation{bosshart_p4:_2014}
 \citation{noauthor_edgecore_nodate}
-\citation{ben-basat_efficient_2018}
 \citation{noauthor_caida_nodate}
 \citation{benson_network_2010}
-\newlabel{multihash}{{2(a)}{6}}
-\newlabel{sub@multihash}{{(a)}{6}}
-\newlabel{pipeline1}{{2(b)}{6}}
-\newlabel{sub@pipeline1}{{(b)}{6}}
-\newlabel{pipeline2}{{2(c)}{6}}
-\newlabel{sub@pipeline2}{{(c)}{6}}
-\newlabel{improvement}{{2(d)}{6}}
-\newlabel{sub@improvement}{{(d)}{6}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Utilization of the multi-hash table and the pipelined tables}}{6}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Multi-hash Table}}}{6}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Pipelined Tables}}}{6}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Pipelined Tables}}}{6}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Improvement on Utilization}}}{6}}
-\newlabel{fig:pipelinedtablesutilizationratio}{{2}{6}}
 \@writefile{toc}{\contentsline {section}{\numberline {V}Evaluation}{6}}
 \newlabel{section:evaluation}{{V}{6}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-A}}Methodology}{6}}
 \newlabel{methodology}{{\unhbox \voidb@x \hbox {V-A}}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Flow size distribution of the traces used for evaluation}}{6}}
+\newlabel{fig:flowsizedistribution}{{3}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Flow size estimation under different pipeline depth}}{6}}
+\newlabel{fig:comparison_increase_depth}{{4}{6}}
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Traces used for evaluation}}{6}}
+\newlabel{tab:netflowtraces}{{I}{6}}
 \citation{whang_linear-time_1990}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Flow size distribution of the traces used for evaluation}}{7}}
-\newlabel{fig:flowsizedistribution}{{3}{7}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Flow size estimation under different pipeline depth}}{7}}
-\newlabel{fig:comparison_increase_depth}{{4}{7}}
-\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Traces used for evaluation}}{7}}
-\newlabel{tab:netflowtraces}{{I}{7}}
 \@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Acronyms for Algorithms}}{7}}
 \newlabel{table:acronyms}{{II}{7}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-B}}Optimizing the Main Table and Ancillary Table }{7}}
-\newlabel{MT-flowrecord}{{5(a)}{8}}
-\newlabel{sub@MT-flowrecord}{{(a)}{8}}
-\newlabel{MT-flowsize}{{5(b)}{8}}
-\newlabel{sub@MT-flowsize}{{(b)}{8}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Comparing multi-hash table with pipelined tables.}}{8}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Flow Record Report}}}{8}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Flow Size Estimation}}}{8}}
-\newlabel{fig:performance_comparison_hierarchical_hashtable}{{5}{8}}
+\newlabel{MT-flowrecord}{{5(a)}{7}}
+\newlabel{sub@MT-flowrecord}{{(a)}{7}}
+\newlabel{MT-flowsize}{{5(b)}{7}}
+\newlabel{sub@MT-flowsize}{{(b)}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Comparing multi-hash table with pipelined tables.}}{7}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Flow Record Report}}}{7}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Flow Size Estimation}}}{7}}
+\newlabel{fig:performance_comparison_hierarchical_hashtable}{{5}{7}}
+\newlabel{hhd_f1_score}{{6(a)}{7}}
+\newlabel{sub@hhd_f1_score}{{(a)}{7}}
+\newlabel{hhd_ARE}{{6(b)}{7}}
+\newlabel{sub@hhd_ARE}{{(b)}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces F1 Score and Average Relative Error (ARE) of heavy hitter detection when the size of ancillary table varies.}}{7}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {F1 Score}}}{7}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {ARE}}}{7}}
+\newlabel{fig:are_for_various_beta}{{6}{7}}
+\bibstyle{IEEEtran}
+\bibdata{ms}
+\bibcite{claise_cisco_2004}{1}
+\bibcite{zhang_more_2017}{2}
+\bibcite{zhang_more_2015}{3}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-C}}Application Performance }{8}}
-\newlabel{hhd_f1_score}{{6(a)}{8}}
-\newlabel{sub@hhd_f1_score}{{(a)}{8}}
-\newlabel{hhd_ARE}{{6(b)}{8}}
-\newlabel{sub@hhd_ARE}{{(b)}{8}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces F1 Score and Average Relative Error (ARE) of heavy hitter detection when the size of ancillary table varies.}}{8}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {F1 Score}}}{8}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {ARE}}}{8}}
-\newlabel{fig:are_for_various_beta}{{6}{8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-D}}Throughput}{8}}
+\newlabel{subsec:throughput}{{\unhbox \voidb@x \hbox {V-D}}{8}}
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusion}{8}}
+\newlabel{section:conclusion}{{VI}{8}}
+\@writefile{toc}{\contentsline {section}{\numberline {VII}Acknowledgement}{8}}
+\newlabel{section:acknowledgement}{{VII}{8}}
+\@writefile{toc}{\contentsline {section}{References}{8}}
+\bibcite{wang_efficient_2019}{4}
 \newlabel{subfig:caidaflowmonitoring}{{7(a)}{9}}
 \newlabel{sub@subfig:caidaflowmonitoring}{{(a)}{9}}
 \newlabel{subfig:campusnetworkflowmonitoring}{{7(b)}{9}}
@@ -153,22 +162,45 @@
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {HGC Trace}}}{9}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Telecom Trace}}}{9}}
 \newlabel{fig:comparison_concurrent_flows_increases_fs_estimation}{{9}{9}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-D}}Throughput}{9}}
-\newlabel{subsec:throughput}{{\unhbox \voidb@x \hbox {V-D}}{9}}
-\newlabel{subfig:caidahhdf1score}{{10(a)}{10}}
-\newlabel{sub@subfig:caidahhdf1score}{{(a)}{10}}
-\newlabel{subfig:campusnetworkhhdf1score}{{10(b)}{10}}
-\newlabel{sub@subfig:campusnetworkhhdf1score}{{(b)}{10}}
-\newlabel{subfig:hgchhdf1score}{{10(c)}{10}}
-\newlabel{sub@subfig:hgchhdf1score}{{(c)}{10}}
-\newlabel{subfig:telecomhhdf1score}{{10(d)}{10}}
-\newlabel{sub@subfig:telecomhhdf1score}{{(d)}{10}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces \emph  {F1 Score} for \emph  {Heavy Hitter Detection}}}{10}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {CAIDA}}}{10}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Campus Network}}}{10}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {ISP1}}}{10}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {ISP2}}}{10}}
-\newlabel{fig:comparison_concurrent_flows_increases_hhd_f1_score}{{10}{10}}
+\newlabel{subfig:caidahhdf1score}{{10(a)}{9}}
+\newlabel{sub@subfig:caidahhdf1score}{{(a)}{9}}
+\newlabel{subfig:campusnetworkhhdf1score}{{10(b)}{9}}
+\newlabel{sub@subfig:campusnetworkhhdf1score}{{(b)}{9}}
+\newlabel{subfig:hgchhdf1score}{{10(c)}{9}}
+\newlabel{sub@subfig:hgchhdf1score}{{(c)}{9}}
+\newlabel{subfig:telecomhhdf1score}{{10(d)}{9}}
+\newlabel{sub@subfig:telecomhhdf1score}{{(d)}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces \emph  {F1 Score} for \emph  {Heavy Hitter Detection}}}{9}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {CAIDA}}}{9}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Campus Network}}}{9}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {ISP1}}}{9}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {ISP2}}}{9}}
+\newlabel{fig:comparison_concurrent_flows_increases_hhd_f1_score}{{10}{9}}
+\bibcite{li_flowradar:_2016}{5}
+\bibcite{noauthor_access_nodate}{6}
+\bibcite{noauthor_sampled_nodate}{7}
+\bibcite{hohn_inverting_2003}{8}
+\bibcite{duffield_estimating_2005}{9}
+\bibcite{tune_towards_2008}{10}
+\bibcite{duffield2004}{11}
+\bibcite{SamplingImpact}{12}
+\bibcite{DataStreams2005}{13}
+\bibcite{huang_sketchvisor:_2017}{14}
+\bibcite{chen_counter_2017}{15}
+\bibcite{yu_software_2013}{16}
+\bibcite{liu_one_2016}{17}
+\bibcite{sivaraman_heavy-hitter_2017}{18}
+\bibcite{yang_elastic_2018}{19}
+\bibcite{bosshart_p4:_2014}{20}
+\bibcite{noauthor_bmv2:_2018}{21}
+\bibcite{noauthor_barefoot_nodate}{22}
+\bibcite{noauthor_edgecore_nodate}{23}
+\bibcite{pagh_cuckoo_2004}{24}
+\bibcite{urn}{25}
+\bibcite{zhao_hashflow_2018}{26}
+\bibcite{noauthor_caida_nodate}{27}
+\bibcite{benson_network_2010}{28}
+\bibcite{whang_linear-time_1990}{29}
 \newlabel{subfig:caidahhdare}{{11(a)}{10}}
 \newlabel{sub@subfig:caidahhdare}{{(a)}{10}}
 \newlabel{subfig:campusnetworkhhdare}{{11(b)}{10}}
@@ -197,42 +229,3 @@
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Number of memory accesses}}}{10}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Resubmit Rate}}}{10}}
 \newlabel{throughput}{{12}{10}}
-\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusion}{10}}
-\newlabel{section:conclusion}{{VI}{10}}
-\bibstyle{IEEEtran}
-\bibdata{ms}
-\bibcite{claise_cisco_2004}{1}
-\bibcite{zhang_more_2017}{2}
-\bibcite{zhang_more_2015}{3}
-\bibcite{wang_efficient_2019}{4}
-\bibcite{li_flowradar:_2016}{5}
-\bibcite{noauthor_access_nodate}{6}
-\bibcite{noauthor_sampled_nodate}{7}
-\bibcite{hohn_inverting_2003}{8}
-\bibcite{duffield_estimating_2005}{9}
-\bibcite{tune_towards_2008}{10}
-\bibcite{duffield2004}{11}
-\bibcite{SamplingImpact}{12}
-\bibcite{DataStreams2005}{13}
-\bibcite{huang_sketchvisor:_2017}{14}
-\bibcite{chen_counter_2017}{15}
-\bibcite{yu_software_2013}{16}
-\bibcite{liu_one_2016}{17}
-\bibcite{sivaraman_heavy-hitter_2017}{18}
-\bibcite{yang_elastic_2018}{19}
-\bibcite{bosshart_p4:_2014}{20}
-\bibcite{noauthor_bmv2:_2018}{21}
-\bibcite{noauthor_barefoot_nodate}{22}
-\bibcite{noauthor_edgecore_nodate}{23}
-\bibcite{pagh_cuckoo_2004}{24}
-\bibcite{cormode_countmin_2005}{25}
-\bibcite{bloom_space/time_1970}{26}
-\bibcite{urn}{27}
-\bibcite{zhao_hashflow_2018}{28}
-\bibcite{ben-basat_efficient_2018}{29}
-\bibcite{noauthor_caida_nodate}{30}
-\bibcite{benson_network_2010}{31}
-\bibcite{whang_linear-time_1990}{32}
-\@writefile{toc}{\contentsline {section}{\numberline {VII}Acknowledgement}{11}}
-\newlabel{section:acknowledgement}{{VII}{11}}
-\@writefile{toc}{\contentsline {section}{References}{11}}

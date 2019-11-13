@@ -6,12 +6,7 @@ To keep pace up, we propose HashFlow, a tool for more efficient and accurate
 collection and analysis of flow records. The central idea of HashFlow is to  
 maintain accurate records for elephant flows, but summarized records for mice flows, 
 by applying a novel collision resolution and record promotion strategy to hash tables. 
-The performance bound can be analyzed with a probabilistic model, 
-and with this strategy, HashFlow achieves a better utilization of space, and also 
-more accurate flow records, without bringing extra complexity. 
-We have implemented HashFlow, as well as several latest flow measurement algorithms such as 
-FlowRadar, HashPipe and ElasticSketch, in a P4 software switch. We implement HashFlow in a commodity P4 switch in particular to demonstrate its implementability.
-Then we use traces from different operational networks to evaluate the algorithms.
+We have implemented HashFlow as well as several latest flow measurement algorithms in a P4 software switch, and use traces from different operational networks to evaluate the algorithms.
 In these experiments, for various types of traffic analysis applications, 
 HashFlow consistently demonstrates a clearly better performance against 
 its state-of-the-art competitors. 

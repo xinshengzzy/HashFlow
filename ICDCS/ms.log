@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.7.10)  8 APR 2019 16:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.7.10)  10 APR 2019 17:15
 entering extended mode
 **./ms.tex
 (ms.tex
@@ -419,38 +419,49 @@ G,.JBIG2,.JB2,.eps]
 LaTeX Font Info:    Calculating math sizes for size <11> on input line 65.
 
 (src/abstract.tex) (src/introduction.tex
-Underfull \hbox (badness 5592) in paragraph at lines 37--44
+Underfull \hbox (badness 5592) in paragraph at lines 34--41
 \T1/ptm/m/n/10 ing bet-ter statis-tics es-ti-ma-tion, re-cently a few al-go-
  []
 
 
-Underfull \hbox (badness 2837) in paragraph at lines 37--44
+Underfull \hbox (badness 2837) in paragraph at lines 34--41
 \T1/ptm/m/n/10 rithms that make en-hance-ment to a naive hash ta-ble
  []
 
 
-Underfull \hbox (badness 4647) in paragraph at lines 37--44
+Underfull \hbox (badness 4647) in paragraph at lines 34--41
 \T1/ptm/m/n/10 and in-te-grate sketches have been pro-posed, in-clud-ing
+ []
+
+
+Underfull \hbox (badness 1881) in paragraph at lines 68--81
+[]\T1/ptm/m/n/10 We have im-ple-mented Hash-Flow, as well as sev-eral
  []
 
 [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
-]
-Underfull \hbox (badness 1881) in paragraph at lines 71--84
-[]\T1/ptm/m/n/10 We have im-ple-mented Hash-Flow, as well as sev-eral
+])
+(src/background_motivation.tex
+Underfull \hbox (badness 2790) in paragraph at lines 15--17
+[]\T1/ptm/m/n/10 Before pre-sent-ing Hash-Flow, we briefly re-view sev-
  []
 
-) (src/background_motivation.tex [2]) (src/algorithm.tex [3]
-<./figures/datastructure/datastructure.pdf, id=25, 473.51906pt x 289.08pt>
+
+Underfull \hbox (badness 7704) in paragraph at lines 15--17
+\T1/ptm/m/n/10 eral re-cently pro-posed al-go-rithms, i.e., HashPipe[[]],
+ []
+
+[2]) (src/algorithm.tex
+<./figures/datastructure/datastructure.pdf, id=16, 473.51906pt x 289.08pt>
 File: ./figures/datastructure/datastructure.pdf Graphic file (type pdf)
 
 <use ./figures/datastructure/datastructure.pdf>
 Package pdftex.def Info: ./figures/datastructure/datastructure.pdf used on inpu
 t line 106.
 (pdftex.def)             Requested size: 250.77312pt x 153.09256pt.
- [4 <./figures/datastructure/datastructure.pdf>]
-<figures/exp84481/hash_table_utilization.png, id=54, 452.4102pt x 505.1673pt>
+ [3]
+<figures/exp84481/hash_table_utilization.png, id=23, 452.4102pt x 505.1673pt>
 File: figures/exp84481/hash_table_utilization.png Graphic file (type png)
 
 <use figures/exp84481/hash_table_utilization.png>
@@ -458,7 +469,7 @@ Package pdftex.def Info: figures/exp84481/hash_table_utilization.png used on in
 put line 212.
 (pdftex.def)             Requested size: 123.84283pt x 138.27779pt.
 
-<figures/exp84489/pipelined_tables_utilization_ratio_10.png, id=56, 452.4102pt 
+<figures/exp84489/pipelined_tables_utilization_ratio_10.png, id=25, 452.4102pt 
 x 505.1673pt>
 File: figures/exp84489/pipelined_tables_utilization_ratio_10.png Graphic file (
 type png)
@@ -467,7 +478,7 @@ Package pdftex.def Info: figures/exp84489/pipelined_tables_utilization_ratio_10
 .png used on input line 212.
 (pdftex.def)             Requested size: 123.84283pt x 138.27779pt.
 
-<figures/exp84489/pipelined_tables_utilization_ratio_20.png, id=57, 452.4102pt 
+<figures/exp84489/pipelined_tables_utilization_ratio_20.png, id=26, 452.4102pt 
 x 505.1673pt>
 File: figures/exp84489/pipelined_tables_utilization_ratio_20.png Graphic file (
 type png)
@@ -476,268 +487,278 @@ Package pdftex.def Info: figures/exp84489/pipelined_tables_utilization_ratio_20
 .png used on input line 212.
 (pdftex.def)             Requested size: 123.84283pt x 138.27779pt.
 
-<figures/exp84488/improvement.png, id=58, 487.0998pt x 505.1673pt>
+<figures/exp84488/improvement.png, id=27, 487.0998pt x 505.1673pt>
 File: figures/exp84488/improvement.png Graphic file (type png)
 
 <use figures/exp84488/improvement.png>
 Package pdftex.def Info: figures/exp84488/improvement.png used on input line 21
 2.
 (pdftex.def)             Requested size: 123.84283pt x 128.43439pt.
-) (src/implementation.tex [5])
-(src/evaluation.tex
-Underfull \hbox (badness 1881) in paragraph at lines 5--12
+ [4 <./figures/datastructure/datastructure.pdf>]) (src/implementation.tex [5 <.
+/figures/exp84481/hash_table_utilization.png> <./figures/exp84489/pipelined_tab
+les_utilization_ratio_10.png> <./figures/exp84489/pipelined_tables_utilization_
+ratio_20.png> <./figures/exp84488/improvement.png>]) (src/evaluation.tex
+Underfull \hbox (badness 1881) in paragraph at lines 5--11
 []\T1/ptm/m/n/10 We have im-ple-mented Hash-Flow, as well as sev-eral
  []
 
-[6 <./figures/exp84481/hash_table_utilization.png> <./figures/exp84489/pipeline
-d_tables_utilization_ratio_10.png> <./figures/exp84489/pipelined_tables_utiliza
-tion_ratio_20.png> <./figures/exp84488/improvement.png>]
-<figures/exp84478/flow_size_distribution.png, id=70, 446.6286pt x 356.2911pt>
+<figures/exp84478/flow_size_distribution.png, id=67, 446.6286pt x 356.2911pt>
 File: figures/exp84478/flow_size_distribution.png Graphic file (type png)
 
 <use figures/exp84478/flow_size_distribution.png>
 Package pdftex.def Info: figures/exp84478/flow_size_distribution.png used on in
-put line 47.
+put line 46.
 (pdftex.def)             Requested size: 112.84712pt x 90.01851pt.
 
-<figures/exp84479/are_with_depth.png, id=71, 485.6544pt x 362.0727pt>
+<figures/exp84479/are_with_depth.png, id=68, 485.6544pt x 362.0727pt>
 File: figures/exp84479/are_with_depth.png Graphic file (type png)
 
 <use figures/exp84479/are_with_depth.png>
 Package pdftex.def Info: figures/exp84479/are_with_depth.png used on input line
- 53.
+ 52.
 (pdftex.def)             Requested size: 112.84712pt x 84.1313pt.
- [7 <./figures/exp84478/flow_size_distribution.png> <./figures/exp84479/are_wit
+ [6 <./figures/exp84478/flow_size_distribution.png> <./figures/exp84479/are_wit
 h_depth.png>]
-<figures/exp84454/flow_monitoring_fsc.png, id=78, 474.8139pt x 344.0052pt>
+<figures/exp84454/flow_monitoring_fsc.png, id=74, 474.8139pt x 344.0052pt>
 File: figures/exp84454/flow_monitoring_fsc.png Graphic file (type png)
 
 <use figures/exp84454/flow_monitoring_fsc.png>
 Package pdftex.def Info: figures/exp84454/flow_monitoring_fsc.png used on input
- line 179.
+ line 168.
 (pdftex.def)             Requested size: 112.84712pt x 81.75456pt.
 
-<figures/exp84454/flow_size_estimation_are.png, id=79, 474.8139pt x 351.2322pt>
+<figures/exp84454/flow_size_estimation_are.png, id=75, 474.8139pt x 351.2322pt>
 File: figures/exp84454/flow_size_estimation_are.png Graphic file (type png)
 <use figures/exp84454/flow_size_estimation_are.png>
 Package pdftex.def Info: figures/exp84454/flow_size_estimation_are.png used on 
-input line 179.
+input line 168.
 (pdftex.def)             Requested size: 112.84712pt x 83.4721pt.
 
-<figures/exp84493/caida_heavy_hitter_detection_f1_score.png, id=80, 463.9734pt 
+<figures/exp84493/caida_heavy_hitter_detection_f1_score.png, id=76, 463.9734pt 
 x 434.3427pt>
 File: figures/exp84493/caida_heavy_hitter_detection_f1_score.png Graphic file (
 type png)
  <use figures/exp84493/caida_heavy_hitter_detection_f1_score.png>
 Package pdftex.def Info: figures/exp84493/caida_heavy_hitter_detection_f1_score
-.png used on input line 191.
+.png used on input line 180.
 (pdftex.def)             Requested size: 112.84712pt x 105.63615pt.
 
-<figures/exp84493/caida_heavy_hitter_detection_are.png, id=81, 463.9734pt x 434
+<figures/exp84493/caida_heavy_hitter_detection_are.png, id=77, 463.9734pt x 434
 .3427pt>
 File: figures/exp84493/caida_heavy_hitter_detection_are.png Graphic file (type 
 png)
  <use figures/exp84493/caida_heavy_hitter_detection_are.png>
 Package pdftex.def Info: figures/exp84493/caida_heavy_hitter_detection_are.png 
-used on input line 191.
+used on input line 180.
 (pdftex.def)             Requested size: 112.84712pt x 105.63615pt.
 
-<figures/exp84485/caida_flow_monitoring_fsc.png, id=82, 483.4863pt x 430.0065pt
+Underfull \vbox (badness 1609) has occurred while \output is active []
+
+ [7 <./figures/exp84454/flow_monitoring_fsc.png> <./figures/exp84454/flow_size_
+estimation_are.png> <./figures/exp84493/caida_heavy_hitter_detection_f1_score.p
+ng> <./figures/exp84493/caida_heavy_hitter_detection_are.png>]
+<figures/exp84485/caida_flow_monitoring_fsc.png, id=86, 483.4863pt x 430.0065pt
 >
 File: figures/exp84485/caida_flow_monitoring_fsc.png Graphic file (type png)
  <use figures/exp84485/caida_flow_monitoring_fsc.png>
 Package pdftex.def Info: figures/exp84485/caida_flow_monitoring_fsc.png used on
- input line 224.
+ input line 211.
 (pdftex.def)             Requested size: 123.84283pt x 110.13902pt.
 
-<figures/exp84485/tsinghua_flow_monitoring_fsc.png, id=83, 483.4863pt x 430.006
+<figures/exp84485/tsinghua_flow_monitoring_fsc.png, id=87, 483.4863pt x 430.006
 5pt>
 File: figures/exp84485/tsinghua_flow_monitoring_fsc.png Graphic file (type png)
 
  <use figures/exp84485/tsinghua_flow_monitoring_fsc.png>
 Package pdftex.def Info: figures/exp84485/tsinghua_flow_monitoring_fsc.png used
- on input line 224.
+ on input line 211.
 (pdftex.def)             Requested size: 123.84283pt x 110.13902pt.
 
-<figures/exp84485/hgc_flow_monitoring_fsc.png, id=84, 483.4863pt x 430.0065pt>
+<figures/exp84485/hgc_flow_monitoring_fsc.png, id=88, 483.4863pt x 430.0065pt>
 File: figures/exp84485/hgc_flow_monitoring_fsc.png Graphic file (type png)
 
 <use figures/exp84485/hgc_flow_monitoring_fsc.png>
 Package pdftex.def Info: figures/exp84485/hgc_flow_monitoring_fsc.png used on i
-nput line 224.
+nput line 211.
 (pdftex.def)             Requested size: 123.84283pt x 110.13902pt.
 
-<figures/exp84485/telecom_flow_monitoring_fsc.png, id=85, 483.4863pt x 430.0065
+<figures/exp84485/telecom_flow_monitoring_fsc.png, id=89, 483.4863pt x 430.0065
 pt>
 File: figures/exp84485/telecom_flow_monitoring_fsc.png Graphic file (type png)
  <use figures/exp84485/telecom_flow_monitoring_fsc.png>
 Package pdftex.def Info: figures/exp84485/telecom_flow_monitoring_fsc.png used 
-on input line 224.
+on input line 211.
 (pdftex.def)             Requested size: 123.84283pt x 110.13902pt.
 
-<figures/exp84485/caida_cardinality_re.png, id=86, 483.4863pt x 430.0065pt>
+<figures/exp84485/caida_cardinality_re.png, id=90, 483.4863pt x 430.0065pt>
 File: figures/exp84485/caida_cardinality_re.png Graphic file (type png)
 
 <use figures/exp84485/caida_cardinality_re.png>
 Package pdftex.def Info: figures/exp84485/caida_cardinality_re.png used on inpu
-t line 246.
+t line 233.
 (pdftex.def)             Requested size: 123.84283pt x 110.13902pt.
 
-<figures/exp84485/tsinghua_cardinality_re.png, id=87, 483.4863pt x 430.0065pt>
+<figures/exp84485/tsinghua_cardinality_re.png, id=91, 483.4863pt x 430.0065pt>
 File: figures/exp84485/tsinghua_cardinality_re.png Graphic file (type png)
 
 <use figures/exp84485/tsinghua_cardinality_re.png>
 Package pdftex.def Info: figures/exp84485/tsinghua_cardinality_re.png used on i
-nput line 246.
+nput line 233.
 (pdftex.def)             Requested size: 123.84283pt x 110.13902pt.
 
-<figures/exp84485/hgc_cardinality_re.png, id=88, 483.4863pt x 430.0065pt>
+<figures/exp84485/hgc_cardinality_re.png, id=92, 483.4863pt x 430.0065pt>
 File: figures/exp84485/hgc_cardinality_re.png Graphic file (type png)
 
 <use figures/exp84485/hgc_cardinality_re.png>
 Package pdftex.def Info: figures/exp84485/hgc_cardinality_re.png used on input 
-line 246.
+line 233.
 (pdftex.def)             Requested size: 123.84283pt x 110.13902pt.
 
-<figures/exp84485/telecom_cardinality_re.png, id=89, 483.4863pt x 430.0065pt>
+<figures/exp84485/telecom_cardinality_re.png, id=93, 483.4863pt x 430.0065pt>
 File: figures/exp84485/telecom_cardinality_re.png Graphic file (type png)
 
 <use figures/exp84485/telecom_cardinality_re.png>
 Package pdftex.def Info: figures/exp84485/telecom_cardinality_re.png used on in
-put line 246.
+put line 233.
 (pdftex.def)             Requested size: 123.84283pt x 110.13902pt.
 
-<figures/exp84485/caida_flow_size_estimation_are.png, id=90, 483.4863pt x 430.0
+<figures/exp84485/caida_flow_size_estimation_are.png, id=94, 483.4863pt x 430.0
 065pt>
 File: figures/exp84485/caida_flow_size_estimation_are.png Graphic file (type pn
 g)
  <use figures/exp84485/caida_flow_size_estimation_are.png>
 Package pdftex.def Info: figures/exp84485/caida_flow_size_estimation_are.png us
-ed on input line 266.
+ed on input line 253.
 (pdftex.def)             Requested size: 123.84283pt x 110.13902pt.
 
-<figures/exp84485/tsinghua_flow_size_estimation_are.png, id=91, 483.4863pt x 43
+<figures/exp84485/tsinghua_flow_size_estimation_are.png, id=95, 483.4863pt x 43
 0.0065pt>
 File: figures/exp84485/tsinghua_flow_size_estimation_are.png Graphic file (type
  png)
  <use figures/exp84485/tsinghua_flow_size_estimation_are.png>
 Package pdftex.def Info: figures/exp84485/tsinghua_flow_size_estimation_are.png
- used on input line 266.
+ used on input line 253.
 (pdftex.def)             Requested size: 123.84283pt x 110.13902pt.
 
-<figures/exp84485/hgc_flow_size_estimation_are.png, id=92, 483.4863pt x 430.006
+<figures/exp84485/hgc_flow_size_estimation_are.png, id=96, 483.4863pt x 430.006
 5pt>
 File: figures/exp84485/hgc_flow_size_estimation_are.png Graphic file (type png)
 
  <use figures/exp84485/hgc_flow_size_estimation_are.png>
 Package pdftex.def Info: figures/exp84485/hgc_flow_size_estimation_are.png used
- on input line 266.
+ on input line 253.
 (pdftex.def)             Requested size: 123.84283pt x 110.13902pt.
 
-<figures/exp84485/telecom_flow_size_estimation_are.png, id=93, 483.4863pt x 430
+<figures/exp84485/telecom_flow_size_estimation_are.png, id=97, 483.4863pt x 430
 .0065pt>
 File: figures/exp84485/telecom_flow_size_estimation_are.png Graphic file (type 
 png)
  <use figures/exp84485/telecom_flow_size_estimation_are.png>
 Package pdftex.def Info: figures/exp84485/telecom_flow_size_estimation_are.png 
-used on input line 266.
+used on input line 253.
 (pdftex.def)             Requested size: 123.84283pt x 110.13902pt.
- [8 <./figures/exp84454/flow_monitoring_fsc.png> <./figures/exp84454/flow_size_
-estimation_are.png> <./figures/exp84493/caida_heavy_hitter_detection_f1_score.p
-ng> <./figures/exp84493/caida_heavy_hitter_detection_are.png>]
-<figures/exp84486/caida_250K_f1_score.png, id=101, 469.0323pt x 430.0065pt>
+
+<figures/exp84486/caida_250K_f1_score.png, id=98, 469.0323pt x 430.0065pt>
 File: figures/exp84486/caida_250K_f1_score.png Graphic file (type png)
 
 <use figures/exp84486/caida_250K_f1_score.png>
 Package pdftex.def Info: figures/exp84486/caida_250K_f1_score.png used on input
- line 294.
+ line 280.
 (pdftex.def)             Requested size: 123.84283pt x 113.53781pt.
 
-<figures/exp84486/tsinghua_250K_f1_score.png, id=102, 469.0323pt x 430.0065pt>
+<figures/exp84486/tsinghua_250K_f1_score.png, id=99, 469.0323pt x 430.0065pt>
 File: figures/exp84486/tsinghua_250K_f1_score.png Graphic file (type png)
 
 <use figures/exp84486/tsinghua_250K_f1_score.png>
 Package pdftex.def Info: figures/exp84486/tsinghua_250K_f1_score.png used on in
-put line 294.
+put line 280.
 (pdftex.def)             Requested size: 123.84283pt x 113.53781pt.
 
-<figures/exp84486/hgc_250K_f1_score.png, id=103, 452.4102pt x 430.0065pt>
+<figures/exp84486/hgc_250K_f1_score.png, id=100, 452.4102pt x 430.0065pt>
 File: figures/exp84486/hgc_250K_f1_score.png Graphic file (type png)
 
 <use figures/exp84486/hgc_250K_f1_score.png>
 Package pdftex.def Info: figures/exp84486/hgc_250K_f1_score.png used on input l
-ine 294.
+ine 280.
 (pdftex.def)             Requested size: 123.84283pt x 117.70427pt.
 
-<figures/exp84486/telecom_250K_f1_score.png, id=104, 452.4102pt x 430.0065pt>
+<figures/exp84486/telecom_250K_f1_score.png, id=101, 452.4102pt x 430.0065pt>
 File: figures/exp84486/telecom_250K_f1_score.png Graphic file (type png)
 
 <use figures/exp84486/telecom_250K_f1_score.png>
 Package pdftex.def Info: figures/exp84486/telecom_250K_f1_score.png used on inp
-ut line 294.
+ut line 280.
 (pdftex.def)             Requested size: 123.84283pt x 117.70427pt.
 
-<figures/exp84486/caida_250K_re.png, id=105, 452.4102pt x 430.0065pt>
+<figures/exp84486/caida_250K_re.png, id=102, 452.4102pt x 430.0065pt>
 File: figures/exp84486/caida_250K_re.png Graphic file (type png)
 
 <use figures/exp84486/caida_250K_re.png>
 Package pdftex.def Info: figures/exp84486/caida_250K_re.png used on input line 
-307.
+293.
 (pdftex.def)             Requested size: 123.84283pt x 117.70427pt.
 
-<figures/exp84486/tsinghua_250K_re.png, id=106, 452.4102pt x 430.0065pt>
+<figures/exp84486/tsinghua_250K_re.png, id=103, 452.4102pt x 430.0065pt>
 File: figures/exp84486/tsinghua_250K_re.png Graphic file (type png)
 
 <use figures/exp84486/tsinghua_250K_re.png>
 Package pdftex.def Info: figures/exp84486/tsinghua_250K_re.png used on input li
-ne 307.
+ne 293.
 (pdftex.def)             Requested size: 123.84283pt x 117.70427pt.
 
-<figures/exp84486/hgc_250K_re.png, id=107, 452.4102pt x 430.0065pt>
+<figures/exp84486/hgc_250K_re.png, id=104, 452.4102pt x 430.0065pt>
 File: figures/exp84486/hgc_250K_re.png Graphic file (type png)
 
 <use figures/exp84486/hgc_250K_re.png>
-Package pdftex.def Info: figures/exp84486/hgc_250K_re.png used on input line 30
-7.
+Package pdftex.def Info: figures/exp84486/hgc_250K_re.png used on input line 29
+3.
 (pdftex.def)             Requested size: 123.84283pt x 117.70427pt.
 
-<figures/exp84486/telecom_250K_re.png, id=108, 452.4102pt x 430.0065pt>
+<figures/exp84486/telecom_250K_re.png, id=105, 452.4102pt x 430.0065pt>
 File: figures/exp84486/telecom_250K_re.png Graphic file (type png)
 
 <use figures/exp84486/telecom_250K_re.png>
 Package pdftex.def Info: figures/exp84486/telecom_250K_re.png used on input lin
-e 307.
+e 293.
 (pdftex.def)             Requested size: 123.84283pt x 117.70427pt.
 
-<figures/exp84484/throughput.png, id=109, 461.0826pt x 440.847pt>
+<figures/exp84484/throughput.png, id=106, 461.0826pt x 440.847pt>
 File: figures/exp84484/throughput.png Graphic file (type png)
 
 <use figures/exp84484/throughput.png>
-Package pdftex.def Info: figures/exp84484/throughput.png used on input line 321
+Package pdftex.def Info: figures/exp84484/throughput.png used on input line 307
 .
 (pdftex.def)             Requested size: 123.84283pt x 118.40468pt.
 
-<figures/exp84490/ave_hash.png, id=110, 461.0826pt x 440.847pt>
+<figures/exp84490/ave_hash.png, id=107, 461.0826pt x 440.847pt>
 File: figures/exp84490/ave_hash.png Graphic file (type png)
 
 <use figures/exp84490/ave_hash.png>
-Package pdftex.def Info: figures/exp84490/ave_hash.png used on input line 321.
+Package pdftex.def Info: figures/exp84490/ave_hash.png used on input line 307.
 (pdftex.def)             Requested size: 123.84283pt x 118.40468pt.
 
-<figures/exp84490/ave_mem.png, id=111, 477.7047pt x 440.847pt>
+<figures/exp84490/ave_mem.png, id=108, 477.7047pt x 440.847pt>
 File: figures/exp84490/ave_mem.png Graphic file (type png)
 
 <use figures/exp84490/ave_mem.png>
-Package pdftex.def Info: figures/exp84490/ave_mem.png used on input line 321.
+Package pdftex.def Info: figures/exp84490/ave_mem.png used on input line 307.
 (pdftex.def)             Requested size: 123.84283pt x 114.28117pt.
 
-<figures/exp84491/increase_in_processing.png, id=112, 484.209pt x 440.1243pt>
+<figures/exp84491/increase_in_processing.png, id=109, 484.209pt x 440.1243pt>
 File: figures/exp84491/increase_in_processing.png Graphic file (type png)
 
 <use figures/exp84491/increase_in_processing.png>
 Package pdftex.def Info: figures/exp84491/increase_in_processing.png used on in
-put line 321.
+put line 307.
 (pdftex.def)             Requested size: 123.84283pt x 112.56264pt.
+) (src/conclusion.tex)
+(src/acknowledgement.tex) (ms.bbl
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `en'. Using the pattern for
+** the default language instead.
+[8]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -748,25 +769,15 @@ cardinality_re.png> <./figures/exp84485/tsinghua_cardinality_re.png> <./figures
 /exp84485/hgc_cardinality_re.png> <./figures/exp84485/telecom_cardinality_re.pn
 g> <./figures/exp84485/caida_flow_size_estimation_are.png> <./figures/exp84485/
 tsinghua_flow_size_estimation_are.png> <./figures/exp84485/hgc_flow_size_estima
-tion_are.png> <./figures/exp84485/telecom_flow_size_estimation_are.png>])
-(src/conclusion.tex) (src/acknowledgement.tex
-Underfull \vbox (badness 1975) has occurred while \output is active []
-
- [10 <./figures/exp84486/caida_250K_f1_score.png> <./figures/exp84486/tsinghua_
-250K_f1_score.png> <./figures/exp84486/hgc_250K_f1_score.png> <./figures/exp844
-86/telecom_250K_f1_score.png> <./figures/exp84486/caida_250K_re.png> <./figures
-/exp84486/tsinghua_250K_re.png> <./figures/exp84486/hgc_250K_re.png> <./figures
-/exp84486/telecom_250K_re.png> <./figures/exp84484/throughput.png> <./figures/e
-xp84490/ave_hash.png> <./figures/exp84490/ave_mem.png> <./figures/exp84491/incr
-ease_in_processing.png>]) (ms.bbl
-** WARNING: IEEEtran.bst: No hyphenation pattern has been
-** loaded for the language `en'. Using the pattern for
-** the default language instead.
+tion_are.png> <./figures/exp84485/telecom_flow_size_estimation_are.png> <./figu
+res/exp84486/caida_250K_f1_score.png> <./figures/exp84486/tsinghua_250K_f1_scor
+e.png> <./figures/exp84486/hgc_250K_f1_score.png> <./figures/exp84486/telecom_2
+50K_f1_score.png>]
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `en'. Using the pattern for
 ** the default language instead.
 
-Underfull \hbox (badness 1502) in paragraph at lines 95--98
+Underfull \hbox (badness 1502) in paragraph at lines 91--94
 []\T1/ptm/m/n/8 S. Muthukr-ish-nan, ``Data Streams: Al-go-rithms and Ap-pli-ca-
 tions,''
  []
@@ -792,33 +803,37 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[11] (ms.aux) ) 
+[10 <./figures/exp84486/caida_250K_re.png> <./figures/exp84486/tsinghua_250K_re
+.png> <./figures/exp84486/hgc_250K_re.png> <./figures/exp84486/telecom_250K_re.
+png> <./figures/exp84484/throughput.png> <./figures/exp84490/ave_hash.png> <./f
+igures/exp84490/ave_mem.png> <./figures/exp84491/increase_in_processing.png>]
+(ms.aux) ) 
 Here is how much of TeX's memory you used:
- 4645 strings out of 493323
- 73958 string characters out of 3139072
- 142872 words of memory out of 3000000
- 8029 multiletter control sequences out of 15000+200000
+ 4642 strings out of 493323
+ 73886 string characters out of 3139072
+ 142324 words of memory out of 3000000
+ 8026 multiletter control sequences out of 15000+200000
  119789 words of font info for 129 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  39i,13n,26p,1550b,327s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Pro
-gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Fil
-es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
-msfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
-m/cmr5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb
-><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Pro
-gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Program File
-s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 
-2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts
-/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/
-utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/P
-rogram Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ms.pdf (11 pages, 1844986 bytes).
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program 
+Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
+ic/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
+ts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr
+5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/
+Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program 
+Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Program Files/MiK
+TeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/f
+onts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
+1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmbi
+8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Progra
+m Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on ms.pdf (10 pages, 1838834 bytes).
 PDF statistics:
- 197 PDF objects out of 1000 (max. 8388607)
+ 194 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  176 words of extra memory for PDF output out of 10000 (max. 10000000)
 

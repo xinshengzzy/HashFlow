@@ -12,44 +12,22 @@ and linear probing, and more sophisticated ones like Cuckoo hashing \cite{pagh_c
 However, in the worst case, they need unbounded time for insertion or lookup, thus are not 
 adequate for our purpose. 
 
-Before presenting HashFlow, we briefly introduce the mechanisms of several recently proposed algorithms,
-i.e., HashPipe\cite{sivaraman_heavy-hitter_2017}, ElasticSketch\cite{yang_elastic_2018} and FlowRadar\cite{li_flowradar:_2016}.
-In doing this, we try to point out some minor defects in the algorithms, not for criticism, but for possible 
-enhancement and new strategy we may introduce to HashFlow. 
+Before presenting HashFlow, we briefly review several recently proposed algorithms,
+i.e., HashPipe\cite{sivaraman_heavy-hitter_2017}, ElasticSketch\cite{yang_elastic_2018} and FlowRadar\cite{li_flowradar:_2016}, and try to point out some minor defects in the algorithms. We will assume that the readers are familiar with the algorithms.
 
-HashPipe\cite{sivaraman_heavy-hitter_2017} uses a series of independent hash tables (each with a different hash function).
-When a packet comes to the first table, if in the bucket it is hashed into, there already exists a record of another flow, 
-then the old flow will be evicted to make room for the new flow. The evicted flow record will then try to find an empty bucket 
-in the remaining hash tables as a newcomer. When a collision happens there, among the newcomer and the existing record, 
-the one with a smaller packet count will be kicked out, and become the newcomer to the next table. This process goes on 
-until either an empty bucket is found, or there is no remaining hash table (in which case the last evicted flow will be discarded). 
-
-HashPipe uses the first table to effectively accommodate new flows and evict the existing flows when collision occurs, otherwise new flows will have little chance to stay if large flows accumulate in the table. But on the other hand, this strategy frequently 
+HashPipe\cite{sivaraman_heavy-hitter_2017} uses a series of independent hash tables (each with a different hash function). The first table is used to effectively accommodate new flows and evict the existing flows when collision occurs, otherwise new flows will have little chance to stay if large flows accumulate in the table. But on the other hand, this strategy frequently 
 splits one flow record into multiple records that are stored in different hash tables, each with a partial count, 
 since an existing flow may be evicted but new packets of this flow may still arrive later. 
 This effect makes the utilization of memory less efficient, and makes the packet count less accurate. 
 
-ElasticSketch\cite{yang_elastic_2018} uses, in the hash table, 
-two packet counters (vote$^{+}$ and vote$^{-}$) instead of one in each flow record. 
-Vote$^{+}$ maintains the number of packets belonging to the flow, while vote$^{-}$ for the packets belonging to all the 
-other flows that have been hashed into the same bucket. It also uses a count-min sketch\cite{cormode_countmin_2005} 
-to maintain summarized flow records, corresponding to both flows that have never been stored in the hash table, 
-and flows that have been evicted when the corresponding vote$^{-}$ is too large, i.e., $\frac{vote^{-}}{vote^{+}}$ 
-is greater than a predefined threshold $\lambda$. 
-However, due to collisions and the eviction strategy ElasticSketch employs, a flow record may also be split 
+In ElasticSketch\cite{yang_elastic_2018}, due to the collisions and eviction strategy employed, a flow record may also be split 
 into multiple records, and the packet counter is not accurate. The count-min sketch is introduced to help the flow size 
 estimation. However, since the count-min sketch itself may not be accurate, the estimation accuracy is limited,  
 which is especially true if the sketch is occupied by too many flows. 
 
 
 %Unlike HashPipe and ElasticSketch, FlowRadar\cite{li_flowradar:_2016} tries to record all the flows. 
-FlowRadar\cite{li_flowradar:_2016} uses a bloom filter\cite{bloom_space/time_1970} to determine 
-whether a new flow comes in. It also adds a flow count and a flow set field to each flow record in the hash table. 
-For each packet, FlowRadar hashes it into multiple buckets, and updates the corresponding packet count fields. 
-If a new flow comes in as reported by the bloom filter, the flow set fields of the buckets will be ``xor''-ed with the new ID, 
-and the flow count fields will be incremented by 1. 
-During post processing phase, FlowRadar can decode (some) flow IDs that are encoded into the flow set fields, and also recover the corresponding packet counts. 
-However, the chances that such decoding succeeds drop abruptly if the table is heavily loaded and there are not enough flows that don't collide with any other ones.
+In FlowRadar\cite{li_flowradar:_2016}, flow information is encoded into a flow set, and then we can recover (some) flow IDs and the corresponding packet counts during the post processing phase. However, the chances that such decoding succeeds drop abruptly if the table is heavily loaded and there are not enough flows that don't collide with any other ones.
 
 %FlowRadar records the size of every flow accurately when there is sufficient memory. However, when the value of $\frac{\text{num. of cells in the counting table}}{\text{num. of flows cached}}$ is less than some threshold (about 1.24), the performance of FlowRadar will degrade abruptly and many flows will fail to be decoded. So it is challenging to use it in the real networks where bursty traffic occurs frequently.
 

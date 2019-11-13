@@ -1,7 +1,8 @@
 \documentclass{article}
-\title{Experiments Plan}
-\author{Zhao Zongyi}
-\date{Dec. 22nd, 2018}
+\usepackage{ctex}
+\title{实验方案}
+\author{赵宗义}
+\date{2019年11月13日}
 \begin{document}
 \maketitle
 \section*{Exp \#84491}
@@ -29,5 +30,15 @@
 	\item Use a trace file from CAIDA and HGC respectively.
 	\item Use four versions of HashFlow. In the versions the number of buckets in the ancillary table is $0.25\times$, $0.5\times$, $1.0\times$, and $2\times$ respectively of the number of buckets in main table.
 	\item Calculate the average relative error for flow size estimation.
+\end{itemize}
+
+\section*{Exp \#84494}
+\begin{itemize}
+	\item Randomly select a file from the traces of ChinaTelecom, HGC, Tsinghua and CAIDA respectively. 
+	\item Extract 5 million packets from each trace file.
+	\item Record the number of distinct flows in each trace file. Note that all the packets with the same source IP address, destination IP address, source port, destination port, and protocol belong to the same flow. The flow ID is the five tuple (srcip, dstip, srcport, dstport, protocol).
+	\item Map the flow ID of each flow to a digest using a given hash function.
+	\item Record the number of distinct digest for each trace file. 
+	\item Compare the number of distinct flows and the number of distinct digests for each trace file.
 \end{itemize}
 \end{document}

@@ -101,9 +101,9 @@ So we promote $(f_7, 8)$ by inserting it back into the main table, evicting the 
  
 
 
-\begin{figure}
+\begin{figure}[ht!]
     \centering
-    \includegraphics[width=\linewidth]{./figures/datastructure/datastructure}
+    \includegraphics[width=\linewidth]{./figures/datastructure/datastructure.pdf}
     \caption{An example of HashFlow}
     \label{fig:datastructure}
 \end{figure}
@@ -298,28 +298,21 @@ The utilization of the tables is
 
 Now we will show how accurate the models are. 
 In Fig. \ref{multihash},
-we compare the utilization provided by our multi-hash table model against the results from simulations on some real traces.
-We use $n=$100K buckets, with different depth $d$ from 1 to 10, 
+we use $n=$100K buckets, with different depth $d$ from 1 to 10, 
 and vary the traffic load $m/n$ from 1 to 4. As can be seen there, 
-only under a light load of $m/n=1$, there is a slight difference between the model and the real algorithm.
-When $m/n \ge 2$, the multi-hash table model provides nearly perfect predictions.
+when $m/n \ge 2$, the multi-hash table model provides nearly perfect predictions.
 
-Fig. \ref{pipeline1} and Fig. \ref{pipeline2} depict the utilization provided by our model on pipelined tables, 
-as well as results from simulations, for traffic load $m/n=1.0$ and 2.0, respectively. 
-We use a similar setting as above, with $n=$100K and $d$ from 1 to 10,
-but we vary the pipeline weigh $\alpha$ between 0.5 to 0.8. 
-This time the model and the simulation results match  quite well, 
+In Fig. \ref{pipeline1} and Fig. \ref{pipeline2}, we use a similar setting as above, with $n=$100K and $d$ from 1 to 10,
+but we vary the pipeline weight $\alpha$ between 0.5 to 0.8. 
+This time the model and the simulation results match quite well, 
 since  arranging the packet arrivals in rounds, as we have done in the model,  
 actually does not affect the final probability (we omit the proof due to space limitations).
 
-With these two models, we can compute the utilization of our main table, 
-as long as the traffic load $m/n$ is known. Since each record is accurate 
-(neglecting the minor chance that a flow record promoted back to the main 
-table happens to have an inaccurate count), this provides a concrete prediction 
-on the number of records HashFlow can report. 
+With these two models, we can predict the utilization of our main table, 
+as long as the traffic load $m/n$ is known.
 We can see that more hash functions will improve the utilization.
-For example, in the case of $m/n=1$, the utilization  increases from 63\% to 80\% 
-when $d$ is increased from 1 to 3, and from 83 to 92 when $d$ is increased from 3 to 10.
+In the case of $m/n=1$, the utilization  increases from 63\% to 83\% 
+when $d$ is increased from 1 to 3, and from 83\% to 92\% when $d$ is increased from 3 to 10.
 As more hash functions require more hash operations and memory accesses in the worst case, 3 hash functions seems to be a  sweet spot, and we use $d=3$ by default in our evaluations.
 
 Fig. \ref{improvement} shows, when $d=3$, 

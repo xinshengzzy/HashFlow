@@ -29,19 +29,16 @@ B.~Claise, ``\BIBforeignlanguage{en}{Cisco {Systems} {NetFlow} {Services}
 \BIBentrySTDinterwordspacing
 
 \bibitem{zhang_more_2017}
-\BIBentryALTinterwordspacing
 H.~Zhang, X.~Shi, Y.~Guo, Z.~Wang, and X.~Yin, ``More {Load}, {More}
   {Differentiation} - {Let} {More} {Flows} {Finish} {Before} {Deadline} in
   {Data} {Center} {Networks},'' \emph{Computer Networks}, vol. 127, pp.
-  352--367, Nov. 2017. [Online]. Available:
-  \url{http://www.sciencedirect.com/science/article/pii/S138912861730333X}
-\BIBentrySTDinterwordspacing
+  352--367, Nov. 2017.
 
 \bibitem{zhang_more_2015}
 H.~Zhang, X.~Shi, X.~Yin, F.~Ren, and Z.~Wang, ``More {Load}, {More}
   {Differentiation} - {A} {Design} {Principle} for {Deadline}-{Aware}
   {Congestion} {Control},'' in \emph{2015 {IEEE} {Conference} on {Computer}
-  {Communications} ({INFOCOM})}, Apr. 2015, pp. 127--135.
+  {Communications}}, Apr. 2015, pp. 127--135.
 
 \bibitem{wang_efficient_2019}
 Z.~Wang, H.~Zhang, X.~Shi, H.~Geng, Y.~Li, X.~Yin, J.~Liu, and Q.~Wu,
@@ -51,8 +48,7 @@ Z.~Wang, H.~Zhang, X.~Shi, H.~Geng, Y.~Li, X.~Yin, J.~Liu, and Q.~Wu,
 \bibitem{li_flowradar:_2016}
 Y.~Li, R.~Miao, C.~Kim, and M.~Yu, ``{FlowRadar}: {A} {Better} {NetFlow} for
   {Data} {Centers},'' in \emph{Proceedings of the 13th {Usenix} {Conference} on
-  {Networked} {Systems} {Design} and {Implementation}}, ser. {NSDI}'16, 2016,
-  pp. 311--324.
+  {Networked} {Systems} {Design} and {Implementation}}, 2016, pp. 311--324.
 
 \bibitem{noauthor_access_nodate}
 \BIBentryALTinterwordspacing
@@ -68,8 +64,8 @@ Y.~Li, R.~Miao, C.~Kim, and M.~Yu, ``{FlowRadar}: {A} {Better} {NetFlow} for
 
 \bibitem{hohn_inverting_2003}
 N.~Hohn and D.~Veitch, ``Inverting {Sampled} {Traffic},'' in \emph{Proceedings
-  of the 3rd {ACM} {SIGCOMM} {Conference} on {Internet} {Measurement}}, ser.
-  {IMC} '03, 2003, pp. 222--233.
+  of the 3rd {ACM} {SIGCOMM} {Conference} on {Internet} {Measurement}}, 2003,
+  pp. 222--233.
 
 \bibitem{duffield_estimating_2005}
 N.~Duffield, C.~Lund, and M.~Thorup, ``Estimating {Flow} {Distributions} from
@@ -79,7 +75,7 @@ N.~Duffield, C.~Lund, and M.~Thorup, ``Estimating {Flow} {Distributions} from
 \bibitem{tune_towards_2008}
 P.~Tune and D.~Veitch, ``Towards {Optimal} {Sampling} for {Flow} {Size}
   {Estimation},'' in \emph{Proceedings of the 8th {ACM} {SIGCOMM} {Conference}
-  on {Internet} {Measurement}}, ser. {IMC} '08, 2008, pp. 243--256.
+  on {Internet} {Measurement}}, 2008, pp. 243--256.
 
 \bibitem{duffield2004}
 N.~Duffield, ``{Sampling} for {Passive} {Internet} {Measurement}: {A}
@@ -100,39 +96,36 @@ S.~Muthukrishnan, ``{Data} {Streams}: {Algorithms} and {Applications},''
 Q.~Huang, X.~Jin, P.~P.~C. Lee, R.~Li, L.~Tang, Y.-C. Chen, and G.~Zhang,
   ``{SketchVisor}: {Robust} {Network} {Measurement} for {Software} {Packet}
   {Processing},'' in \emph{Proceedings of the {Conference} of the {ACM}
-  {Special} {Interest} {Group} on {Data} {Communication}}, ser. {SIGCOMM} '17,
-  2017, pp. 113--126.
+  {Special} {Interest} {Group} on {Data} {Communication}}, 2017, pp. 113--126.
 
 \bibitem{chen_counter_2017}
 M.~Chen, S.~Chen, and Z.~Cai, ``Counter {Tree}: {A} {Scalable} {Counter}
   {Architecture} for {Per}-{Flow} {Traffic} {Measurement},'' \emph{IEEE/ACM
-  Transactions on Networking (TON)}, vol.~25, no.~2, pp. 1249--1262, 2017.
+  Transactions on Networking}, vol.~25, no.~2, pp. 1249--1262, 2017.
 
 \bibitem{yu_software_2013}
 M.~Yu, L.~Jose, and R.~Miao, ``Software {Defined} {Traffic} {Measurement} with
   {OpenSketch},'' in \emph{Proceedings of the 10th {USENIX} {Conference} on
-  {Networked} {Systems} {Design} and {Implementation}}, ser. {NSDI}'13, 2013,
-  pp. 29--42.
+  {Networked} {Systems} {Design} and {Implementation}}, 2013, pp. 29--42.
 
 \bibitem{liu_one_2016}
 Z.~Liu, A.~Manousis, G.~Vorsanger, V.~Sekar, and V.~Braverman,
   ``\BIBforeignlanguage{en}{One {Sketch} to {Rule} {Them} {All}: {Rethinking}
   {Network} {Flow} {Monitoring} with {UnivMon}},'' in
   \emph{\BIBforeignlanguage{en}{Proceedings of the 2016 {ACM} {SIGCOMM}
-  {Conference}}}, ser. {SIGCOMM} '16, 2016, pp. 101--114.
+  {Conference}}}, 2016, pp. 101--114.
 
 \bibitem{sivaraman_heavy-hitter_2017}
 V.~Sivaraman, S.~Narayana, O.~Rottenstreich, S.~Muthukrishnan, and J.~Rexford,
   ``Heavy-{Hitter} {Detection} {Entirely} in the {Data} {Plane},'' in
-  \emph{Proceedings of the {Symposium} on {SDN} {Research}}, ser. {SOSR} '17,
-  2017, pp. 164--176.
+  \emph{Proceedings of the {Symposium} on {SDN} {Research}}, 2017, pp.
+  164--176.
 
 \bibitem{yang_elastic_2018}
 T.~Yang, J.~Jiang, P.~Liu, Q.~Huang, J.~Gong, Y.~Zhou, R.~Miao, X.~Li, and
   S.~Uhlig, ``Elastic {Sketch}: {Adaptive} and {Fast} {Network}-{Wide}
   {Measurements},'' in \emph{Proceedings of the {Conference} of the {ACM}
-  {Special} {Interest} {Group} on {Data} {Communication}}, ser. {SIGCOMM}'18,
-  2018, p.~14.
+  {Special} {Interest} {Group} on {Data} {Communication}}, 2018, p.~14.
 
 \bibitem{bosshart_p4:_2014}
 P.~Bosshart, D.~Daly, G.~Gibb, M.~Izzard, N.~McKeown, J.~Rexford,
@@ -162,31 +155,13 @@ P.~Bosshart, D.~Daly, G.~Gibb, M.~Izzard, N.~McKeown, J.~Rexford,
 R.~Pagh and F.~F. Rodler, ``Cuckoo {Hashing},'' \emph{Journal of Algorithms},
   vol.~51, no.~2, pp. 122--144, May 2004.
 
-\bibitem{cormode_countmin_2005}
-G.~Cormode and S.~Muthukrishnan, ``An improved data stream summary: the
-  count-min sketch and its applications,'' \emph{Journal of Algorithms},
-  vol.~55, no.~1, pp. 58--75, Apr. 2005.
-
-\bibitem{bloom_space/time_1970}
-B.~H. Bloom, ``Space/{Time} {Trade}-offs in {Hash} {Coding} with {Allowable}
-  {Errors},'' \emph{Commun. ACM}, vol.~13, no.~7, pp. 422--426, Jul. 1970.
-
 \bibitem{urn}
 N.~L. Johnson and S.~Kotz, \emph{{Urn} {Models} and {Their} {Application} :{An}
   {Approach} to {Modern} {Discrete} {Probability} {Theory}}.\hskip 1em plus
   0.5em minus 0.4em\relax New York: John Wiley and Sons, 1977.
 
 \bibitem{zhao_hashflow_2018}
-\BIBentryALTinterwordspacing
-Z.~Zhao, ``{HashFlow} {Implemented} in {P}4,'' Dec. 2018. [Online]. Available:
-  \url{https://github.com/xinshengzzy/HashFlow}
-\BIBentrySTDinterwordspacing
-
-\bibitem{ben-basat_efficient_2018}
-R.~Ben-Basat, X.~Chen, G.~Einziger, and O.~Rottenstreich, ``Efficient
-  {Measurement} on {Programmable} {Switches} {Using} {Probabilistic}
-  {Recirculation},'' in \emph{2018 {IEEE} 26th {International} {Conference} on
-  {Network} {Protocols} ({ICNP})}, ser. {ICNP}'18, Sep. 2018, pp. 313--323.
+Z.~Zhao, ``{HashFlow} {Implemented} in {P}4,'' Dec. 2018.
 
 \bibitem{noauthor_caida_nodate}
 \BIBentryALTinterwordspacing
@@ -197,13 +172,12 @@ R.~Ben-Basat, X.~Chen, G.~Einziger, and O.~Rottenstreich, ``Efficient
 \bibitem{benson_network_2010}
 T.~Benson, A.~Akella, and D.~A. Maltz, ``Network {Traffic} {Characteristics} of
   {Data} {Centers} in the {Wild},'' in \emph{Proceedings of the 10th {ACM}
-  {SIGCOMM} {Conference} on {Internet} {Measurement}}, ser. {IMC} '10, 2010,
-  pp. 267--280.
+  {SIGCOMM} {Conference} on {Internet} {Measurement}}, 2010, pp. 267--280.
 
 \bibitem{whang_linear-time_1990}
 K.-Y. Whang, B.~T. Vander-Zanden, and H.~M. Taylor, ``A {Linear}-{Time}
   {Probabilistic} {Counting} {Algorithm} for {Database} {Applications},''
-  \emph{ACM Transactions on Database Systems (TODS)}, vol.~15, no.~2, pp.
-  208--229, 1990.
+  \emph{ACM Transactions on Database Systems}, vol.~15, no.~2, pp. 208--229,
+  1990.
 
 \end{thebibliography}

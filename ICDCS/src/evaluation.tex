@@ -4,10 +4,9 @@
 \subsection{Methodology}\label{methodology}
 We have implemented HashFlow, as well as several latest algorithms that try to improve NetFlow, 
 including  FlowRadar\cite{li_flowradar:_2016}, HashPipe\cite{sivaraman_heavy-hitter_2017} 
-and ElasticSketch\cite{yang_elastic_2018}, in bmv2 \cite{noauthor_bmv2:_2018}, 
-which is a software switch with P4 \cite{bosshart_p4:_2014} programmability. 
+and ElasticSketch\cite{yang_elastic_2018}, in bmv2 \cite{noauthor_bmv2:_2018}. 
 The code for FlowRadar and ElasticSketch are rewritten based on their published code, 
-while HashPipe is implemented based on the algorithm in the published paper. As stated in Section~\ref{section:implementation}, we have implemented HashFlow in a P4 hardware switch\cite{noauthor_edgecore_nodate} and it functions well. However, our implementation is strongly constrained due to the resource limitation and HashPipe cannot be implemented in a hardware switch either, as demonstrated in \cite{ben-basat_efficient_2018}, so we still use the software switch to evaluate the performance of the algorithms.
+while HashPipe is implemented based on the algorithm in the published paper. As we have implemented HashFlow in a P4 hardware switch\cite{noauthor_edgecore_nodate}, our implementation is strongly constrained due to the resource limitation, so we still use the software switch to evaluate the performance of the algorithms.
 %\footnote{The source code has been uploaded to https://github.com/HashFlow with an anonymous account}.
 
 We use 4 traces from different environment to evaluate these algorithms' performance, 
@@ -66,16 +65,12 @@ An algorithm reports the flow records it maintains,
 where each record is of the form (flow ID, packet count). 
 The performance metric we  use is \emph{Flow Set Coverage (FSC)} defined as 
 \[FSC\!=\!\frac{\text{num. of flow records with complete flow IDs}}{n}.\]
-Notice that HashPipe, ElasticSketch and HashFlow maintains flow records individually, 
-while FlowRadar can decode flow records from a coded flow set.
 
     \item \emph{Flow Size Estimation.} 
 Given a flow ID, an algorithm estimates the number of 
 packets belonging to this flow. If no result can be reported, we use 0 as the default value. 
 The performance metric we  use is \emph{Average Relative Error (ARE)} defined as 
 \[ARE=\frac{1}{n}\sum\left|\frac{\text{estimated size of flow } i }{\text{real size of flow } i}-1\right|.\]
-Notice that, FlowRadar can decode flow sizes from a coded flow set, 
-while ElasticSketch can use an additional count-min sketch to estimate flow sizes.
 
     \item \emph{Heavy Hitter Detection.} 
 An algorithm reports heavy hitters, which are flows with more than $T$ packets, 
@@ -93,9 +88,7 @@ as another metric.
 An algorithm estimates the number of flows. 
 The performance metric we  use is \emph{Relative Error (RE)} defined as 
 \[RE =\left|\frac{\text{estimated number of flows}}{n}-1\right|.\]
-Notice that, linear counting\cite{whang_linear-time_1990} is used by ElasticSketch
-to estimate the number of flows in its count-min sketch, 
-and used by HashFlow to estimate the number of flows in its ancillary table.
+Notice that, linear counting\cite{whang_linear-time_1990} is used by ElasticSketch and HashFlow to estimate the number of flows in the count-min sketch and ancillary table respectively.
 
 
 \end{itemize}
@@ -109,7 +102,7 @@ and the two parts use the same number of cells.
     \item FlowRadar:  We use 4 hash functions for its bloom filter and 3 hash functions for its counting table.
 The number of cells in the bloom filter is $40\times$ of that in the counting table. 
     \item HashFlow: We use the same number of cells in the main table and the ancillary table. 
-The main table consists of three small hash tables, while the weight $\alpha$ is 0.7 unless otherwise stated. 
+The main table consists of three small hash tables with the weight $\alpha$ of 0.7. 
 Each digest and counter in the ancillary table costs 8 bits.
 \end{itemize}
 
@@ -150,11 +143,8 @@ We first demonstrate the performance of the main table with the collision resolu
 under different settings and parameters, i.e, using a multi-hash table, 
 or using pipelined tables with different weights.
 
-We plot the \emph{Flow Set Coverage (FSC)} for flow record report in Fig. \ref{MT-flowrecord},
-and plot the \emph{Average Relative Error (ARE)} for flow size estimation in Fig. \ref{MT-flowsize}, 
-where there are 3 pipelined tables of which the weight is 0.6, 0.7 and 0.8 respectively and a multi-hash table. 
-The traces are from  the campus network, and as the number of flows increases from 10K to 60K, 
-the \emph{FSC} decreases, while the \emph{ARE} increases slowly.
+In Fig. \ref{fig:performance_comparison_hierarchical_hashtable}, there are 3 pipelined tables of which the weight is 0.6, 0.7 and 0.8 respectively and a multi-hash table. 
+The traces are from  the campus network, and we increase the number of flows from 10K to 60K.
 It can be seen that the pipelined tables with a weight around $\alpha=0.7$ achieves the best result.
 Compared with the multi-hash table, it improves the \emph{FSC} by 3.1\%, 
 and reduces the \emph{ARE} by 37.3\% respectively. 
@@ -162,8 +152,7 @@ This confirms our theoretical analysis on $\alpha$ in Section \ref{analysis}.
 In the experiments thereafter, we will use a default weight of 0.7.
 
 
-In Fig. \ref{fig:comparison_increase_depth}, we plot the \emph{Average Relative Error (ARE)} 
-for flow size estimation of 50K flows, when the depth of the main table is set to 1, 2, 3 and 4.
+In Fig. \ref{fig:comparison_increase_depth}, we set the number of flow to 50K, and the depth of the main table is set to 1, 2, 3 and 4.
 It can be seen that increasing $d$ from 1 to 3 reduces the \emph{ARE} by around 3 times (i.e., from 0.34 to 0.12), 
 while increasing $d$ from 3 to 4 will have only a minor improvement (i.e., from 0.12 to 0.075). 
 In the experiments thereafter, we will use a default depth of 3.
@@ -181,7 +170,7 @@ In the experiments thereafter, we will use a default depth of 3.
     \label{fig:performance_comparison_hierarchical_hashtable}
 \end{figure}
 
-To evaluate the influence that the size of ancillary table has upon HashFlow, we define a parameter $\beta$ and let $n_2=n_1\times\beta$, where $n_1$ and $n_2$ are number of buckets in the main table and ancillary table respectively. A larger value of $\beta$ implies that we have to allocate more memory to the ancillary table and there is not an ancillary table at all when $\beta=0.0$. We feed a number of flows extracted from CAIDA file, and calculate the F1 Score and ARE (Average Relative Error) of heavy hitter detection where a heavy hitter is a flow with no less than 10 packets. Fig.~\ref{fig:are_for_various_beta} shows that the ancillary table is crucial for the performance of HashFlow and normally $\beta=0.5$ is good enough. However, when attacks such as DDoS occur, the accumulation of elephant flows in ancillary table will be interrupted frequently. To be robust when facing such attacks, in the following experiments we  set $\beta$ to 1.0 by default.
+To evaluate the influence that the size of ancillary table has upon HashFlow, we define a parameter $\beta$ and let $n_2=n_1\times\beta$, where $n_1$ and $n_2$ are number of buckets in the main table and ancillary table respectively. There is not an ancillary table at all when $\beta=0.0$. We feed a number of flows extracted from CAIDA file, and calculate the F1 Score and ARE (Average Relative Error) of heavy hitter detection where a heavy hitter is a flow with no less than 10 packets. Fig.~\ref{fig:are_for_various_beta} shows that the ancillary table is crucial for the performance of HashFlow and normally $\beta=0.5$ is good enough. However, when attacks such as DDoS occur, the accumulation of elephant flows in ancillary table will be interrupted frequently. To be robust when facing such attacks, in the following experiments we  set $\beta$ to 1.0 by default.
 
 \begin{figure}[ht!]
 	\centering
@@ -200,9 +189,7 @@ To evaluate the influence that the size of ancillary table has upon HashFlow, we
 In this section, we evaluate the performance of HashFlow against HashPipe, ElasticSketch and FlowRadar, 
 for typical measurement applications as described in  Section~\ref{methodology}.
 
-Fig.~\ref{fig:comparison_concurrent_flows_increases_flow_monitoring} depicts the 
-\emph{Flow Set Coverage (FSC)} for flow record report achieved by these algorithms.
-We can see that HashFlow nearly always performs better than the others. For example, 
+Fig.~\ref{fig:comparison_concurrent_flows_increases_flow_monitoring} shows that HashFlow nearly always performs better than the others in the sense of \emph{Flow Set Coverage (FSC)}. For example, 
 for a total of 250K flows, it can successfully report around 55K flows, 
 nearly making a full use of its main table. 
 Its \emph{FSC} is more than 20\% higher than ElasticSketch in all traces, 
@@ -248,9 +235,9 @@ to compensate for the flows it drops.
     \label{fig:comparison_concurrent_flows_increases_cardinality}
 \end{figure*}
 
-Fig. \ref{fig:comparison_concurrent_flows_increases_fs_estimation} shows how accurate these algorithms
-can estimate the flow sizes.  HashFlow often achieves a much lower estimation error 
-than its competitors. For example, when there are 100K flows, the relative estimation error
+Fig. \ref{fig:comparison_concurrent_flows_increases_fs_estimation} 
+shows that HashFlow often achieves a much lower estimation error 
+than its competitors when estimating the flow sizes. For example, when there are 100K flows, the relative estimation error
 of HashFlow is around 0.4, while the error of the others is more than 0.6 (50\% higher) in most cases. 
 FlowRadar performs very badly when there are more than 40K flows, 
 while the accuracy of HashPipe is not very stable.
@@ -269,9 +256,8 @@ while the accuracy of HashPipe is not very stable.
 \end{figure*}
 
 At last, we show whether they can accurately detect heavy hitters.
-We feed 250K flows to each algorithm, and calculate the \emph{F1 Score} of their detection accuracy, 
-where the threshold for a flow to be treated as a heavy hitter varies. 
-We also measure their $ARE$ when estimating the sizes of the detected heavy hitters.
+We feed 250K flows to each algorithm, and calculate the \emph{F1 Score} of their detection accuracy as well as the $ARE$ of the estimated sizes of the detected heavy hitters.
+%where the threshold for a flow to be treated as a heavy hitter varies. 
 The results are depicted in Fig. \ref{fig:comparison_concurrent_flows_increases_hhd_f1_score} 
 and Fig.~\ref{fig:comparison_concurrent_flows_increases_hhd_are}, respectively. 
 Apparently, FlowRadar is not a good candidate under such heavy load. 
@@ -331,16 +317,15 @@ and the throughput after loading the algorithms are depicted in Fig. \ref{fig:th
 To obtain a better understanding, we also record the average number of 
 hash operations, as well as memory accesses, for each algorithm. 
 The  results in Fig. \ref{fig:avehash} and Fig. \ref{fig:avemem} indicate that, 
-even if the throughput on a software switch is not convincing, 
 HashFlow will perform comparably to HashPipe and ElasticSketch, 
 and much better than FlowRadar, in the sense of the number of memory accesses and hash operations.
 
-In P4 switch, there will not be a single action bottlenecking the processing of packets, and the packets will be processed at line rate when the algorithm is correctly implemented. The only risk is that some packets will be resubmitted ( or recirculated), so the switch will have to process more packets than that are transmitted through it, degrading the throughput. To evaluate the possible loss of throughput, we calculate the \emph{Resubmit Rate} introduced by resubmit primitive in HashFlow. Suppose there are $n_1$ packets arriving at the switch, and there are $n_2$ packets that are resubmitted. The \emph{Resubmission Rate} is defined as 
+In our hardware implementation, the only risk degrading the throughput of the switch is that some packets will be resubmitted (or recirculated), so the switch will have to process more packets than those transmitted through it. To evaluate the possible loss of throughput, we calculate the \emph{Resubmit Rate} defined as 
 %$\text{Resubmission Rate}=\frac{n_2}{n_1}.$
 \begin{eqnarray*}
 \text{Resubmit Rate}=\frac{n_2}{n_1}.
 \end{eqnarray*}
-
+where $n_1$ is the number of packets arriving at the switch, and $n_2$ is the number of packets that are resubmitted.
 
 As shown in Fig.~\ref{fig:increaseinprocessing}, when there are 100K flows fed into the switch, the \emph{Resubmit Rate} is normally less than 2\%, and it is no more than 5.2\% in the trace provided by ISP2, which is far less skewed than the real network traffic. So HashFlow will achieve very good performance and the loss of throughput is negligible.
 

@@ -1,9 +1,6 @@
 \section{Introduction}
 \label{section:introduction}
 %The well functioning of computer networks depends on the efficient forwarding of packets as well as the effective management of networks. 
-A proper view of the statistics and the dynamics of a network is of great importance to network management.
-It enables network operators to detect and correct configuration errors, 
-allocate resources and perform  traffic engineering, or detect network attacks. 
 NetFlow\cite{claise_cisco_2004} is a widely used tool in network measurement and analysis.
 It records traffic statistics in the form of flow records, where each record contains important 
 information about a flow, for example, its source and destination IP addresses, 
@@ -17,7 +14,7 @@ one packet is only around 50 nano-seconds\cite{zhang_more_2017}\cite{zhang_more_
  In an extreme case where packets of 40 bytes 
 arrive at a speed of 100 Gbps, the time budget will be only a few nano-seconds. 
 NetFlow also faces the high diversity of the traffic, where hundreds of thousands, 
-even millions of concurrent flows appear in measurement epoch. This pose stringent 
+even millions of concurrent flows appear in a measurement epoch. This pose stringent 
 pressure on the scarce high-speed memories, such as on-chip SRAM with 1 $\sim$ 10 nano-seconds 
 access delay\cite{li_flowradar:_2016}\cite{noauthor_access_nodate}.
 
