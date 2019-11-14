@@ -1,11 +1,86 @@
 \documentclass{article}
 \usepackage{ctex}
-\title{实验方案}
+\usepackage[hidelinks]{hyperref}
+\title{AHashFlow实验方案}
 \author{赵宗义}
 \date{2019年11月13日}
 \begin{document}
 \maketitle
-\section*{Exp \#84491}
+
+\tableofcontents
+
+\section{基本定义}
+\subsection{HashFlow}
+原始的HashFlow方案，在数据平面记录完整的Flow ID，没有控制平面，并且没有不活跃大流的退出机制。
+
+\subsection{DHashFlow (HashFlow with Digest)}
+在数据平面记录Flow ID的digest而不是完整的Flow ID，同时增加控制平面来记录完整的Flow ID，但是并没有引入不活跃大流的退出机制。
+
+\subsection{AHashFlow (Augmented HashFlow)}
+改良后的HashFlow，在数据平面记录Flow ID的digest而不是完整的Flow ID，因此包含控制平面，此外还增加了不活跃大流的退出机制。
+
+\section{测量指标}
+假设我们重放的数据包序列中包含$m$个数据包和$n$个数据流，则相关的测量指标可以定义如下：
+
+\subsection{数据包的不测量率  (NMR)}
+假设$m_1$是没有被我们的测量算法测量到数据包的数目，具体而言就是在辅助表中发生冲突的时候被丢弃的辅助表表项的计数值的总和，则数据包的不测量率可定义如下：
+$$
+NMR = \frac{m_1}{m}
+$$
+
+\subsection{ 流覆盖率（FSC）}
+假设网络测量算法记录了完整的流标识符的数目为$n_1$，则流覆盖率可定义如下：
+$$
+FSC = \frac{n_1}{n}
+$$
+
+\subsection{ 流数目估计相对误差（RE）}
+假设网络测量算法估计的网络中数据流的数目为$n_2$，则流数目估计相对误差可定义如下：
+$$
+RE = \frac{|n - n_2|}{n}
+$$
+
+由于本文所考察的网络测量算法可以通过数据结构的使用情况估计没有被明确记录的数据流的数目，因此算法所估计的数据流数目和算法所明确记录的数据流的数目并不完全相等。
+
+\subsection{ 数据流大小估计的平均相对误差（ARE）}
+对于原数据包序列中的任意一个数据流$f_i$，假设它的真实大小为$m_i$，而网络测量算法所返回的该数据流的大小为$m_i$，如果该数据流没有被明确定义则默认为$m_i=0$，则数据流大小估计的平均相对误差可定义如下：
+$$
+ARE=\frac{1}{n}\sum\frac{|m_i - m'_i|}{m_i}
+$$
+
+\subsection{被测数据流大小估计的平均相对误差 (ARE, Average Relative Error)}
+假设我们的测量算法记录的流分别为$f_1, f_2, ..., f_k$，且对于任意一个数据流$f_i ~(1 \le i \le k)$，它的实际大小为$m_i$，而我们的算法测得其大小为$m_i'$，则被测数据流的平均相对误差可定义为：
+$$
+ARE = \frac{1}{k}\sum\frac{|m_i - m'_i|}{m_i}
+$$
+
+\subsection{ heavy hitter检测的F1 Score}
+已经定义heavy hitter的阈值`$\gamma$`，假设原数据包序列中heavy hitter的数目为$c_1$，网络测量算法所返回的heavy hitter的数目为$c_2$，网络测量算法所返回的heavy hitter中真实的heavy hitter的数目为$c$，则heavy hitter检测的召回率为$RR=\frac{c}{c_1}$，准确率为$PR=\frac{c}{c_2}$，因此heavy hitter检测的F1 Score可定义如下：
+$$
+F1~Score=\frac{2\cdot PR \cdot RR}{PR + RR}
+$$
+
+\subsection{ heavy hitter检测的平均相对误差（ARE）}
+如上，假设原数据包序列中共有$n$个heavy hitter，其中heavy hitter $f_i$的大小为$m_i$，而网络测量算法报告的$f_i$的大小为$m_i$，如果$f_i$不包含在网络测量算法报告的heavy hitter中（包括$f_i$已经被网络测量算法记录但是没有被识别成为heavy hitter的情况），则默认$m_i=0$，则heavy hitter检测的平均相对误差可定义如下：
+$$
+ARE = \frac{1}{n'}\sum\frac{|m_i - m'_i|}{m_i}
+$$
+
+\subsection{ 控制平面的包负荷比 (Packet Load Rate, PLR)}
+在P4交换机版的实现方案中，我们需要将特定的数据包从数据平面发送到控制平面以维护流标识符和指纹之间的映射关系，因此控制平面的负荷比可定义如下：
+$$
+PLR = \frac{m_1}{m}
+$$
+其中$m_1$是控制平面处理的数据包的数目。
+
+\subsection{控制平面的流负荷比 (Flow Load Rate, FLR)}
+假设在AHashFlow（或DHashFlow）的运行过程中，控制平面一共收到了$m_1$个数据包，而交换机处理的数据包中一共包含了$n$个数据流，则控制平面的流负荷比可以定义如下：
+$$
+FLR = \frac{m_1}{n}
+$$
+
+\section{实验设计}
+\subsection{Exp84491 $\surd$}
 \begin{itemize}
 	\item Use the simulator of HashFlow implemented in python.
 	\item Set the memory size to be 1 MB, so it can accommodate around 55K flow records.
@@ -15,7 +90,7 @@
 	\item Count the packets processed by the simulator, i.e., the number of original packets plus the resubmitted packets.
 \end{itemize}
 
-\section*{Exp \#84492}
+\subsection{Exp84492 $\surd$}
 \begin{itemize}
 	\item Select a file from the CAIDA trace (equinix-nyc.dirA.20180315-125910.UTC.anon.pcap), extract the first 2.5 million packets, classify the TCP/UDP packets into flows, and then calculate the average size as well as the maximum size of the flows.
 	\item Select a file from the HGC trace (20080415000.pcap), extract the first 2.5 million packets, classify the TCP/UDP packets into flows, and then calculate the average size as well as the maximum size of the flows.
@@ -23,7 +98,7 @@
 	\item Calculate the average as well as maximum size of a file from Tsinghua campus trace (20140206-6). 
 \end{itemize}
 
-\section*{Exp \#84493}
+\subsection{Exp84493 $\surd$}
 \begin{itemize}
 	\item Set the memory size to be 1MB. 
 	\item Increase the number of flows from 10K to 100K, in the step size of 10K.
@@ -32,7 +107,7 @@
 	\item Calculate the average relative error for flow size estimation.
 \end{itemize}
 
-\section*{Exp \#84494}
+\subsection{Exp84494 $\surd$}
 \begin{itemize}
 	\item Randomly select a file from the traces of ChinaTelecom, HGC, Tsinghua and CAIDA respectively. 
 	\item Extract 5 million packets from each trace file.
@@ -41,4 +116,42 @@
 	\item Record the number of distinct digest for each trace file. 
 	\item Compare the number of distinct flows and the number of distinct digests for each trace file.
 \end{itemize}
+
+\subsection{Exp84495}
+本实验的实验参数设置如下：
+\begin{itemize}
+\item 实验方案为HashFlow, DHashFlow和AHashFlow
+\item 将内存容量设为1MB
+\item 使用一个CAIDA的trace文件
+\item 进行10组实验，将重放的数据包的数目以50万的步长从50万增加到500万
+\item 将heavy hitter的阈值设为一个固定值10，即包含10个及10个以上数据包的流为一个heavy hitter
+\item 测量的指标包括heavy hitters测量的F1 Score和平均相对误差，数据包的不测量率以及控制平面的包负荷比
+\end{itemize}
+
+在此实验中可以预见的效果是随着数据包数目的增加，HashFlow和DHashFlow的性能逐渐降低，其中HashFlow的性能降低尤为明显，而AHashFlow的性能却保持在一个比较稳定的状态，说明不活跃大流的退出机制能够发挥良好的作用。此外，AHashFlow的控制平面包负荷比会明显高于DHashFlow，但是这是情理之中的，因为这从侧面证明AHashFlow能够比DHashFlow测量更多的流。
+
+\subsection{Exp84496}
+本实验的实验参数设置如下：
+\begin{itemize}
+\item 实验方案为AHashFlow
+\item 将内存容量设为1MB
+\item 从CAIDA，HGC，中国电信和清华校园网的的trace中分别选取一个文件
+\item 进行10组实验，将重放的数据包的数目以50万的步长从50万增加到500万
+\item 测量的指标包括流覆盖率，数据流大小估计的平均相对误差，被测数据流大小估计的平均相对误差，以及控制平面的流负荷比
+\end{itemize}
+
+在此实验中，我们预期的实验结果是这四项指标都保持相对稳定的状态，其中被测数据流大小估计的相对误差要明显小于数据流大小估计的平均相对误差，而控制平面的流负荷比接近2.0甚至小于2.0。
+
+\subsection{Exp84497}
+本实验的实验参数设置如下：
+\begin{itemize}
+\item 实验方案为AHashFlow
+\item 将内存容量设为1MB
+\item 从CAIDA，HGC，中国电信和清华校园网的的trace中分别选取一个文件
+\item 仅进行1组实验，将重放的数据包的数目设为500万
+\item 将heavy hitter的阈值以5的步长从5增加到50
+\item 测量的指标包括heavy hitter检测的平均相对误差以及F1 Score
+\end{itemize}
+
+在此实验中我们的预期实验结果是随着阈值的增加，heavy hitter检测的F1 Score和平均相对误差都有明显的改善，说明AHashFlow确实有得大流的测量
 \end{document}
