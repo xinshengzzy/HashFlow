@@ -3,8 +3,8 @@
 \contentsline {subsection}{\numberline {1.2}DHashFlow (HashFlow with Digest)}{2}{subsection.1.2}% 
 \contentsline {subsection}{\numberline {1.3}AHashFlow (Augmented HashFlow)}{2}{subsection.1.3}% 
 \contentsline {section}{\numberline {2}测量指标}{2}{section.2}% 
-\contentsline {subsection}{\numberline {2.1}数据包的不测量率 (NMR)}{2}{subsection.2.1}% 
-\contentsline {subsection}{\numberline {2.2} 流覆盖率（FSC）}{2}{subsection.2.2}% 
+\contentsline {subsection}{\numberline {2.1}数据包的不测量率 (NMR, No Measurement Rate)}{2}{subsection.2.1}% 
+\contentsline {subsection}{\numberline {2.2} 流覆盖率（FSC）}{3}{subsection.2.2}% 
 \contentsline {subsection}{\numberline {2.3} 流数目估计相对误差（RE）}{3}{subsection.2.3}% 
 \contentsline {subsection}{\numberline {2.4} 数据流大小估计的平均相对误差（ARE）}{3}{subsection.2.4}% 
 \contentsline {subsection}{\numberline {2.5}被测数据流大小估计的平均相对误差 (ARE, Average Relative Error)}{3}{subsection.2.5}% 
