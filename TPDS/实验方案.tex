@@ -1,6 +1,10 @@
 \documentclass{article}
 \usepackage{ctex}
 \usepackage[hidelinks]{hyperref}
+\usepackage{appendix}
+\usepackage{graphicx}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
 \title{AHashFlow实验方案}
 \author{赵宗义}
 \date{2019年11月13日}
@@ -154,4 +158,97 @@ $$
 \end{itemize}
 
 在此实验中我们的预期实验结果是随着阈值的增加，heavy hitter检测的F1 Score和平均相对误差都有明显的改善，说明AHashFlow确实有得大流的测量，同时AHashFlow的性能总是优于DHashFlow。
+
+\appendix
+\section*{附录}
+\section{AHashFlow方案介绍}
+AHashFlow的数据结构如图\ref{fig:ahashflow}所示，AHashFlow的数据结构包括三个表，分别是M表、A表和B表，其中M表中的第一个表项包括一个4字节的digest域和一个4字节的count域，A表中每个表项包括一个1字节的digest域和一个1字节的count域，B表中每个表项包含一个4个节的count域。
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{./figures/AHashFlowDataStructure/AHashFlow}
+	\caption{AHashFlow的数据结构：包括一个M表，一个A表以及一个B表，其中M表可分成若干小表}
+	\label{fig:ahashflow}
+\end{figure}
+
+建议的内存分配方案是使得M表、A表和B表有相同数目的表项；M表可以分成若干个小表，其中后一个小表的表项数目是前一个小表的表项数目的一半。
+
+
+
+\begin{algorithm}[ht!]
+	\caption{$promote(idx, digest, cnt)$}
+	\label{alg: promote}
+	\begin{algorithmic}[1]
+		\State{$export({\textbf A}[idx].digest, {\textbf A}[idx].cnt)$}
+		\State{${\textbf A}[idx]\gets [digest, cnt]$}
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[ht!]
+	\caption{$reset(idx)$}
+	\label{alg: reset}
+	\begin{algorithmic}[1]
+		\State{$export({\textbf A}[idx].digest, {\textbf A}[idx].cnt)$}
+		\State{${\textbf A}[idx].cnt\gets 0$}
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[ht!]
+	\caption{$processPacket(p)$}
+	\label{alg: processPacket}
+	\algrenewcommand\algorithmicwhile{\textbf{when}}
+	\begin{algorithmic}[1]
+		\State{$min \gets \infty, max \gets 0, idx_{min} \gets -1, idx_{max}\gets -1$}
+		\State{$digest_1\gets H_1(p.flowID), digest_2\gets H_2(p.flowID)$}
+		\For{$i=1$ to $d$}
+		\State{$idx\gets h_{i}(p.flowID)$}
+		\If{${\mathbf M}[idx]== [0, 0]$}
+		\State{${\mathbf M}[idx] \gets (digest_1, 1)$, $export(p.flowID)$}
+		\Return
+		\ElsIf {${\mathbf M}[idx].key == digest_1$}
+		\State{Increment ${\mathbf M}[idx].cnt$ by 1}
+		\Return
+		\Else
+		\If{${\mathbf M}[idx].count < min$}
+		\State{$min \gets {\mathbf M}[idx].cnt, idx_{min}\gets idx$}
+		\EndIf
+		\If{${\mathbf M}[idx].count > max$}
+		\State{$max\gets {\mathbf M}[idx].cnt, idx_{max}\gets idx$}
+		\EndIf
+		\EndIf
+		\EndFor
+		\State{$idx\gets g(p.flowID)$}
+		\If{${\mathbf A}[idx] == [0, 0]$}
+		\State{${\mathbf A}[idx] \gets [digest_2, 1]$}
+		\ElsIf{${\mathbf A}[idx].key == digest_2$}
+		\State{$temp \gets {\mathbf A}[idx].cnt + 1$}
+		\If{$temp > min$}
+		\State{$export(p.flowID)$, ${\mathbf A}[idx]\gets [0, 0]$}
+		\State{$promote(idx_{min}, digest1, temp)$}
+		\Else
+		\State{${\mathbf A}[idx].count = temp$}
+		\EndIf
+		\Else
+		\State{$temp \gets {\mathbf B}[idx].cnt + {\mathbf A}[idx].cnt$, ${\mathbf A}[idx] \gets [digest_2, 1]$}
+		\If{$temp > max$}
+		\State{$reset(idx_{max})$, ${\mathbf B}[idx] \gets 0$}
+		\Else
+		\State{${\mathbf B}[idx] \gets temp$}
+		\EndIf
+		\EndIf
+	\end{algorithmic}
+\end{algorithm}
+
+
+
+AHashFlow对数据包的处理流程如算法\ref{alg: processPacket}所示，当一个数据包到达时，提取它的流标识符（默认为初它的五元组（源IP地址，目的IP地址，源端口号，目的端口号，协议类型）），并将流标识符映射成为一个32位的$digest_1$和一个8位的$digest_2$。
+
+之后，我们根据这个数据包的流标识符依次将这个数据包映射到M表的$d$个位置，在这$d$个位置，如果我们找到了一个空表项，那么我们就将$digest_1$写入该表项中并将其计数值置为1，同时将数据包的流标识符导出到控制层，之后结束对数据包的处理。如果我们在M表中找到了一个具有和$digest_1$相同的digest的表项，那么我们只需要简单地将这个表项的计数值增加1便可以完成对这个数据包的处理。反之，如果我们在这$d$个位置都不能找到一个空表项或者一个具有相同digest的表项，那么我们就记录这$d$个表项中的最大计数值$max$和最小计数值$min$，以及与之相对应的索引$idx_{max}$和$idx_{min}$。
+
+当我们在M表的$d$个位置都不能找到一个空表项或者一个匹配的表项的时候，我们进一步查询A表和B表。我们首先使用别一个哈希函数$g$将数据包的流标识符映射到一个索引值$idx$。由于A表和B表具有相同数目的表项，所以我们建议在A表和B表中均使用索引值$idx$。首先如果A表中对应的表项为空，则我们可以将该表项的内容设为$[digest_2, 1]$，于是便可以结束对数据包的处理。但是如果该表项不为空且它的digest和$digest_2$相同，那么我们就在A表中找到了一个匹配的表项，因此我们首先把这个表项的计数值加1并记录在一个临时变量$temp$中。如果$temp > min$，则说明A表中缓存的数据流比$min$对应的数据流更大，因此按照优先记录大流的原则 ，我们使用$promote$函数将这个流提回M表中。因为我们在M表中并不记录数据流的完整流标识符，因此我们需要将这个数据包的流标识符导出到控制层。最后我们再将A表中的这个表项置为空。如果$temp \le min$，则我们需要将$temp$写回到到该表项的计数值中，实际上是将这个计数值加1。
+
+如果该表项的计数值不为空且它的digest和$digest_2$不相同，说明新到达的数据包和A表中的相应表项发生冲突，那么我们首先将A表中相应表项的计数值和B表中$idx$对应的表项的计数值相加并存入$temp$中，然后再将A表中$idx$对应的表项置为$[digest_2, 1]$。随后我们比较$temp$和$max$的大小。因为A表和B表具有相同的表项数目，而且A表优先记录大流，而被B表记录的数据包一般来自小流，已知在正常的网络中绝大多数的数据包都来自大流，因此A表中表项的记数值应该远大于B表中表项的记数值。于是，如果$temp>max$，那么我们就断定测量算法的性能已经下降到一个需要引起注意的程度。而测量算法的性能下降的一个最重要的原因就是主表中表项已经被不活跃的大流占据，从而使得很多其它的流不能有效地在M表中积累。这里我们就怀疑$max$对应的流是一个不活跃的大流，因此我们重置M表中$idx_{max}$对应的表项，同时将$idx$对应的B表的表项置为0。反之，如果$temp <= max$，则我们只需要简单将$temp$的值写入$idx$对应的B表的表项中，相当于将该表项加1。
+
+
+以下我们描述$promote$和$reset$两个算法即算法\ref{alg: promote}和\ref{alg: reset}的算法操作及其逻辑。首先在$promote$中，我们的参数包括一个索引值$idx$，新数据流的流标识符的digest以及对应的计数值。我们在主表中找到$idx$对应的表项并将其导出到控制层，然后将新数据流的digest和计数值写入到$idx$对应的主表表项中。而在$reset$中，我们的参数是主表中对应的表项的索引$idx$，因此我们找到$idx$对应的主表表项并将其导出到控制层。此后，我们将该表项的计数值置为0，但是并不会对它的digest进行更改（即并不会将该表项的digest域也置为0），这样的方案设计主要是出于两个方面的原因的考虑。首先如果我们将$idx$对应的表项都置为空，那么M表中就可能出现一个数据流存放在多个表项中的情况，比如我们在图\ref{fig:ahashflow}中将$M1$中的一个表项$M1[x]$置为空，另一个流$f$会被映射到$M1$和$M2$中的两个表项$M1[x]$和$M2[y]$且我们已经为$f$在$M2[y]$维护了一个流表项，那么$f$的下一个数据包到达撤销时候我们检测到$M1[x]$为空，因此还会在$M1[x]$为它建立一个流表项，这样我们在M表中就为$f$维护了重复的流表项了。如果我们只是将$M1[x]$的计数值置为0而保留它的digest就可以完美避开这个问题。此外，因为主表中被重置的流是一个大流，并且我们不能完全确定它是一个不活跃的大流，相反，它有可能是一个非常活跃的大流，因此我们仍然为它在主表中保留一个表项，因此如果它真的是一个活跃大流的话它就可以迅速在这个表项中聚集起来，避免了在A表中积累最后被$promote$的过程，可以有效减少测量误差。
 \end{document}
+

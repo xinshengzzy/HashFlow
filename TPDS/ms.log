@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  7 NOV 2019 19:55
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.5.8)  14 NOV 2019 21:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -16,67 +16,30 @@ Document Class: IEEEtran 2015/08/26 V1.8b by Michael Shell
 \@IEEEtrantmpcountB=\count81
 \@IEEEtrantmpcountC=\count82
 \@IEEEtrantmptoksA=\toks14
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 503.
+LaTeX Font Info:    Try loading font information for TU+ptm on input line 503.
+LaTeX Font Info:    No file TUptm.fd. on input line 503.
 
-(/usr/local/texlive/2019/texmf-dist/tex/latex/psnfss/ot1ptm.fd
-File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
-)
+LaTeX Font Warning: Font shape `TU/ptm/m/n' undefined
+(Font)              using `TU/lmr/m/n' instead on input line 503.
+
 -- Using 8.5in x 11in (letter) paper.
--- Using PDF output.
+-- Using DVI output.
 \@IEEEnormalsizeunitybaselineskip=\dimen105
 -- This is a 10 point document.
 \CLASSINFOnormalsizebaselineskip=\dimen106
 \CLASSINFOnormalsizeunitybaselineskip=\dimen107
 \IEEEnormaljot=\dimen108
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <5> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
 
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+LaTeX Font Warning: Font shape `TU/ptm/bx/n' undefined
+(Font)              using `TU/ptm/m/n' instead on input line 1090.
 
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
 
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+LaTeX Font Warning: Font shape `TU/ptm/m/it' undefined
+(Font)              using `TU/ptm/m/n' instead on input line 1090.
 
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
 
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <11> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <11> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
-
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
-
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <17> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
-
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <20> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <20> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
-
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <24> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <24> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+LaTeX Font Warning: Font shape `TU/ptm/bx/it' undefined
+(Font)              using `TU/ptm/bx/n' instead on input line 1090.
 
 \IEEEquantizedlength=\dimen109
 \IEEEquantizedlengthdiff=\dimen110
@@ -121,10 +84,20 @@ Package: inputenc 2018/08/11 v1.3c Input encoding file
 \inpenc@prehook=\toks15
 \inpenc@posthook=\toks16
 
-(/usr/local/texlive/2019/texmf-dist/tex/latex/base/latin1.def
-File: latin1.def 2018/08/11 v1.3c Input encoding file
-))
-(/usr/local/texlive/2019/texmf-dist/tex/latex/base/fontenc.sty
+
+! Package inputenc Error: inputenc is not designed for xetex or luatex.
+(inputenc)                only UTF-8 supported.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.165 \endinput
+               
+For xelatex or lualatex save the document in UTF-8 encoding
+and do not use inputenc, or use the [utf8] option.
+
+) (/usr/local/texlive/2019/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2018/08/11 v2.0j Standard LaTeX package
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/base/t1enc.def
@@ -154,10 +127,10 @@ Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 (/usr/local/texlive/2019/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: pdftex.def on input line 99.
+Package graphics Info: Driver file: xetex.def on input line 99.
 
-(/usr/local/texlive/2019/texmf-dist/tex/latex/graphics-def/pdftex.def
-File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+(/usr/local/texlive/2019/texmf-dist/tex/latex/graphics-def/xetex.def
+File: xetex.def 2017/06/24 v5.0h Graphics/color driver for xetex
 ))
 \Gin@req@height=\dimen126
 \Gin@req@width=\dimen127
@@ -183,6 +156,7 @@ Package: subfigure 2002/03/15 v2.1.5 subfigure package
 \subfig@bottom=\skip49
 )
 (/usr/local/texlive/2019/texmf-dist/tex/latex/algorithms/algorithm.sty
+Invalid UTF-8 byte or sequence at line 11 replaced by U+FFFD.
 Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
 nment
 
@@ -307,6 +281,8 @@ LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 53.
 LaTeX Font Info:    ... okay on input line 53.
 LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 53.
 LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
 LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 53.
 LaTeX Font Info:    ... okay on input line 53.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 53.
@@ -352,73 +328,8 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <24> not available
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <24> not available
 (Font)              Font shape `T1/ptm/b/it' tried instead on input line 53.
 -- Lines per column: 56 (exact).
-(/usr/local/texlive/2019/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count122
-\scratchdimen=\dimen142
-\scratchbox=\box35
-\nofMPsegments=\count123
-\nofMParguments=\count124
-\everyMPshowfont=\toks27
-\MPscratchCnt=\count125
-\MPscratchDim=\dimen143
-\MPnumerator=\count126
-\makeMPintoPDFobject=\count127
-\everyMPtoPDFconversion=\toks28
-) (/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
-Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
-
-(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/infwarerr.sty
-Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
-)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/grfext.sty
-Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
-
-(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
-Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
-
-(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
-Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
-)))
-(/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/kvoptions.sty
-Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
-
-(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
-Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
-
-(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/etexcmds.sty
-Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
-
-(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/ifluatex.sty
-Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
-Package ifluatex Info: LuaTeX not detected.
-))))
-(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
-Package: pdftexcmds 2018/09/10 v0.29 Utility functions of pdfTeX for LuaTeX (HO
-)
-
-(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
-)
-Package pdftexcmds Info: LuaTeX not detected.
-Package pdftexcmds Info: \pdf@primitive is available.
-Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
-)
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-38.
-Package grfext Info: Graphics extension search list:
-(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
-G,.JBIG2,.JB2,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 456.
-
-(/usr/local/texlive/2019/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
-e
-))
 LaTeX Font Info:    Calculating math sizes for size <11> on input line 65.
-
-(./src/abstract.tex) (./src/introduction.tex
+(./tex/abstract.tex) (./tex/introduction.tex
 Underfull \hbox (badness 5592) in paragraph at lines 37--44
 \T1/ptm/m/n/10 ing bet-ter statis-tics es-ti-ma-tion, re-cently a few al-go-
  []
@@ -433,7 +344,7 @@ Underfull \hbox (badness 4647) in paragraph at lines 37--44
 \T1/ptm/m/n/10 and in-te-grate sketches have been pro-posed, in-clud-ing
  []
 
-[1{/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+[1
 
 
 ]
@@ -441,287 +352,100 @@ Underfull \hbox (badness 1881) in paragraph at lines 71--84
 []\T1/ptm/m/n/10 We have im-ple-mented Hash-Flow, as well as sev-eral
  []
 
-) (./src/background_motivation.tex [2]) (./src/algorithm.tex [3]
-<./figures/datastructure/datastructure.pdf, id=26, 898.85812pt x 601.4972pt>
+) (./tex/background_motivation.tex [2]) (./tex/algorithm.tex [3]
 File: ./figures/datastructure/datastructure.pdf Graphic file (type pdf)
 <use ./figures/datastructure/datastructure.pdf>
-Package pdftex.def Info: ./figures/datastructure/datastructure.pdf  used on inp
-ut line 106.
-(pdftex.def)             Requested size: 250.77312pt x 167.8123pt.
- [4 <./figures/datastructure/datastructure.pdf>]
-<figures/exp84481/hash_table_utilization.pdf, id=147, 454.23262pt x 509.47514pt
->
+ [4]
 File: figures/exp84481/hash_table_utilization.pdf Graphic file (type pdf)
 <use figures/exp84481/hash_table_utilization.pdf>
-Package pdftex.def Info: figures/exp84481/hash_table_utilization.pdf  used on i
-nput line 212.
-(pdftex.def)             Requested size: 123.84283pt x 138.90501pt.
-<figures/exp84489/pipelined_tables_utilization_ratio_10.pdf, id=148, 454.23262p
-t x 509.47514pt>
 File: figures/exp84489/pipelined_tables_utilization_ratio_10.pdf Graphic file (
 type pdf)
 <use figures/exp84489/pipelined_tables_utilization_ratio_10.pdf>
-Package pdftex.def Info: figures/exp84489/pipelined_tables_utilization_ratio_10
-.pdf  used on input line 212.
-(pdftex.def)             Requested size: 123.84283pt x 138.90501pt.
-<figures/exp84489/pipelined_tables_utilization_ratio_20.pdf, id=149, 454.23262p
-t x 509.47514pt>
 File: figures/exp84489/pipelined_tables_utilization_ratio_20.pdf Graphic file (
 type pdf)
 <use figures/exp84489/pipelined_tables_utilization_ratio_20.pdf>
-Package pdftex.def Info: figures/exp84489/pipelined_tables_utilization_ratio_20
-.pdf  used on input line 212.
-(pdftex.def)             Requested size: 123.84283pt x 138.90501pt.
-<figures/exp84488/improvement.pdf, id=150, 488.40099pt x 509.47514pt>
 File: figures/exp84488/improvement.pdf Graphic file (type pdf)
 <use figures/exp84488/improvement.pdf>
-Package pdftex.def Info: figures/exp84488/improvement.pdf  used on input line 2
-12.
-(pdftex.def)             Requested size: 123.84283pt x 129.1798pt.
-) (./src/implementation.tex [5]
+)
+(./tex/implementation.tex [5]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 )
-(./src/ControlPlane.tex [6 <./figures/exp84481/hash_table_utilization.pdf> <./f
-igures/exp84489/pipelined_tables_utilization_ratio_10.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./figures/exp84489/pipelined
-_tables_utilization_ratio_10.pdf): PDF inclusion: multiple pdfs with page group
- included in a single page
-> <./figures/exp84489/pipelined_tables_utilization_ratio_20.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./figures/exp84489/pipelined
-_tables_utilization_ratio_20.pdf): PDF inclusion: multiple pdfs with page group
- included in a single page
-> <./figures/exp84488/improvement.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./figures/exp84488/improveme
-nt.pdf): PDF inclusion: multiple pdfs with page group included in a single page
-
->]) (./src/evaluation.tex
+(./tex/ControlPlane.tex [6]) (./tex/evaluation.tex
 Underfull \hbox (badness 1881) in paragraph at lines 5--12
 []\T1/ptm/m/n/10 We have im-ple-mented Hash-Flow, as well as sev-eral
  []
 
-<figures/exp84478/flow_size_distribution.pdf, id=339, 448.43787pt x 357.74905pt
->
 File: figures/exp84478/flow_size_distribution.pdf Graphic file (type pdf)
 <use figures/exp84478/flow_size_distribution.pdf>
-Package pdftex.def Info: figures/exp84478/flow_size_distribution.pdf  used on i
-nput line 47.
-(pdftex.def)             Requested size: 112.84712pt x 90.02658pt.
-<figures/exp84479/are_with_depth.pdf, id=340, 487.83818pt x 364.14796pt>
 File: figures/exp84479/are_with_depth.pdf Graphic file (type pdf)
 <use figures/exp84479/are_with_depth.pdf>
-Package pdftex.def Info: figures/exp84479/are_with_depth.pdf  used on input lin
-e 53.
-(pdftex.def)             Requested size: 112.84712pt x 84.23012pt.
-[7 <./figures/exp84478/flow_size_distribution.pdf> <./figures/exp84479/are_with
-_depth.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./figures/exp84479/are_with_
-depth.pdf): PDF inclusion: multiple pdfs with page group included in a single p
-age
->]
-<figures/exp84454/flow_monitoring_fsc.pdf, id=414, 476.19914pt x 346.61946pt>
+[7]
 File: figures/exp84454/flow_monitoring_fsc.pdf Graphic file (type pdf)
 <use figures/exp84454/flow_monitoring_fsc.pdf>
-Package pdftex.def Info: figures/exp84454/flow_monitoring_fsc.pdf  used on inpu
-t line 179.
-(pdftex.def)             Requested size: 112.84712pt x 82.13785pt.
-<figures/exp84454/flow_size_estimation_are.pdf, id=415, 476.19914pt x 353.01837
-pt>
 File: figures/exp84454/flow_size_estimation_are.pdf Graphic file (type pdf)
 <use figures/exp84454/flow_size_estimation_are.pdf>
-Package pdftex.def Info: figures/exp84454/flow_size_estimation_are.pdf  used on
- input line 179.
-(pdftex.def)             Requested size: 112.84712pt x 83.65419pt.
-<figures/exp84493/caida_heavy_hitter_detection_f1_score.png, id=416, 463.9734pt
- x 434.3427pt>
 File: figures/exp84493/caida_heavy_hitter_detection_f1_score.png Graphic file (
-type png)
-<use figures/exp84493/caida_heavy_hitter_detection_f1_score.png>
-Package pdftex.def Info: figures/exp84493/caida_heavy_hitter_detection_f1_score
-.png  used on input line 191.
-(pdftex.def)             Requested size: 112.84712pt x 105.63615pt.
-<figures/exp84493/caida_heavy_hitter_detection_are.png, id=418, 463.9734pt x 43
-4.3427pt>
+type bmp)
+<figures/exp84493/caida_heavy_hitter_detection_f1_score.png>
 File: figures/exp84493/caida_heavy_hitter_detection_are.png Graphic file (type 
-png)
-<use figures/exp84493/caida_heavy_hitter_detection_are.png>
-Package pdftex.def Info: figures/exp84493/caida_heavy_hitter_detection_are.png 
- used on input line 191.
-(pdftex.def)             Requested size: 112.84712pt x 105.63615pt.
- [8 <./figures/exp84454/flow_monitoring_fsc.pdf> <./figures/exp84454/flow_size_
-estimation_are.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./figures/exp84454/flow_size
-_estimation_are.pdf): PDF inclusion: multiple pdfs with page group included in 
-a single page
-> <./figures/exp84493/caida_heavy_hitter_detection_f1_score.png> <./figures/exp
-84493/caida_heavy_hitter_detection_are.png>]
-<figures/exp84485/caida_flow_monitoring_fsc.pdf, id=514, 484.50362pt x 432.8764
-6pt>
+bmp)
+<figures/exp84493/caida_heavy_hitter_detection_are.png>
 File: figures/exp84485/caida_flow_monitoring_fsc.pdf Graphic file (type pdf)
 <use figures/exp84485/caida_flow_monitoring_fsc.pdf>
-Package pdftex.def Info: figures/exp84485/caida_flow_monitoring_fsc.pdf  used o
-n input line 224.
-(pdftex.def)             Requested size: 123.84283pt x 110.64294pt.
-<figures/exp84485/tsinghua_flow_monitoring_fsc.pdf, id=515, 484.50362pt x 432.8
-7646pt>
 File: figures/exp84485/tsinghua_flow_monitoring_fsc.pdf Graphic file (type pdf)
 
 <use figures/exp84485/tsinghua_flow_monitoring_fsc.pdf>
-Package pdftex.def Info: figures/exp84485/tsinghua_flow_monitoring_fsc.pdf  use
-d on input line 224.
-(pdftex.def)             Requested size: 123.84283pt x 110.64294pt.
-<figures/exp84485/hgc_flow_monitoring_fsc.pdf, id=516, 484.50362pt x 432.87646p
-t>
 File: figures/exp84485/hgc_flow_monitoring_fsc.pdf Graphic file (type pdf)
 <use figures/exp84485/hgc_flow_monitoring_fsc.pdf>
-Package pdftex.def Info: figures/exp84485/hgc_flow_monitoring_fsc.pdf  used on 
-input line 224.
-(pdftex.def)             Requested size: 123.84283pt x 110.64294pt.
-<figures/exp84485/telecom_flow_monitoring_fsc.pdf, id=517, 484.50362pt x 432.87
-646pt>
 File: figures/exp84485/telecom_flow_monitoring_fsc.pdf Graphic file (type pdf)
 <use figures/exp84485/telecom_flow_monitoring_fsc.pdf>
-Package pdftex.def Info: figures/exp84485/telecom_flow_monitoring_fsc.pdf  used
- on input line 224.
-(pdftex.def)             Requested size: 123.84283pt x 110.64294pt.
-<figures/exp84485/caida_cardinality_re.pdf, id=518, 484.50362pt x 432.87646pt>
+ [8]
 File: figures/exp84485/caida_cardinality_re.pdf Graphic file (type pdf)
 <use figures/exp84485/caida_cardinality_re.pdf>
-Package pdftex.def Info: figures/exp84485/caida_cardinality_re.pdf  used on inp
-ut line 246.
-(pdftex.def)             Requested size: 123.84283pt x 110.64294pt.
-<figures/exp84485/tsinghua_cardinality_re.pdf, id=519, 484.50362pt x 432.87646p
-t>
 File: figures/exp84485/tsinghua_cardinality_re.pdf Graphic file (type pdf)
 <use figures/exp84485/tsinghua_cardinality_re.pdf>
-Package pdftex.def Info: figures/exp84485/tsinghua_cardinality_re.pdf  used on 
-input line 246.
-(pdftex.def)             Requested size: 123.84283pt x 110.64294pt.
-<figures/exp84485/hgc_cardinality_re.pdf, id=520, 484.50362pt x 432.87646pt>
 File: figures/exp84485/hgc_cardinality_re.pdf Graphic file (type pdf)
 <use figures/exp84485/hgc_cardinality_re.pdf>
-Package pdftex.def Info: figures/exp84485/hgc_cardinality_re.pdf  used on input
- line 246.
-(pdftex.def)             Requested size: 123.84283pt x 110.64294pt.
-<figures/exp84485/telecom_cardinality_re.pdf, id=521, 484.50362pt x 432.87646pt
->
 File: figures/exp84485/telecom_cardinality_re.pdf Graphic file (type pdf)
 <use figures/exp84485/telecom_cardinality_re.pdf>
-Package pdftex.def Info: figures/exp84485/telecom_cardinality_re.pdf  used on i
-nput line 246.
-(pdftex.def)             Requested size: 123.84283pt x 110.64294pt.
-<figures/exp84485/caida_flow_size_estimation_are.pdf, id=522, 484.50362pt x 432
-.87646pt>
 File: figures/exp84485/caida_flow_size_estimation_are.pdf Graphic file (type pd
 f)
 <use figures/exp84485/caida_flow_size_estimation_are.pdf>
-Package pdftex.def Info: figures/exp84485/caida_flow_size_estimation_are.pdf  u
-sed on input line 266.
-(pdftex.def)             Requested size: 123.84283pt x 110.64294pt.
-<figures/exp84485/tsinghua_flow_size_estimation_are.pdf, id=523, 484.50362pt x 
-432.87646pt>
 File: figures/exp84485/tsinghua_flow_size_estimation_are.pdf Graphic file (type
  pdf)
 <use figures/exp84485/tsinghua_flow_size_estimation_are.pdf>
-Package pdftex.def Info: figures/exp84485/tsinghua_flow_size_estimation_are.pdf
-  used on input line 266.
-(pdftex.def)             Requested size: 123.84283pt x 110.64294pt.
-<figures/exp84485/hgc_flow_size_estimation_are.pdf, id=524, 484.50362pt x 432.8
-7646pt>
 File: figures/exp84485/hgc_flow_size_estimation_are.pdf Graphic file (type pdf)
 
 <use figures/exp84485/hgc_flow_size_estimation_are.pdf>
-Package pdftex.def Info: figures/exp84485/hgc_flow_size_estimation_are.pdf  use
-d on input line 266.
-(pdftex.def)             Requested size: 123.84283pt x 110.64294pt.
-<figures/exp84485/telecom_flow_size_estimation_are.pdf, id=525, 484.50362pt x 4
-32.87646pt>
 File: figures/exp84485/telecom_flow_size_estimation_are.pdf Graphic file (type 
 pdf)
 <use figures/exp84485/telecom_flow_size_estimation_are.pdf>
-Package pdftex.def Info: figures/exp84485/telecom_flow_size_estimation_are.pdf 
- used on input line 266.
-(pdftex.def)             Requested size: 123.84283pt x 110.64294pt.
-<figures/exp84486/caida_250K_f1_score.pdf, id=526, 470.84155pt x 432.87646pt>
 File: figures/exp84486/caida_250K_f1_score.pdf Graphic file (type pdf)
 <use figures/exp84486/caida_250K_f1_score.pdf>
-Package pdftex.def Info: figures/exp84486/caida_250K_f1_score.pdf  used on inpu
-t line 294.
-(pdftex.def)             Requested size: 123.84283pt x 113.85304pt.
-<figures/exp84486/tsinghua_250K_f1_score.pdf, id=527, 470.84155pt x 432.87646pt
->
 File: figures/exp84486/tsinghua_250K_f1_score.pdf Graphic file (type pdf)
 <use figures/exp84486/tsinghua_250K_f1_score.pdf>
-Package pdftex.def Info: figures/exp84486/tsinghua_250K_f1_score.pdf  used on i
-nput line 294.
-(pdftex.def)             Requested size: 123.84283pt x 113.85304pt.
-<figures/exp84486/hgc_250K_f1_score.pdf, id=528, 454.23262pt x 432.87646pt>
 File: figures/exp84486/hgc_250K_f1_score.pdf Graphic file (type pdf)
 <use figures/exp84486/hgc_250K_f1_score.pdf>
-Package pdftex.def Info: figures/exp84486/hgc_250K_f1_score.pdf  used on input 
-line 294.
-(pdftex.def)             Requested size: 123.84283pt x 118.02089pt.
-<figures/exp84486/telecom_250K_f1_score.pdf, id=529, 454.23262pt x 432.87646pt>
-
 File: figures/exp84486/telecom_250K_f1_score.pdf Graphic file (type pdf)
 <use figures/exp84486/telecom_250K_f1_score.pdf>
-Package pdftex.def Info: figures/exp84486/telecom_250K_f1_score.pdf  used on in
-put line 294.
-(pdftex.def)             Requested size: 123.84283pt x 118.02089pt.
-<figures/exp84486/caida_250K_re.pdf, id=530, 454.23262pt x 432.87646pt>
 File: figures/exp84486/caida_250K_re.pdf Graphic file (type pdf)
 <use figures/exp84486/caida_250K_re.pdf>
-Package pdftex.def Info: figures/exp84486/caida_250K_re.pdf  used on input line
- 307.
-(pdftex.def)             Requested size: 123.84283pt x 118.02089pt.
-<figures/exp84486/tsinghua_250K_re.pdf, id=531, 454.23262pt x 432.87646pt>
 File: figures/exp84486/tsinghua_250K_re.pdf Graphic file (type pdf)
 <use figures/exp84486/tsinghua_250K_re.pdf>
-Package pdftex.def Info: figures/exp84486/tsinghua_250K_re.pdf  used on input l
-ine 307.
-(pdftex.def)             Requested size: 123.84283pt x 118.02089pt.
-<figures/exp84486/hgc_250K_re.pdf, id=532, 454.23262pt x 432.87646pt>
 File: figures/exp84486/hgc_250K_re.pdf Graphic file (type pdf)
 <use figures/exp84486/hgc_250K_re.pdf>
-Package pdftex.def Info: figures/exp84486/hgc_250K_re.pdf  used on input line 3
-07.
-(pdftex.def)             Requested size: 123.84283pt x 118.02089pt.
-<figures/exp84486/telecom_250K_re.pdf, id=533, 454.23262pt x 432.87646pt>
 File: figures/exp84486/telecom_250K_re.pdf Graphic file (type pdf)
 <use figures/exp84486/telecom_250K_re.pdf>
-Package pdftex.def Info: figures/exp84486/telecom_250K_re.pdf  used on input li
-ne 307.
-(pdftex.def)             Requested size: 123.84283pt x 118.02089pt.
-<figures/exp84484/throughput.pdf, id=534, 462.93263pt x 444.22864pt>
 File: figures/exp84484/throughput.pdf Graphic file (type pdf)
 <use figures/exp84484/throughput.pdf>
-Package pdftex.def Info: figures/exp84484/throughput.pdf  used on input line 32
-1.
-(pdftex.def)             Requested size: 123.84283pt x 118.83846pt.
-<figures/exp84490/ave_hash.pdf, id=535, 462.93263pt x 444.22864pt>
 File: figures/exp84490/ave_hash.pdf Graphic file (type pdf)
 <use figures/exp84490/ave_hash.pdf>
-Package pdftex.def Info: figures/exp84490/ave_hash.pdf  used on input line 321.
-
-(pdftex.def)             Requested size: 123.84283pt x 118.83846pt.
-<figures/exp84490/ave_mem.pdf, id=536, 479.54156pt x 444.22864pt>
 File: figures/exp84490/ave_mem.pdf Graphic file (type pdf)
 <use figures/exp84490/ave_mem.pdf>
-Package pdftex.def Info: figures/exp84490/ave_mem.pdf  used on input line 321.
-(pdftex.def)             Requested size: 123.84283pt x 114.7172pt.
-<figures/exp84491/increase_in_processing.png, id=537, 484.209pt x 440.1243pt>
-File: figures/exp84491/increase_in_processing.png Graphic file (type png)
-<use figures/exp84491/increase_in_processing.png>
-Package pdftex.def Info: figures/exp84491/increase_in_processing.png  used on i
-nput line 321.
-(pdftex.def)             Requested size: 123.84283pt x 112.56264pt.
-) (./src/conclusion.tex)
-(./src/acknowledgement.tex) (./ms.bbl
+File: figures/exp84491/increase_in_processing.png Graphic file (type bmp)
+<figures/exp84491/increase_in_processing.png>
+) (./tex/conclusion.tex) (./tex/acknowledgement.tex) (./ms.bbl
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `en'. Using the pattern for
 ** the default language instead.
@@ -729,89 +453,10 @@ nput line 321.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [10 <./figures/exp84485/caida_flow_monitoring_fsc.pdf> <./figures/exp84485/tsi
-nghua_flow_monitoring_fsc.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./figures/exp84485/tsinghua_
-flow_monitoring_fsc.pdf): PDF inclusion: multiple pdfs with page group included
- in a single page
-> <./figures/exp84485/hgc_flow_monitoring_fsc.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./figures/exp84485/hgc_flow_
-monitoring_fsc.pdf): PDF inclusion: multiple pdfs with page group included in a
- single page
-> <./figures/exp84485/telecom_flow_monitoring_fsc.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./figures/exp84485/telecom_f
-low_monitoring_fsc.pdf): PDF inclusion: multiple pdfs with page group included 
-in a single page
-> <./figures/exp84485/caida_cardinality_re.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./figures/exp84485/caida_car
-dinality_re.pdf): PDF inclusion: multiple pdfs with page group included in a si
-ngle page
-> <./figures/exp84485/tsinghua_cardinality_re.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./figures/exp84485/tsinghua_
-cardinality_re.pdf): PDF inclusion: multiple pdfs with page group included in a
- single page
-> <./figures/exp84485/hgc_cardinality_re.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./figures/exp84485/hgc_cardi
-nality_re.pdf): PDF inclusion: multiple pdfs with page group included in a sing
-le page
-> <./figures/exp84485/telecom_cardinality_re.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./figures/exp84485/telecom_c
-ardinality_re.pdf): PDF inclusion: multiple pdfs with page group included in a 
-single page
-> <./figures/exp84485/caida_flow_size_estimation_are.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./figures/exp84485/caida_flo
-w_size_estimation_are.pdf): PDF inclusion: multiple pdfs with page group includ
-ed in a single page
-> <./figures/exp84485/tsinghua_flow_size_estimation_are.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./figures/exp84485/tsinghua_
-flow_size_estimation_are.pdf): PDF inclusion: multiple pdfs with page group inc
-luded in a single page
-> <./figures/exp84485/hgc_flow_size_estimation_are.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./figures/exp84485/hgc_flow_
-size_estimation_are.pdf): PDF inclusion: multiple pdfs with page group included
- in a single page
-> <./figures/exp84485/telecom_flow_size_estimation_are.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./figures/exp84485/telecom_f
-low_size_estimation_are.pdf): PDF inclusion: multiple pdfs with page group incl
-uded in a single page
-> <./figures/exp84486/caida_250K_f1_score.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./figures/exp84486/caida_250
-K_f1_score.pdf): PDF inclusion: multiple pdfs with page group included in a sin
-gle page
-> <./figures/exp84486/tsinghua_250K_f1_score.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./figures/exp84486/tsinghua_
-250K_f1_score.pdf): PDF inclusion: multiple pdfs with page group included in a 
-single page
-> <./figures/exp84486/hgc_250K_f1_score.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./figures/exp84486/hgc_250K_
-f1_score.pdf): PDF inclusion: multiple pdfs with page group included in a singl
-e page
-> <./figures/exp84486/telecom_250K_f1_score.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./figures/exp84486/telecom_2
-50K_f1_score.pdf): PDF inclusion: multiple pdfs with page group included in a s
-ingle page
->]
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `en'. Using the pattern for
 ** the default language instead.
-
+[10]
 Underfull \hbox (badness 1502) in paragraph at lines 95--98
 []\T1/ptm/m/n/8 S. Muthukr-ish-nan, ``Data Streams: Al-go-rithms and Ap-pli-ca-
 tions,''
@@ -826,38 +471,7 @@ tions,''
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `en'. Using the pattern for
 ** the default language instead.
-
-Underfull \vbox (badness 2418) has occurred while \output is active []
-
- [11 <./figures/exp84486/caida_250K_re.pdf> <./figures/exp84486/tsinghua_250K_r
-e.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./figures/exp84486/tsinghua_
-250K_re.pdf): PDF inclusion: multiple pdfs with page group included in a single
- page
-> <./figures/exp84486/hgc_250K_re.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./figures/exp84486/hgc_250K_
-re.pdf): PDF inclusion: multiple pdfs with page group included in a single page
-
-> <./figures/exp84486/telecom_250K_re.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./figures/exp84486/telecom_2
-50K_re.pdf): PDF inclusion: multiple pdfs with page group included in a single 
-page
-> <./figures/exp84484/throughput.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./figures/exp84484/throughpu
-t.pdf): PDF inclusion: multiple pdfs with page group included in a single page
-> <./figures/exp84490/ave_hash.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./figures/exp84490/ave_hash.
-pdf): PDF inclusion: multiple pdfs with page group included in a single page
-> <./figures/exp84490/ave_mem.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./figures/exp84490/ave_mem.p
-df): PDF inclusion: multiple pdfs with page group included in a single page
-> <./figures/exp84491/increase_in_processing.png>])
+[11])
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -871,36 +485,18 @@ Before submitting the final camera ready copy, remember to:
 
 [12
 
-] (./ms.aux) ) 
-Here is how much of TeX's memory you used:
- 4594 strings out of 492616
- 74945 string characters out of 6129482
- 147872 words of memory out of 5000000
- 8354 multiletter control sequences out of 15000+600000
- 119789 words of font info for 129 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 41i,13n,26p,1547b,327s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}<
-/usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></
-usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></u
-sr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></us
-r/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/
-local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/lo
-cal/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loca
-l/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/t
-exlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texl
-ive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texli
-ve/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive
-/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2
-019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/201
-9/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2019/texmf-di
-st/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/
-type1/urw/times/utmr8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/
-times/utmri8a.pfb>
-Output written on ms.pdf (12 pages, 876772 bytes).
-PDF statistics:
- 1388 PDF objects out of 1440 (max. 8388607)
- 268 compressed objects within 3 object streams
- 0 named destinations out of 1000 (max. 500000)
- 176 words of extra memory for PDF output out of 10000 (max. 10000000)
+] (./ms.aux)
 
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 3686 strings out of 492916
+ 59242 string characters out of 6133346
+ 135916 words of memory out of 5000000
+ 7624 multiletter control sequences out of 15000+600000
+ 86749 words of font info for 88 fonts, out of 8000000 for 9000
+ 1348 hyphenation exceptions out of 8191
+ 31i,13n,26p,1547b,327s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on ms.pdf (12 pages).
