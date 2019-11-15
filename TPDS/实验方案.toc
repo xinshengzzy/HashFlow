@@ -4,20 +4,20 @@
 \contentsline {subsection}{\numberline {1.3}AHashFlow (Augmented HashFlow)}{2}{subsection.1.3}% 
 \contentsline {section}{\numberline {2}测量指标}{2}{section.2}% 
 \contentsline {subsection}{\numberline {2.1}数据包的不测量率 (NMR, No Measurement Rate)}{2}{subsection.2.1}% 
-\contentsline {subsection}{\numberline {2.2} 流覆盖率（FSC）}{3}{subsection.2.2}% 
-\contentsline {subsection}{\numberline {2.3} 流数目估计相对误差（RE）}{3}{subsection.2.3}% 
-\contentsline {subsection}{\numberline {2.4} 数据流大小估计的平均相对误差（ARE）}{3}{subsection.2.4}% 
+\contentsline {subsection}{\numberline {2.2} 流覆盖率（FSC, Flow Set Covery）}{3}{subsection.2.2}% 
+\contentsline {subsection}{\numberline {2.3} 流数目估计相对误差（RE, Relative Error）}{3}{subsection.2.3}% 
+\contentsline {subsection}{\numberline {2.4} 数据流大小估计的平均相对误差（ARE, Average Relative Error）}{3}{subsection.2.4}% 
 \contentsline {subsection}{\numberline {2.5}被测数据流大小估计的平均相对误差 (ARE, Average Relative Error)}{3}{subsection.2.5}% 
 \contentsline {subsection}{\numberline {2.6} heavy hitter检测的F1 Score}{3}{subsection.2.6}% 
-\contentsline {subsection}{\numberline {2.7} heavy hitter检测的平均相对误差（ARE）}{4}{subsection.2.7}% 
-\contentsline {subsection}{\numberline {2.8} 控制平面的包负荷比 (Packet Load Rate, PLR)}{4}{subsection.2.8}% 
-\contentsline {subsection}{\numberline {2.9}控制平面的流负荷比 (Flow Load Rate, FLR)}{4}{subsection.2.9}% 
-\contentsline {section}{\numberline {3}实验设计}{4}{section.3}% 
-\contentsline {subsection}{\numberline {3.1}Exp84491 ${\mathchar "1270}$}{4}{subsection.3.1}% 
+\contentsline {subsection}{\numberline {2.7} heavy hitter检测的平均相对误差（ARE, Average Relative Error）}{4}{subsection.2.7}% 
+\contentsline {subsection}{\numberline {2.8} 控制平面的包负荷比 (PLR, Packet Load Rate)}{4}{subsection.2.8}% 
+\contentsline {subsection}{\numberline {2.9}控制平面的流负荷比 (PLR, Flow Load Rate,)}{4}{subsection.2.9}% 
+\contentsline {section}{\numberline {3}实验设计}{5}{section.3}% 
+\contentsline {subsection}{\numberline {3.1}Exp84491 ${\mathchar "1270}$}{5}{subsection.3.1}% 
 \contentsline {subsection}{\numberline {3.2}Exp84492 ${\mathchar "1270}$}{5}{subsection.3.2}% 
 \contentsline {subsection}{\numberline {3.3}Exp84493 ${\mathchar "1270}$}{5}{subsection.3.3}% 
 \contentsline {subsection}{\numberline {3.4}Exp84494 ${\mathchar "1270}$}{6}{subsection.3.4}% 
 \contentsline {subsection}{\numberline {3.5}Exp84495}{6}{subsection.3.5}% 
 \contentsline {subsection}{\numberline {3.6}Exp84496}{7}{subsection.3.6}% 
-\contentsline {subsection}{\numberline {3.7}Exp84497}{7}{subsection.3.7}% 
+\contentsline {subsection}{\numberline {3.7}Exp84497}{8}{subsection.3.7}% 
 \contentsline {section}{\numberline {A}AHashFlow方案介绍}{8}{appendix.A}% 

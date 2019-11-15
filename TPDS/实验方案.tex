@@ -32,13 +32,13 @@ $$
 NMR = \frac{m_1}{m}
 $$
 
-\subsection{ 流覆盖率（FSC）}
+\subsection{ 流覆盖率（FSC, Flow Set Covery）}
 假设网络测量算法记录了完整的流标识符的数目为$n_1$，则流覆盖率可定义如下：
 $$
 FSC = \frac{n_1}{n}
 $$
 
-\subsection{ 流数目估计相对误差（RE）}
+\subsection{ 流数目估计相对误差（RE, Relative Error）}
 假设网络测量算法估计的网络中数据流的数目为$n_2$，则流数目估计相对误差可定义如下：
 $$
 RE = \frac{|n - n_2|}{n}
@@ -46,38 +46,38 @@ $$
 
 由于本文所考察的网络测量算法可以通过数据结构的使用情况估计没有被明确记录的数据流的数目，因此算法所估计的数据流数目和算法所明确记录的数据流的数目并不完全相等。
 
-\subsection{ 数据流大小估计的平均相对误差（ARE）}
-对于原数据包序列中的任意一个数据流$f_i$，假设它的真实大小为$m_i$，而网络测量算法所返回的该数据流的大小为$m_i$，如果该数据流没有被明确定义则默认为$m_i=0$，则数据流大小估计的平均相对误差可定义如下：
+\subsection{ 数据流大小估计的平均相对误差（ARE, Average Relative Error）}
+对于原数据包序列中的任意一个数据流$f_i$，假设它的真实大小为$m_i'$，而网络测量算法所返回的该数据流的大小为$m_i$，该数据流没有被测量算法明确记录则默认为$m_i'=0$，则数据流大小估计的平均相对误差可定义如下：
 $$
 ARE=\frac{1}{n}\sum\frac{|m_i - m'_i|}{m_i}
 $$
 
 \subsection{被测数据流大小估计的平均相对误差 (ARE, Average Relative Error)}
-假设我们的测量算法记录的流分别为$f_1, f_2, ..., f_k$，且对于任意一个数据流$f_i ~(1 \le i \le k)$，它的实际大小为$m_i$，而我们的算法测得其大小为$m_i'$，则被测数据流的平均相对误差可定义为：
+假设我们的测量算法记录的流分别为$f_1, f_2, ..., f_k$，且对于任意一个数据流$f_i ~(1 \le i \le k)$，它的实际大小为$m_i$，而我们的算法测得其大小为$m_i'$，则被测数据流大小估计的平均相对误差可定义为：
 $$
 ARE = \frac{1}{k}\sum\frac{|m_i - m'_i|}{m_i}
 $$
 
 \subsection{ heavy hitter检测的F1 Score}
-已经定义heavy hitter的阈值`$\gamma$`，假设原数据包序列中heavy hitter的数目为$c_1$，网络测量算法所返回的heavy hitter的数目为$c_2$，网络测量算法所返回的heavy hitter中真实的heavy hitter的数目为$c$，则heavy hitter检测的召回率为$RR=\frac{c}{c_1}$，准确率为$PR=\frac{c}{c_2}$，因此heavy hitter检测的F1 Score可定义如下：
+已经定义heavy hitter的阈值$\gamma$，假设原数据包序列中heavy hitter的数目为$c_1$，网络测量算法所返回的heavy hitter的数目为$c_2$，网络测量算法所返回的heavy hitter中真实的heavy hitter的数目为$c$，则heavy hitter检测的召回率为$RR=\frac{c}{c_1}$，准确率为$PR=\frac{c}{c_2}$，因此heavy hitter检测的F1 Score可定义如下：
 $$
 F1~Score=\frac{2\cdot PR \cdot RR}{PR + RR}
 $$
 
-\subsection{ heavy hitter检测的平均相对误差（ARE）}
-如上，假设原数据包序列中共有$n$个heavy hitter，其中heavy hitter $f_i$的大小为$m_i$，而网络测量算法报告的$f_i$的大小为$m_i$，如果$f_i$不包含在网络测量算法报告的heavy hitter中（包括$f_i$已经被网络测量算法记录但是没有被识别成为heavy hitter的情况），则默认$m_i=0$，则heavy hitter检测的平均相对误差可定义如下：
+\subsection{ heavy hitter检测的平均相对误差（ARE, Average Relative Error）}
+如上，假设原数据包序列中共有$n$个heavy hitter，其中heavy hitter $f_i$的大小为$m_i$，而网络测量算法报告的$f_i$的大小为$m_i'$，如果$f_i$不包含在网络测量算法报告的heavy hitter中（包括$f_i$已经被网络测量算法记录但是没有被识别成为heavy hitter的情况），则默认$m_i'=0$，则heavy hitter检测的平均相对误差可定义如下：
 $$
 ARE = \frac{1}{n'}\sum\frac{|m_i - m'_i|}{m_i}
 $$
 
-\subsection{ 控制平面的包负荷比 (Packet Load Rate, PLR)}
-在P4交换机版的实现方案中，我们需要将特定的数据包从数据平面发送到控制平面以维护流标识符和指纹之间的映射关系，因此控制平面的负荷比可定义如下：
+\subsection{ 控制平面的包负荷比 (PLR, Packet Load Rate)}
+在AHashFlow和DHashFlow中，我们需要将特定的信息（包括数据流的完整的流标识符以及主表中流记录）以数据包的形式从数据平面发送到控制平面以维护流标识符和指纹之间的映射关系，因此控制平面的包负荷比可定义如下：
 $$
 PLR = \frac{m_1}{m}
 $$
 其中$m_1$是控制平面处理的数据包的数目。
 
-\subsection{控制平面的流负荷比 (Flow Load Rate, FLR)}
+\subsection{控制平面的流负荷比 (PLR, Flow Load Rate,)}
 假设在AHashFlow（或DHashFlow）的运行过程中，控制平面一共收到了$m_1$个数据包，而交换机处理的数据包中一共包含了$n$个数据流，则控制平面的流负荷比可以定义如下：
 $$
 FLR = \frac{m_1}{n}
@@ -132,7 +132,7 @@ $$
 \item 测量的指标包括heavy hitters测量的F1 Score和平均相对误差，数据包的不测量率以及控制平面的包负荷比
 \end{itemize}
 
-在此实验中可以预见的效果是随着数据包数目的增加，HashFlow和DHashFlow的性能逐渐降低，其中HashFlow的性能降低尤为明显，而AHashFlow的性能却保持在一个比较稳定的状态，说明不活跃大流的退出机制能够发挥良好的作用。此外，AHashFlow的控制平面包负荷比会明显高于DHashFlow，但是这是情理之中的，因为这从侧面证明AHashFlow能够比DHashFlow测量更多的流。
+在此实验中可以预见的效果是随着数据包数目的增加，HashFlow和DHashFlow的性能都在逐渐降低，但是HashFlow的性能要明显低于DHashFlow，这是因为借助控制平面，DHashFlow能够记录更多的信息。此外，AHashFlow的性能要更优于DHashFlow的性能，且AHashFlow的性能能够保持在一个比较稳定的状态，说明不活跃大流的退出机制能够发挥良好的作用。此外，AHashFlow的控制平面包负荷比会明显高于DHashFlow，但是这是情理之中，因为这从侧面证明AHashFlow能够比DHashFlow测量更多的流。
 
 \subsection{Exp84496}
 本实验的实验参数设置如下：

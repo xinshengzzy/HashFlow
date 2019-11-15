@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.5.8)  15 NOV 2019 16:25
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.5.8)  15 NOV 2019 17:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -785,7 +785,14 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 114.
 
-[6] [7]
+[6]
+Overfull \hbox (3.73488pt too wide) in paragraph at lines 135--136
+\TU/lmr/m/n/10.53937 DHashFlow \TU/SongtiSC(0)/m/n/10.53937 的 性 能 都 在 逐 渐 降 低，|
+  但 是 \TU/lmr/m/n/10.53937 HashFlow \TU/SongtiSC(0)/m/n/10.53937 的 性 能 要 明 显 低 
+于 \TU/lmr/m/n/10.53937 DHash-
+ []
+
+[7]
 File: ./figures/AHashFlowDataStructure/AHashFlow.pdf Graphic file (type pdf)
 <use ./figures/AHashFlowDataStructure/AHashFlow.pdf>
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
@@ -802,13 +809,13 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 253.
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 253.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 253.
 Package rerunfilecheck Info: File `实验方案.out' has not changed.
-(rerunfilecheck)             Checksum: 6037CEE9C224DA085B3A87EDDDA94F46.
+(rerunfilecheck)             Checksum: E2659157A28EE422BD2B4185561E2C92.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 253.
  ) 
 Here is how much of TeX's memory you used:
  23667 strings out of 492916
  484339 string characters out of 6133346
- 569900 words of memory out of 5000000
+ 571343 words of memory out of 5000000
  27528 multiletter control sequences out of 15000+600000
  536664 words of font info for 64 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
