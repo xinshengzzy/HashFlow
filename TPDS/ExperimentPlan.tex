@@ -15,10 +15,13 @@
 
 \section{基本定义}
 \subsection{HashFlow}
-原始的HashFlow方案，在数据平面记录完整的Flow ID，没有控制平面，并且没有不活跃大流的退出机制。
+原始的HashFlow方案，在数据平面记录完整的流标识符，没有控制平面，并且没有不活跃大流的退出机制。
 
 \subsection{DHashFlow (HashFlow with Digest)}
-在数据平面记录Flow ID的digest而不是完整的Flow ID，同时增加控制平面来记录完整的Flow ID，但是并没有引入不活跃大流的退出机制。
+在数据平面记录流标识符的摘要而不是完整的流标识符，同时增加控制平面来记录完整的Flow ID，但是并没有引入不活跃大流的退出机制。在DHashFlow中，控制平面的作用仅仅是维护摘要和流标识符之间的映射关系，但是当有数据流从A表中升级到M表中而导致M表中的流数据项被替换的时候，我们并不会将被替换的流数据项导出至控制层。
+
+\subsection{CHashFlow (HashFlow with Control Plane)}
+CHashFlow基本上和AHashFlow类似，即包含了摘要映射机制以及和摘要映射机制相匹配的控制平面，但是CHashFlow比DHashFlow更进一步，因为在CHashFlow中当M表中的数据流因为A表中的数据流升级而被替换的时候我们并不会把它直接丢弃，而是会将它导出至控制平面。
 
 \subsection{AHashFlow (Augmented HashFlow)}
 改良后的HashFlow，在数据平面记录Flow ID的digest而不是完整的Flow ID，因此包含控制平面来记录完整的Flow ID，此外还增加了不活跃大流的退出机制。
@@ -31,6 +34,8 @@
 $$
 NMR = \frac{m_1}{m}
 $$
+
+严格来说，HashFlow中M表中替换出去的包也不会被记录，因而属于不测量数据包的范畴，但是为了验证流标识符映射机制和不活跃大流退出机制的有效性，我们在计算HashFlow的数据包不测量率的时候并不会把M表中替换出去的数据包当作不测量数据包。
 
 \subsection{ 流覆盖率（FSC, Flow Set Covery）}
 假设网络测量算法记录了完整的流标识符的数目为$n_1$，则流覆盖率可定义如下：
@@ -124,32 +129,31 @@ $$
 \subsection{Exp84495}
 本实验的实验参数设置如下：
 \begin{itemize}
-\item 实验方案为HashFlow, DHashFlow和AHashFlow
+\item 实验方案为HashFlow, DHashFlow和CHashFlow
 \item 将内存容量设为1MB
 \item 使用一个CAIDA的trace文件
-\item 进行10组实验，将重放的数据包的数目以50万的步长从50万增加到500万
+\item 进行10组实验，将重放的数据包的数目以20万的步长从50万增加到250万
 \item 将heavy hitter的阈值设为一个固定值10，即包含10个及10个以上数据包的流为一个heavy hitter
-\item 测量的指标包括heavy hitters测量的F1 Score和平均相对误差，数据包的不测量率以及控制平面的包负荷比
+\item 测量的指标包括heavy hitters测量的F1 Score和平均相对误差，数据包的不测量率以及包覆盖率。
 \end{itemize}
 
-在此实验中可以预见的效果是随着数据包数目的增加，HashFlow和DHashFlow的性能都在逐渐降低，但是HashFlow的性能要明显低于DHashFlow，这是因为借助控制平面，DHashFlow能够记录更多的信息。此外，AHashFlow的性能要更优于DHashFlow的性能，且AHashFlow的性能能够保持在一个比较稳定的状态，说明不活跃大流的退出机制能够发挥良好的作用。此外，AHashFlow的控制平面包负荷比会明显高于DHashFlow，但是这是情理之中，因为这从侧面证明AHashFlow能够比DHashFlow测量更多的流。
-
+在此实验中可以预见的效果是，由于DHashFlow的M表比HashFlow的M表有更多的表项，因此DHashFlow的这四项性能指标都会明显优于HashFlow。同时，由于CHashFlow的控制层能够存储从数据层的M表中替换出来的流记录项，因此CHashFlow的heavy hitter检测的F1 Score和平均相对误差以及包覆盖率都会优于DHashFlow。此外，随着数据包数目的增加，各个算法的性能都会逐渐降低，但是HashFlow和DHashFlow的性能下降趋势相当，而CHashFlow的性能下降趋势要平缓得多。
 \subsection{Exp84496}
 本实验的实验参数设置如下：
 \begin{itemize}
-\item 实验方案为AHashFlow和DHashFlow
+\item 实验方案为AHashFlow和CHashFlow
 \item 将内存容量设为1MB
 \item 从CAIDA和HGC的的trace中分别选取一个文件
 \item 进行10组实验，将重放的数据包的数目以50万的步长从50万增加到500万
 \item 测量的指标包括流覆盖率，数据流大小估计的平均相对误差，被测数据流大小估计的平均相对误差，以及控制平面的流负荷比
 \end{itemize}
 
-在此实验中，我们预期的实验结果是AHashFlow的这四项指标都保持相对稳定的状态，其中被测数据流大小估计的相对误差要明显小于数据流大小估计的平均相对误差，而控制平面的流负荷比接近2.0甚至小于2.0；AHashFlow的各项性能指标应该都要优于DHashFlow，尤其是DHashFlow的控制平面流负荷比应该会高于AHashFlow的控制平面流负荷比，说明在DHashFlow中不活跃大浪占据了宝贵的内存空间，导致其它的流更频繁地被替换。
+在此实验中，我们预期的实验结果是AHashFlow的这四项指标都保持相对稳定的状态，其中被测数据流大小估计的相对误差要明显小于数据流大小估计的平均相对误差，而控制平面的流负荷比接近2.0甚至小于2.0；AHashFlow的各项性能指标应该都要优于CHashFlow，尤其是CHashFlow的控制平面流负荷比应该会高于AHashFlow的控制平面流负荷比，说明在CHashFlow中不活跃大浪占据了宝贵的内存空间，导致其它的流更频繁地被替换。
 
 \subsection{Exp84497}
 本实验的实验参数设置如下：
 \begin{itemize}
-\item 实验方案为AHashFlow和DHashFlow
+\item 实验方案为AHashFlow和CHashFlow
 \item 将内存容量设为1MB
 \item 从CAIDA和HGC的trace中分别选取一个文件
 \item 仅进行1组实验，将重放的数据包的数目设为500万
@@ -157,7 +161,7 @@ $$
 \item 测量的指标包括heavy hitter检测的平均相对误差以及F1 Score
 \end{itemize}
 
-在此实验中我们的预期实验结果是随着阈值的增加，heavy hitter检测的F1 Score和平均相对误差都有明显的改善，说明AHashFlow确实有得大流的测量，同时AHashFlow的性能总是优于DHashFlow。
+在此实验中我们的预期实验结果是随着阈值的增加，heavy hitter检测的F1 Score和平均相对误差都有明显的改善，说明AHashFlow确实有得大流的测量，同时AHashFlow的性能总是优于CHashFlow。
 
 \appendix
 \section*{附录}

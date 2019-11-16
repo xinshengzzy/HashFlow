@@ -1,9 +1,9 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.5.8)  15 NOV 2019 17:23
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.5.8)  16 NOV 2019 20:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**实验方案.tex
-(./实验方案.tex
+**ExperimentPlan.tex
+(./ExperimentPlan.tex
 LaTeX2e <2018-12-01>
 (/usr/local/texlive/2019/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
@@ -608,8 +608,8 @@ Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
 \ALG@tmplength=\skip64
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
-) (./实验方案.aux)
-\openout1 = `实验方案.aux'.
+) (./ExperimentPlan.aux)
+\openout1 = `ExperimentPlan.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
@@ -705,9 +705,9 @@ LaTeX Info: Redefining \ref on input line 11.
 LaTeX Info: Redefining \pageref on input line 11.
 LaTeX Info: Redefining \nameref on input line 11.
 
-(./实验方案.out) (./实验方案.out)
+(./ExperimentPlan.out) (./ExperimentPlan.out)
 \@outlinefile=\write3
-\openout3 = `实验方案.out'.
+\openout3 = `ExperimentPlan.out'.
 
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <12.045> on input line 13.
@@ -715,7 +715,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 13.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 13.
- (./实验方案.toc
+ (./ExperimentPlan.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <10.53937> on input line 2.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -726,99 +726,93 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 ])
 \tf@toc=\write4
-\openout4 = `实验方案.toc'.
+\openout4 = `ExperimentPlan.toc'.
 
- [2] [3]
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
-
+[2] [3] [4]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathchar' on input line 87.
+(hyperref)                removing `math shift' on input line 92.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
-
-[4]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 97.
+(hyperref)                removing `\mathchar' on input line 92.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathchar' on input line 97.
+(hyperref)                removing `math shift' on input line 92.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 97.
+(hyperref)                removing `math shift' on input line 102.
 
 
-Overfull \hbox (79.87286pt too wide) in paragraph at lines 99--100
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\mathchar' on input line 102.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 102.
+
+
+Overfull \hbox (79.87286pt too wide) in paragraph at lines 104--105
 []\TU/lmr/m/n/10.53937 Select a file from the CAIDA trace (equinix-nyc.dirA.201
 80315-125910.UTC.anon.pcap),
  []
 
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 105.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathchar' on input line 105.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 105.
-
 [5]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 114.
+(hyperref)                removing `math shift' on input line 110.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathchar' on input line 114.
+(hyperref)                removing `\mathchar' on input line 110.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 114.
+(hyperref)                removing `math shift' on input line 110.
 
-[6]
-Overfull \hbox (3.73488pt too wide) in paragraph at lines 135--136
-\TU/lmr/m/n/10.53937 DHashFlow \TU/SongtiSC(0)/m/n/10.53937 的 性 能 都 在 逐 渐 降 低，|
-  但 是 \TU/lmr/m/n/10.53937 HashFlow \TU/SongtiSC(0)/m/n/10.53937 的 性 能 要 明 显 低 
-于 \TU/lmr/m/n/10.53937 DHash-
- []
 
-[7]
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 119.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\mathchar' on input line 119.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 119.
+
+[6] [7]
 File: ./figures/AHashFlowDataStructure/AHashFlow.pdf Graphic file (type pdf)
 <use ./figures/AHashFlowDataStructure/AHashFlow.pdf>
+ [8]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 178.
+put line 182.
 
 
-LaTeX Warning: Float too large for page by 55.1751pt on input line 239.
+LaTeX Warning: Float too large for page by 55.1751pt on input line 243.
 
-[8] [9]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 253.
- [10] [11] [12]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 253.
- (./实验方案.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 253.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 253.
-Package rerunfilecheck Info: File `实验方案.out' has not changed.
-(rerunfilecheck)             Checksum: E2659157A28EE422BD2B4185561E2C92.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 253.
+[9] [10]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 257.
+ [11] [12]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 257.
+ (./ExperimentPlan.aux)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 257.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 257.
+Package rerunfilecheck Info: File `ExperimentPlan.out' has not changed.
+(rerunfilecheck)             Checksum: 62E8A423951FE03B0EE1CB1F094ADE72.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 257.
  ) 
 Here is how much of TeX's memory you used:
  23667 strings out of 492916
- 484339 string characters out of 6133346
- 571343 words of memory out of 5000000
+ 484489 string characters out of 6133346
+ 569675 words of memory out of 5000000
  27528 multiletter control sequences out of 15000+600000
  536664 words of font info for 64 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 60i,6n,73p,862b,446s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,6n,73p,872b,446s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on 实验方案.pdf (12 pages).
+Output written on ExperimentPlan.pdf (12 pages).
