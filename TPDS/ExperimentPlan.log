@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.5.8)  16 NOV 2019 20:17
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.5.8)  20 NOV 2019 17:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -732,87 +732,104 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 [2] [3] [4]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 92.
+(hyperref)                removing `math shift' on input line 98.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathchar' on input line 92.
+(hyperref)                removing `math shift' on input line 98.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 92.
+(hyperref)                removing `math shift' on input line 98.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 102.
+(hyperref)                removing `math shift' on input line 98.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathchar' on input line 102.
+(hyperref)                removing `math shift' on input line 105.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 102.
+(hyperref)                removing `\mathchar' on input line 105.
 
 
-Overfull \hbox (79.87286pt too wide) in paragraph at lines 104--105
-[]\TU/lmr/m/n/10.53937 Select a file from the CAIDA trace (equinix-nyc.dirA.201
-80315-125910.UTC.anon.pcap),
- []
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 105.
 
 [5]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 110.
+(hyperref)                removing `math shift' on input line 115.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathchar' on input line 110.
+(hyperref)                removing `\mathchar' on input line 115.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 110.
+(hyperref)                removing `math shift' on input line 115.
+
+
+Overfull \hbox (79.87286pt too wide) in paragraph at lines 117--118
+[]\TU/lmr/m/n/10.53937 Select a file from the CAIDA trace (equinix-nyc.dirA.201
+80315-125910.UTC.anon.pcap),
+ []
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 119.
+(hyperref)                removing `math shift' on input line 123.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathchar' on input line 119.
+(hyperref)                removing `\mathchar' on input line 123.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 119.
+(hyperref)                removing `math shift' on input line 123.
 
-[6] [7]
+[6]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 132.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\mathchar' on input line 132.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 132.
+
+[7] [8]
 File: ./figures/AHashFlowDataStructure/AHashFlow.pdf Graphic file (type pdf)
 <use ./figures/AHashFlowDataStructure/AHashFlow.pdf>
- [8]
+ [9]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 182.
+put line 203.
 
 
-LaTeX Warning: Float too large for page by 55.1751pt on input line 243.
+LaTeX Warning: Float too large for page by 55.1751pt on input line 264.
 
-[9] [10]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 257.
- [11] [12]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 257.
+[10] [11]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 278.
+ [12] [13]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 278.
  (./ExperimentPlan.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 257.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 257.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 278.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 278.
 Package rerunfilecheck Info: File `ExperimentPlan.out' has not changed.
-(rerunfilecheck)             Checksum: 62E8A423951FE03B0EE1CB1F094ADE72.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 257.
+(rerunfilecheck)             Checksum: F28DAF736F3832116BB8F43D7150B0E1.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 278.
  ) 
 Here is how much of TeX's memory you used:
  23667 strings out of 492916
  484489 string characters out of 6133346
- 569675 words of memory out of 5000000
+ 568357 words of memory out of 5000000
  27528 multiletter control sequences out of 15000+600000
  536664 words of font info for 64 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  60i,6n,73p,872b,446s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on ExperimentPlan.pdf (12 pages).
+Output written on ExperimentPlan.pdf (13 pages).

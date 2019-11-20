@@ -18,16 +18,23 @@
 原始的HashFlow方案，在数据平面记录完整的流标识符，没有控制平面，并且没有不活跃大流的退出机制。
 
 \subsection{DHashFlow (HashFlow with Digest)}
-在数据平面记录流标识符的摘要而不是完整的流标识符，同时增加控制平面来记录完整的Flow ID，但是并没有引入不活跃大流的退出机制。在DHashFlow中，控制平面的作用仅仅是维护摘要和流标识符之间的映射关系，但是当有数据流从A表中升级到M表中而导致M表中的流数据项被替换的时候，我们并不会将被替换的流数据项导出至控制层。
+在数据平面记录流标识符的摘要而不是完整的流标识符，同时增加控制平面来记录完整的流标识符，但是并没有引入不活跃大流的退出机制。在DHashFlow中，控制平面的作用仅仅是维护摘要和流标识符之间的映射关系，但是当有数据流从A表中升级到M表中而导致M表中的流数据项被替换的时候，我们并不会将被替换的流数据项导出至控制层。
 
 \subsection{CHashFlow (HashFlow with Control Plane)}
-CHashFlow基本上和AHashFlow类似，即包含了摘要映射机制以及和摘要映射机制相匹配的控制平面，但是CHashFlow比DHashFlow更进一步，因为在CHashFlow中当M表中的数据流因为A表中的数据流升级而被替换的时候我们并不会把它直接丢弃，而是会将它导出至控制平面。
+CHashFlow基本上和DHashFlow类似，即包含了摘要映射机制以及和摘要映射机制相匹配的控制平面，但是CHashFlow比DHashFlow更进一步，因为在CHashFlow中当M表中的数据流因为A表中的数据流升级而被替换的时候我们并不会把它直接丢弃，而是会将它导出至控制平面。
 
 \subsection{AHashFlow (Augmented HashFlow)}
-改良后的HashFlow，在数据平面记录Flow ID的digest而不是完整的Flow ID，因此包含控制平面来记录完整的Flow ID，此外还增加了不活跃大流的退出机制。
+这是我们最终版的改良方案，在数据平面记录流标识符的摘要而不是完整的流标识符，使用控制平面来维护流标识符和摘要之间的对应关系同时记录从控制平面导出的流记录项，此外还增加了不活跃大流的退出机制。
 
 \section{测量指标}
 假设我们重放的数据包序列中包含$m$个数据包和$n$个数据流，则相关的测量指标可以定义如下：
+
+\subsection{包覆盖率 (PCR, Packet Covering Rate)}
+假设我们的测量算法的M表记录的数据包的总数是$m'$，在CHashFlow和AHashFlow中则包括从M表导出到控制平面的数据包的数目，则测量算法的包覆盖率可定义如下：
+
+$$
+PCR = \frac{m'}{m}
+$$
 
 \subsection{数据包的不测量率  (NMR, No Measurement Rate)}
 假设$m_1$是没有被我们的测量算法测量到数据包的数目，具体而言就是在辅助表中发生冲突的时候被丢弃的辅助表表项的计数值的总和，则数据包的不测量率可定义如下：
@@ -35,9 +42,9 @@ $$
 NMR = \frac{m_1}{m}
 $$
 
-严格来说，HashFlow中M表中替换出去的包也不会被记录，因而属于不测量数据包的范畴，但是为了验证流标识符映射机制和不活跃大流退出机制的有效性，我们在计算HashFlow的数据包不测量率的时候并不会把M表中替换出去的数据包当作不测量数据包。
+严格来说，HashFlow中M表中替换出去的包也不会被记录，因而属于不测量数据包的范畴，但是为了和包覆盖率相区别，我们在这里只计算没有机会被M表和A表记录的数据包，因为被M表和A表记录的数据包实际上是有可能通过控制层来记录的。
 
-\subsection{ 流覆盖率（FSC, Flow Set Covery）}
+\subsection{ 流覆盖率（FSC, Flow Set Covering）}
 假设网络测量算法记录了完整的流标识符的数目为$n_1$，则流覆盖率可定义如下：
 $$
 FSC = \frac{n_1}{n}
@@ -70,7 +77,7 @@ F1~Score=\frac{2\cdot PR \cdot RR}{PR + RR}
 $$
 
 \subsection{ heavy hitter检测的平均相对误差（ARE, Average Relative Error）}
-如上，假设原数据包序列中共有$n$个heavy hitter，其中heavy hitter $f_i$的大小为$m_i$，而网络测量算法报告的$f_i$的大小为$m_i'$，如果$f_i$不包含在网络测量算法报告的heavy hitter中（包括$f_i$已经被网络测量算法记录但是没有被识别成为heavy hitter的情况），则默认$m_i'=0$，则heavy hitter检测的平均相对误差可定义如下：
+如上，假设原数据包序列中共有$n'$个heavy hitter，其中heavy hitter $f_i$的大小为$m_i$，而网络测量算法报告的$f_i$的大小为$m_i'$，如果$f_i$不包含在网络测量算法报告的heavy hitter中（包括$f_i$已经被网络测量算法记录但是没有被识别成为heavy hitter的情况），则默认$m_i'=0$，则heavy hitter检测的平均相对误差可定义如下：
 $$
 ARE = \frac{1}{n'}\sum\frac{|m_i - m'_i|}{m_i}
 $$
@@ -82,10 +89,16 @@ PLR = \frac{m_1}{m}
 $$
 其中$m_1$是控制平面处理的数据包的数目。
 
-\subsection{控制平面的流负荷比 (PLR, Flow Load Rate,)}
+\subsection{控制平面的流负荷比 (PLR, Flow Load Rate)}
 假设在AHashFlow（或DHashFlow）的运行过程中，控制平面一共收到了$m_1$个数据包，而交换机处理的数据包中一共包含了$n$个数据流，则控制平面的流负荷比可以定义如下：
 $$
 FLR = \frac{m_1}{n}
+$$
+
+\subsection{数据流的$x$-分布系数 ($x$ Distribution Coefficient)}
+设$0<x<100$，对于某一个数据流，它的第一个数据包在trace文件中的序号为$a$，它的最后一个数据包在trace文件中的序号为$c$，数据流的$x\%$处的数据包在trace文件中的序号为$b$，则数据流的$x$-分布系数可定义为：
+$$
+xdc = \frac{b - a}{c - a}
 $$
 
 \section{实验设计}
@@ -138,6 +151,7 @@ $$
 \end{itemize}
 
 在此实验中可以预见的效果是，由于DHashFlow的M表比HashFlow的M表有更多的表项，因此DHashFlow的这四项性能指标都会明显优于HashFlow。同时，由于CHashFlow的控制层能够存储从数据层的M表中替换出来的流记录项，因此CHashFlow的heavy hitter检测的F1 Score和平均相对误差以及包覆盖率都会优于DHashFlow。此外，随着数据包数目的增加，各个算法的性能都会逐渐降低，但是HashFlow和DHashFlow的性能下降趋势相当，而CHashFlow的性能下降趋势要平缓得多。
+
 \subsection{Exp84496}
 本实验的实验参数设置如下：
 \begin{itemize}
@@ -162,6 +176,13 @@ $$
 \end{itemize}
 
 在此实验中我们的预期实验结果是随着阈值的增加，heavy hitter检测的F1 Score和平均相对误差都有明显的改善，说明AHashFlow确实有得大流的测量，同时AHashFlow的性能总是优于CHashFlow。
+
+\subsection{Exp84498}
+在CAIDA和HGC的trace中分别选择一个文件并对前500万个数据包按数据流进行归类，之后遍历整个文件，计算在前500万个数据包中出现的流中没有被正常结束（即收到一个结束标志或者重置标志）的流所占的比例。
+
+对于那些正常结束的流，计算它们的$x$-分布系数，其中$x$的值暂时设定为90，并绘制这些流的$x$-分布系数的CDF图。
+
+我们预期的实验结果是有相当一部分的数据流不能正常结束，并且对于正常结束的流，它们的$x$-分布系数会远远大于$1.0-x\%$，说明一个流要等待很久才会被正常结束。
 
 \appendix
 \section*{附录}
