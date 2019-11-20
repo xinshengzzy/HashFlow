@@ -1,0 +1,11 @@
+trace:/home/zongyi/traces/CAIDA.equinix-nyc.dirA.20180315-125910.UTC.anon.json
+n_pkts:5000000
+len(flows):323235
+cnt1: the number of UDP flows
+cnt2: the number of TCP flows which don't have a FIN or RST flag
+cnt3: the number of TCP flows which have a FIN or RST flag 
+cnt1:106261
+cnt2:105657
+cnt3:111317
+trace:/home/zongyi/traces/HGC.20080415000.json
+n_pkts:5000000

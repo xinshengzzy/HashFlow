@@ -1,0 +1,2 @@
+calc:
+	python calc.py
