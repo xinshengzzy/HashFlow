@@ -67,6 +67,7 @@ if __name__ == "__main__":
 	thresh = 5
 	cnt = 0
 	for item in flows:
+		print item
 		if item <= thresh:
 			cnt = cnt + 1
 	print "ratio:", float(cnt)/len(flows)
