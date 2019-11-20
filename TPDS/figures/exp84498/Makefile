@@ -3,6 +3,8 @@ collect:
 xdc:
 	python xdc.py
 	python plot.py
+plot:
+	python plot.py
 test:
 	python test.py
 clear:
@@ -12,3 +14,5 @@ push:
 	git add -A
 	git commit -m "hello"
 	git push
+pull:
+	git pull
