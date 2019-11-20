@@ -17,28 +17,34 @@ hgc2 = "./resForHGC2.txt"
 def func(dataFile):
 	with open(dataFile, "r") as f:
 		l = json.load(f)
-	max_size = 0
-	for item in l:
-		if item[0] > max_size:
-			max_size = item[0]
+#	max_size = 0
+#	for item in l:
+#		if item[0] > max_size:
+#			max_size = item[0]
 	xdc = [0]*101
-	flow_size = [0]*(max_size + 1)
+	flow_size = []
+#	flow_size = [0]*(max_size + 1)
 	for item in l:
+		flow_size.append(item[0])
 		for i in range(100, -1, -1):
 			if item[1] <= i*0.01:
 				xdc[i] = xdc[i] + 1
 			else:
 				break
-		for i in range(max_size, -1, -1):
-			if item[0] <= i:
-				flow_size[i] = flow_size[i] + 1
-			else:
-				break
+	flow_size.sort()
+	cdf = range(1, len(flow_size) + 1)
+	for i in range(len(flow_size)):
+		cdf[i] = float(cdf[i])/len(flow_size)
+#		for i in range(max_size, -1, -1):
+#			if item[0] <= i:
+#				flow_size[i] = flow_size[i] + 1
+#			else:
+#				break
 	for i in range(101):
 		xdc[i] = float(xdc[i])/len(l)
-	for i in range(max_size + 1):
-		flow_size[i] = float(flow_size[i])/len(l)
-	return xdc, flow_size
+#	for i in range(max_size + 1):
+#		flow_size[i] = float(flow_size[i])/len(l)
+	return xdc, [flow_size, cdf]
 
 if __name__ == "__main__":
 	xdc1, flow_size1	= func(caida1)
@@ -58,10 +64,10 @@ if __name__ == "__main__":
 	plt.savefig("xdc.png", bbox_inches = "tight")
 
 	plt.figure(2)
-	plt.plot(flow_size1, label = "CAIDA1", marker = "x")
-	plt.plot(flow_size2, label = "CAIDA2", marker = "x")
-	plt.plot(flow_size3, label = "HGC1", marker = "^")
-	plt.plot(flow_size4, label = "HGC2", marker = "^")
+	plt.plot(flow_size1[0], flow_size1[1], label = "CAIDA1", marker = "x")
+	plt.plot(flow_size2[0], flow_size2[1], label = "CAIDA2", marker = "x")
+	plt.plot(flow_size3[0], flow_size3[1], label = "HGC1", marker = "^")
+	plt.plot(flow_size4[0], flow_size4[1], label = "HGC2", marker = "^")
 	plt.legend(bbox_to_anchor=(0.0, 1.02, 1.0, 0.102), loc = 3, ncol = 2, mode = "expand", borderaxespad = 0.0)
 	plt.xlabel("x-Dist Coefficient")
 	plt.ylabel("CDF")
