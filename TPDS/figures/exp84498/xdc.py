@@ -9,12 +9,16 @@ URG = 0x20
 ECE = 0x40
 CWR = 0x80
 
-hgc = "/home/zongyi/traces/HGC.20080415000.json"
-caida = "/home/zongyi/traces/CAIDA.equinix-nyc.dirA.20180315-125910.UTC.anon.json"
+hgc1 = "/home/zongyi/traces/HGC.20080415000.json"
+hgc2 = "/home/zongyi/traces/HGC.20080415001.json"
+caida1 = "/home/zongyi/traces/CAIDA.equinix-nyc.dirA.20180315-125910.UTC.anon.json"
+caida2 = "/home/zongyi/traces/CAIDA.equinix-nyc.dirA.20180315-130000.UTC.anon.json"
 n_pkts = 5000000
-resHGC = "./resForHGC.txt"
-resCAIDA = "./resForCAIDA.txt"
-x = 0.9
+resHGC1 = "./resForHGC1.txt"
+resHGC2 = "./resForHGC2.txt"
+resCAIDA1 = "./resForCAIDA1.txt"
+resCAIDA2 = "./resForCAIDA2.txt"
+x = 0.95
 
 def collectCompFlows(pkts, n_pkts, x = 0.9):
         flows = dict()
@@ -76,7 +80,7 @@ def calcXDC(flows, pkts, resFile):
 	with open(resFile, "w") as f:
 		res = []
 		for key, value in flows.items():
-			res.append(float(value["c"] - value["b"])/(value["c"] - value["a"]))
+			res.append(float(value["b"] - value["a"])/(value["c"] - value["a"]))
 		json.dump(res, f)
 
 
@@ -86,5 +90,7 @@ def process(trace, n_pkts, resFile, x):
 	flows = collectCompFlows(pkts, n_pkts, x)
 	calcXDC(flows, pkts, resFile)
 
-process(hgc, n_pkts, resHGC, x)
-process(caida, n_pkts, resCAIDA, x)
+process(hgc1, n_pkts, resHGC1, x)
+process(hgc2, n_pkts, resHGC2, x)
+process(caida1, n_pkts, resCAIDA1, x)
+process(caida2, n_pkts, resCAIDA2, x)
