@@ -18,7 +18,7 @@ resHGC1 = "./resForHGC1.txt"
 resHGC2 = "./resForHGC2.txt"
 resCAIDA1 = "./resForCAIDA1.txt"
 resCAIDA2 = "./resForCAIDA2.txt"
-x = 0.95
+x = 0.8
 
 def collectCompFlows(pkts, n_pkts, x = 0.9):
         flows = dict()
@@ -57,7 +57,7 @@ def collectCompFlows(pkts, n_pkts, x = 0.9):
 	completeFlows = dict()
 	for key, value in flows.items():	
 			if "TCP" == value["type"] and 1 == value["SYN"] \
-					and (1 == value["FIN"] or 1 == value["RST"]) and value["count"] >= 10:
+					and (1 == value["FIN"] or 1 == value["RST"]) and value["count"] >= 3:
 					cnt = value["count"]
 					point = int(cnt*x)
 					completeFlows[key] = {"point3": cnt, "point2": point, "cnt": 0, "a": 0, "b": 0, "c": 0}
