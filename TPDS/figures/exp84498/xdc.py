@@ -18,7 +18,7 @@ resHGC1 = "./resForHGC1.txt"
 resHGC2 = "./resForHGC2.txt"
 resCAIDA1 = "./resForCAIDA1.txt"
 resCAIDA2 = "./resForCAIDA2.txt"
-x = 0.8
+x = 0.85
 
 def collectCompFlows(pkts, n_pkts, x = 0.9):
         flows = dict()
