@@ -81,7 +81,7 @@ def calcXDC(flows, pkts, resFile):
 		res = []
 		for key, value in flows.items():
 			xdc = float(value["b"] - value["a"])/(value["c"] - value["a"])
-			res.append((value["c"], xdc))
+			res.append((value["point3"], xdc))
 		json.dump(res, f)
 
 

@@ -2,7 +2,6 @@ collect:
 	python collectFlows.py
 xdc:
 	python xdc.py
-	python plot.py
 plot:
 	python plot.py
 test:
