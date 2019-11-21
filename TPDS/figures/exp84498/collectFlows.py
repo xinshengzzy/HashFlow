@@ -9,18 +9,14 @@ URG = 0x20
 ECE = 0x40
 CWR = 0x80
 
-hgc = "/home/zongyi/traces/HGC.20080415000.json"
-caida = "/home/zongyi/traces/CAIDA.equinix-nyc.dirA.20180315-125910.UTC.anon.json"
+hgc1 = "/home/zongyi/traces/HGC.20080415000.json"
+hgc2 = "/home/zongyi/traces/HGC.20080415001.json"
+caida1 = "/home/zongyi/traces/CAIDA.equinix-nyc.dirA.20180315-125910.UTC.anon.json"
+caida2 = "/home/zongyi/traces/CAIDA.equinix-nyc.dirA.20180315-130000.UTC.anon.json"
 n_pkts = 5000000
 resFile = "./numOfFlows.txt"
 
 def processFile(trace, n_pkts, resFile):
-        with open(resFile, "a") as f:
-                line = "trace:" + trace + "\n"
-                f.write(line)
-                line = "n_pkts:" + str(n_pkts) + "\n"
-                f.write(line)
-
         flows = dict()
         with open(trace, "r") as f:
                 pkts = json.load(f)
@@ -59,11 +55,6 @@ def processFile(trace, n_pkts, resFile):
                 elif "UDP" == flowType and flowID in flows:
                         flows[flowID]["count"] = flows[flowID]["count"] + 1
 
-        with open(resFile, "a") as f:
-                f.write("len(flows):" + str(len(flows)) + "\n")
-                f.write("cnt1: the number of UDP flows" + "\n")
-                f.write("cnt2: the number of TCP flows which don't have a FIN or RST flag" + "\n")
-                f.write("cnt3: the number of TCP flows which have a FIN or RST flag " + "\n")
         cnt1 = cnt2 = cnt3 = 0
         for key, value in flows.items():
                 if "UDP" == value["type"]:
@@ -74,12 +65,16 @@ def processFile(trace, n_pkts, resFile):
                         else:
                                 cnt3 = cnt3 + 1
         with open(resFile, "a") as f:
-                f.write("cnt1:" + str(cnt1) + "\n")
-                f.write("cnt2:" + str(cnt2) + "\n")
-                f.write("cnt3:" + str(cnt3) + "\n")
+				l = "\t".join([trace, str(cnt1), str(cnt2), str(cnt3)]) + "\n"
+				f.write(l)
 
 
 with open(resFile, "w") as f:
-        pass
-processFile(caida, n_pkts, resFile)
-processFile(hgc, n_pkts, resFile)
+	f.write("#cnt1: the number of UDP flows" + "\n")
+	f.write("#cnt2: the number of TCP flows which don't have a FIN or RST flag" + "\n")
+	f.write("#cnt3: the number of TCP flows which have a FIN or RST flag " + "\n")
+	f.write("#filename\tcnt1\tcnt2\tcnt3\n")
+processFile(caida1, n_pkts, resFile)
+processFile(caida2, n_pkts, resFile)
+processFile(hgc1, n_pkts, resFile)
+processFile(hgc2, n_pkts, resFile)
