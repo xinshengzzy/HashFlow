@@ -11,3 +11,5 @@ push:
 	git push
 pull:
 	git pull
+plot:
+	python plot.py

@@ -231,8 +231,34 @@ $$
 \end{itemize}
 通过这个实验，我们希望证明在CHashFlow中，我们有大量的不活跃的流占用了宝贵的内存空间，甚至有一些流长期地占用了M表的内存空间。
 
-\subsection{实验84500}
+\subsection{Exp84500}
 分别分析CAIDA的两个流量文件和HGC的两个流量文件，对每个流量文件中前500万个数据包按照数据流进行归类。然后计算在收到某个数据流的$n$个数据包的前提下，后续还将收到至少一个数据包的概率，其中$n$的值从1增加到20。
+
+\subsection{Exp84501}
+本实验的实验参数设置如下：
+\begin{itemize}
+	\item 实验方案为AHashFlow和CHashFlow
+	\item 将内存容量设为0.5MB
+	\item 选取一个CAIDA的网络流量文件
+	\item 以50万的步长将重放的数据包从50万增加到2000万
+	\item 将重流的阈值设置为5
+	\item 将AHashFlow的大流导出机制的启动参数设置为5
+	\item 测量的指标包括heavy hitter检测的平均相对误差以及F1 Score
+\end{itemize}
+
+由图\ref{fig:hh_dection_various_pkt_number}可知，当网络中的数据包数量增加时，AHashFlow和CHashFlow的重流检测的平均相对误差和F1 Score都有明显的下降，但是CHashFlow的性能下降要更加明显，而且随着数据包的增加，AHashFlow的性能趋于稳定，而CHashFlow的性能却一直保持下降的趋势。
+
+\begin{figure*}[ht!]
+	\centering
+	\mbox{
+		\subfigure[\label{subfig:caida_hh_are}]{\includegraphics[width=0.5\linewidth]{figures/exp84501/hh_are}}
+		\subfigure[\label{subfig:caida_hh_f1score}]{\includegraphics[width=0.5\linewidth]{figures/exp84501/hh_f1score}}
+	}
+	\caption{我们在CAIDA中取一个网络流量文件，并将重放的数据包从50万增加到2000万，同时将重流的阈值设定成为10；随着重放数据包的数量的增加，我们计算AHashFlow和CHashFlow在重流检测方面的平均相对误差和F1 Score。}
+	\label{fig:hh_dection_various_pkt_number}
+\end{figure*}
+
+
 
 \appendix
 \section*{附录}

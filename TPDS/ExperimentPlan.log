@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.5.8)  23 NOV 2019 15:27
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.5.8)  23 NOV 2019 19:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -766,6 +766,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 99.
 
+[5]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 106.
@@ -778,7 +779,6 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 106.
 
-[5]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 116.
@@ -797,6 +797,7 @@ Overfull \hbox (79.87286pt too wide) in paragraph at lines 118--119
 80315-125910.UTC.anon.pcap),
  []
 
+[6]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 124.
@@ -809,7 +810,6 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 124.
 
-[6]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 133.
@@ -846,34 +846,41 @@ Overfull \hbox (10.52884pt too wide) in paragraph at lines 214--219
  [] 
  []
 
-[10]
+[10] [11]
+File: figures/exp84501/hh_are.pdf Graphic file (type pdf)
+<use figures/exp84501/hh_are.pdf>
+File: figures/exp84501/hh_f1score.pdf Graphic file (type pdf)
+<use figures/exp84501/hh_f1score.pdf>
+
+Overfull \hbox (10.52884pt too wide) in paragraph at lines 256--257
+ [][] 
+ []
+
 File: ./figures/AHashFlowDataStructure/AHashFlow.pdf Graphic file (type pdf)
 <use ./figures/AHashFlowDataStructure/AHashFlow.pdf>
- [11]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 253.
+put line 279.
 
+LaTeX Warning: Float too large for page by 55.1751pt on input line 340.
 
-LaTeX Warning: Float too large for page by 55.1751pt on input line 314.
-
-[12] [13]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 328.
- [14] [15]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 328.
+[12] [13] [14]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 354.
+ [15] [16]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 354.
  (./ExperimentPlan.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 328.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 328.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 354.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 354.
 Package rerunfilecheck Info: File `ExperimentPlan.out' has not changed.
-(rerunfilecheck)             Checksum: 79774D07AB44C32EB6258368960A53D7.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 328.
+(rerunfilecheck)             Checksum: 7B95AEB56D4B05C6D48569EBC1F85CDE.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 354.
  ) 
 Here is how much of TeX's memory you used:
- 23848 strings out of 492916
- 487434 string characters out of 6133346
- 571042 words of memory out of 5000000
- 27698 multiletter control sequences out of 15000+600000
+ 23862 strings out of 492916
+ 487842 string characters out of 6133346
+ 572471 words of memory out of 5000000
+ 27709 multiletter control sequences out of 15000+600000
  536664 words of font info for 64 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  60i,7n,73p,872b,446s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on ExperimentPlan.pdf (15 pages).
+Output written on ExperimentPlan.pdf (16 pages).
