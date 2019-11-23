@@ -52,25 +52,29 @@ if __name__ == "__main__":
 	xdc3, flow_size3 = func(hgc1)
 	xdc4, flow_size4 = func(hgc2)
 	plt.figure(1)
+	plt.title("x=0.95")
 	plt.xticks(range(0, 101, 10), ("0", "0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1.0"))
 	plt.plot(range(101), xdc1, label = "CAIDA1", marker = "x")
-	plt.plot(range(101), xdc2, label = "CAIDA2", marker = "x")
+	plt.plot(range(101), xdc2, label = "CAIDA2", marker = "o")
 	plt.plot(range(101), xdc3, label = "HGC1", marker = "^")
-	plt.plot(range(101), xdc4, label = "HGC2", marker = "^")
-	plt.legend(bbox_to_anchor=(0.0, 1.02, 1.0, 0.102), loc = 3, ncol = 2, mode = "expand", borderaxespad = 0.0)
+	plt.plot(range(101), xdc4, label = "HGC2", marker = "s")
+#	plt.legend(bbox_to_anchor=(0.0, 1.02, 1.0, 0.102), loc = 3, ncol = 2, mode = "expand", borderaxespad = 0.0)
+	plt.legend(loc = 2)
 	plt.xlabel("x-Dist Coefficient")
 	plt.ylabel("CDF")
-	plt.savefig("xdc.pdf", bbox_inches = "tight")
-	plt.savefig("xdc.png", bbox_inches = "tight")
+	plt.savefig("xdc4.pdf", bbox_inches = "tight")
+	plt.savefig("xdc4.png", bbox_inches = "tight")
 	
-	flows = flow_size1[0]
-	thresh = 5
-	cnt = 0
-	for item in flows:
-		print item
-		if item <= thresh:
-			cnt = cnt + 1
-	print "ratio:", float(cnt)/len(flows)
+#	flows = flow_size1[0]
+#	thresh = 5
+#	cnt = 0
+#	for item in flows:
+#		if item <= thresh:
+#	cnt = cnt + 1
+#	print "ratio:", float(cnt)/len(flows)
+#	flows.sort()
+#	for item in flows:
+#		print item
 #	plt.figure(2)
 #	plt.plot(flow_size1[0], flow_size1[1], label = "CAIDA1", marker = "x")
 #	plt.plot(flow_size2[0], flow_size2[1], label = "CAIDA2", marker = "x")

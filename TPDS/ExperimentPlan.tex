@@ -3,6 +3,7 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{appendix}
 \usepackage{graphicx}
+\usepackage{subfigure}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 \title{AHashFlow实验方案}
@@ -178,11 +179,60 @@ $$
 在此实验中我们的预期实验结果是随着阈值的增加，heavy hitter检测的F1 Score和平均相对误差都有明显的改善，说明AHashFlow确实有得大流的测量，同时AHashFlow的性能总是优于CHashFlow。
 
 \subsection{Exp84498}
-在CAIDA和HGC的trace中分别选择一个文件并对前500万个数据包按数据流进行归类，之后遍历整个文件，计算在前500万个数据包中出现的流中没有被正常结束（即收到一个结束标志或者重置标志）的流所占的比例。
+在CAIDA和HGC的trace中分别选择一个文件并对前500万个数据包按数据流进行归类，之后遍历整个文件，统计在前500万个数据包中出现的流中没有被正常结束（即收到一个结束标志或者重置标志）的TCP流的数目。
 
-对于那些正常结束的流，计算它们的$x$-分布系数，其中$x$的值暂时设定为90，并绘制这些流的$x$-分布系数的CDF图。
+\begin{table}[ht!]
+	\centering
+	\caption{四个trace文件中的流构成情况}
+	\label{table: flows_in_traces_makeup}
+	\begin{tabular} {c | c | c | c}
+		\hline\hline
+		流文件	& UDP流数目	 & 非正常结束TCP流数目 &	正常结束TCP流数目\\
+		\hline
+		CAIDA1 &	106261 &	105657 &	111317\\
+		\hline
+		CAIDA2 & 	108571 &	105444 &	113325 \\
+		\hline
+		HGC1 &	360298 &	102973 &	123863 \\
+		\hline
+		HGC2 &	357986 &	102517 &	122892\\
+		\hline\hline
+	\end{tabular}
+\end{table}
 
-我们预期的实验结果是有相当一部分的数据流不能正常结束，并且对于正常结束的流，它们的$x$-分布系数会远远大于$1.0-x\%$，说明一个流要等待很久才会被正常结束。
+如表\ref{table: flows_in_traces_makeup}所示，在CAIDA的两个流量描述文件中，正常结束的TCP流数目占流总数的34\%左右，而在HGC的两个流量描述文件中，正常结束的TCP流的数目仅占流总数的21\%左右，因此在网络中仅仅根据TCP流的结束标志和重置标志来决定是否将数据流导出是不够的。我们需要设计更有效的机制来定时导出数据流。
+
+此外，对于正常结束的流，我们将计算它们的$x$分布系数，其中$x$的值从80\%增加到95\%，并绘制这些流的$x$分布系数的CDF图。
+
+如图\ref{fig:x_distribution_coefficient}所示，我们绘制了当$x$分别为85\%, 90\%, 95\% 和95\%的时候四个流量描述文件中正常的数据流（即同时包含SYN标志以及FIN或RST标志的数据流）的$x$分布系数的CDF图。由于当数据流的长度为2时，对于任意$x (50\% \le x < 100\%)$，数据流的$x$分布系数为0，因此为了减少误差，在计算$x$分布系数的CDF图的时候，我们故意排除了长度为2的正常数据流。由图中可以看出，对于CAIDA的流量描述文件中的数据流，超过50\%的数据流在其生命周期的前52\%便传输完成了80\%的数据包，而有超过35\%的数据流在其生命周期的前52\%便传输完成了95\%的数据包。同样，对于HGC的流量描述文件，有大约42\%的数据流在其生命周期的前54\%就传输完成了80\%的数据包，而有30\%的数据流在其生命周期的前54\%就传输完成了95\%的数据包。因此，在适当的时候结束提前结束并导出数据流将有利于提高数据平面的内存资源的利用率。
+
+\begin{figure*}[ht!]
+	\centering
+	\mbox{
+		\subfigure[\label{subfig:caidaflowmonitoring}]{\includegraphics[width=0.5\linewidth]{figures/exp84498/xdc1}}
+		\subfigure[\label{subfig:campusnetworkflowmonitoring}]{\includegraphics[width=0.5\linewidth]{figures/exp84498/xdc2}}
+	}
+	\mbox{
+		\subfigure[\label{subfig:hgcflowmonitoring}]{\includegraphics[width=0.5\linewidth]{figures/exp84498/xdc3}}
+		\subfigure[\label{subfig:telecomflowmonitoring}]{\includegraphics[width=0.5\linewidth]{figures/exp84498/xdc4}}
+	}
+	\caption{当$x$分别取0.8, 0.85, 0.9, 0.95时四个trace文件的$x$分布系数变化情况。}
+	\label{fig:x_distribution_coefficient}
+\end{figure*}
+
+\subsection{实验84499}
+本实验的实验参数设置如下：
+\begin{itemize}
+	\item 实验方案为CHashFlow
+	\item 将内存容量设为1MB
+	\item 从CAIDA和HGC的流量记录文件中分别选取两个文件
+	\item 仅进行1组实验，将重放的数据包的数目设为500万
+	\item 对M表中存放的数据流进行统计，择出其中处于不活跃状态的数据流（即已经传输结束的数据流），并为它们的最后一个数据包在流量记录文件中的序号绘制CDF图。
+\end{itemize}
+通过这个实验，我们希望证明在CHashFlow中，我们有大量的不活跃的流占用了宝贵的内存空间，甚至有一些流长期地占用了M表的内存空间。
+
+\subsection{实验84500}
+分别分析CAIDA的两个流量文件和HGC的两个流量文件，对每个流量文件中前500万个数据包按照数据流进行归类。然后计算在收到某个数据流的$n$个数据包的前提下，后续还将收到至少一个数据包的概率，其中$n$的值从1增加到20。
 
 \appendix
 \section*{附录}
