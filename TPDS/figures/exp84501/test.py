@@ -1,4 +1,4 @@
-src = "resForCAIDA.txt"
-with open(src, "r") as f:
-	for line in f:
-		print line
+l = "hello\n"
+l = l.trim()
+print l
+print "good"
