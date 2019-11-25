@@ -237,8 +237,8 @@ $$
 \subsection{Exp84501}
 本实验的实验参数设置如下：
 \begin{itemize}
-	\item 实验方案为AHashFlow和CHashFlow
-	\item 将内存容量设为0.5MB
+	\item 实验方案为AHashFlow、CHashFlow和TurboFlow
+	\item 将内存容量设为0.25MB
 	\item 选取一个CAIDA的网络流量文件
 	\item 以50万的步长将重放的数据包从50万增加到2000万
 	\item 将重流的阈值设置为5
@@ -246,18 +246,47 @@ $$
 	\item 测量的指标包括heavy hitter检测的平均相对误差以及F1 Score
 \end{itemize}
 
-由图\ref{fig:hh_dection_various_pkt_number}可知，当网络中的数据包数量增加时，AHashFlow和CHashFlow的重流检测的平均相对误差和F1 Score都有明显的下降，但是CHashFlow的性能下降要更加明显，而且随着数据包的增加，AHashFlow的性能趋于稳定，而CHashFlow的性能却一直保持下降的趋势。
+由图\ref{fig:hh_dection_various_pkt_number}可知，当网络中的数据包数量增加时，各个网络测量算法的重流检测的平均相对误差和F1 Score方面的性能都有明显的下降，但是CHashFlow的性能下降要更加明显，而且随着数据包的增加，AHashFlow的性能趋于稳定，而CHashFlow的性能却一直保持下降的趋势。TurboFlow在平均相对误差和F1 Score方面的性能的变化趋势和AHashFlow类似，但是要明显低于AHashFlow的性能，比如，当我们重放500万个数据包的时候，AHashFlow的平均相对误差要比TurboFlow抵44\%，它的F1 Score要比TurboFlow高8\%。而AHashFlow的包负荷率一直明显小于TurboFlow，大约为它的10\%左右。
 
 \begin{figure*}[ht!]
 	\centering
 	\mbox{
-		\subfigure[\label{subfig:caida_hh_are}]{\includegraphics[width=0.5\linewidth]{figures/exp84501/hh_are}}
-		\subfigure[\label{subfig:caida_hh_f1score}]{\includegraphics[width=0.5\linewidth]{figures/exp84501/hh_f1score}}
+		\subfigure[\label{subfig:caida_hh_are}]{\includegraphics[width=0.5\linewidth]{figures/exp84501/hh_are_3}}
+		\subfigure[\label{subfig:caida_hh_f1score}]{\includegraphics[width=0.5\linewidth]{figures/exp84501/hh_f1score_3}}
 	}
-	\caption{我们在CAIDA中取一个网络流量文件，并将重放的数据包从50万增加到2000万，同时将重流的阈值设定成为10；随着重放数据包的数量的增加，我们计算AHashFlow和CHashFlow在重流检测方面的平均相对误差和F1 Score。}
+	\mbox{
+		\subfigure[\label{subfig:caida_n_exports}]{\includegraphics[width=0.5\linewidth]{figures/exp84501/plr_3}}
+	}
+	\caption{我们在CAIDA中取一个网络流量文件，并将重放的数据包从50万增加到2000万，同时将重流的阈值设定成为15；随着重放数据包的数量的增加，我们计算AHashFlow、CHashFlow和TurboFlow在重流检测方面的平均相对误差和F1 Score，以及控制层面的包负荷比。}
 	\label{fig:hh_dection_various_pkt_number}
 \end{figure*}
 
+
+\subsection{Exp84502}
+对于一个网络流量文件，对其前500万个数据包按流进行分类，同时记录每个流的第一个和最后一个数据包，并计算每个流的第一个和最后一个数据包在网络流量文件中的位置之差，比如某个流的第一个数据包在网络流量文件中的位置为$a$，最后一个数据包在文件中的位置为$b$，则它们的差为$b-a+1$，我们将这个差称之为这个流在网络流量文件中的跨度。分别选取CAIDA和HGC的两个网络流量文件，并绘制每个网络文件中各个流的跨度的CDF图。
+
+\subsection{Exp84503}
+本实验的实验参数设置如下：
+\begin{itemize}
+	\item 实验方案为AHashFlow、CHashFlow和TurboFlow
+	\item 将内存容量设为0.25MB
+	\item 选取一个CAIDA的网络流量文件
+	\item 重放的数据包数量为500万个包
+	\item 将重流的阈值以5的步长从5增加到50
+	\item 将AHashFlow的大流导出机制的启动参数设置为5
+	\item 测量的指标包括heavy hitter检测的平均相对误差以及F1 Score和控制平面的包负荷率
+\end{itemize}
+
+如图\ref{fig:hh_dection_various_thresholds}所示，当重流的阈值增加的时候各个算法的性能都有明显的提升，但是TurboFlow的性能的提升速度要远逊于AHashFlow和CHashFlow。
+\begin{figure*}[ht!]
+	\centering
+	\mbox{
+		\subfigure[\label{subfig:caida_hh_are_thresh}]{\includegraphics[width=0.5\linewidth]{figures/exp84503/hh_are}}
+		\subfigure[\label{subfig:caida_hh_f1score_thresh}]{\includegraphics[width=0.5\linewidth]{figures/exp84503/hh_f1score}}
+	}
+	\caption{我们在CAIDA中取一个网络流量文件，并重放的500万个数据包，同时将重流的阈值以5为步长从5增加到50；随着重放数据包的数量的增加，我们计算AHashFlow、CHashFlow和TurboFlow在重流检测方面的平均相对误差和F1 Score。}
+	\label{fig:hh_dection_various_thresholds}
+\end{figure*}
 
 
 \appendix
@@ -284,21 +313,13 @@ AHashFlow的数据结构如图\ref{fig:ahashflow}所示，AHashFlow的数据结�
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[ht!]
-	\caption{$reset(idx)$}
-	\label{alg: reset}
-	\begin{algorithmic}[1]
-		\State{$export({\textbf A}[idx].digest, {\textbf A}[idx].cnt)$}
-		\State{${\textbf A}[idx].cnt\gets 0$}
-	\end{algorithmic}
-\end{algorithm}
 
 \begin{algorithm}[ht!]
 	\caption{$processPacket(p)$}
 	\label{alg: processPacket}
 	\algrenewcommand\algorithmicwhile{\textbf{when}}
 	\begin{algorithmic}[1]
-		\State{$min \gets \infty, max \gets 0, idx_{min} \gets -1, idx_{max}\gets -1$}
+		\State{$min \gets \infty, max \gets 0, idx_{min} \gets -1, idx_{max}\gets -1, \gamma\gets 5$}
 		\State{$digest_1\gets H_1(p.flowID), digest_2\gets H_2(p.flowID)$}
 		\For{$i=1$ to $d$}
 		\State{$idx\gets h_{i}(p.flowID)$}
@@ -319,22 +340,20 @@ AHashFlow的数据结构如图\ref{fig:ahashflow}所示，AHashFlow的数据结�
 		\EndFor
 		\State{$idx\gets g(p.flowID)$}
 		\If{${\mathbf A}[idx] == [0, 0]$}
-		\State{${\mathbf A}[idx] \gets [digest_2, 1]$}
+		\State{${\mathbf A}[idx] \gets [digest_2, 1]$, ${\mathbf B}[idx]\gets max\%2^8$}
 		\ElsIf{${\mathbf A}[idx].key == digest_2$}
 		\State{$temp \gets {\mathbf A}[idx].cnt + 1$}
 		\If{$temp > min$}
 		\State{$export(p.flowID)$, ${\mathbf A}[idx]\gets [0, 0]$}
 		\State{$promote(idx_{min}, digest1, temp)$}
+		\ElsIf{$temp \ge \gamma~and~max\%2^8 == {\mathbf B}[idx]$}
+		\State{$export(p.flowID), {\mathbf A}[idx]\gets [0, 0]$}
+		\State{$promote(idx_{max}, digest1, temp)$}
 		\Else
 		\State{${\mathbf A}[idx].count = temp$}
 		\EndIf
 		\Else
-		\State{$temp \gets {\mathbf B}[idx].cnt + {\mathbf A}[idx].cnt$, ${\mathbf A}[idx] \gets [digest_2, 1]$}
-		\If{$temp > max$}
-		\State{$reset(idx_{max})$, ${\mathbf B}[idx] \gets 0$}
-		\Else
-		\State{${\mathbf B}[idx] \gets temp$}
-		\EndIf
+		\State{${\mathbf A}[idx] \gets [digest_2, 1], {\mathbf B}[idx]\gets max\%2^8$}
 		\EndIf
 	\end{algorithmic}
 \end{algorithm}
