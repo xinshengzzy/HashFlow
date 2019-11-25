@@ -43,9 +43,13 @@ def func(src, n_pkts, dst):
 		cdf[i] = cdf[i]/float(pre)
 	with open(dst, "w") as f:
 		json.dump([idx, cdf], f)
+	return [idx, cdf]
 
 if __name__ == "__main__":
-	func(src1, n_pkts, dst1)
-	func(src2, n_pkts, dst2)
-	func(src3, n_pkts, dst3)
-	func(src4, n_pkts, dst4)
+	res1 = func(src1, n_pkts, dst1)
+	res2 = func(src2, n_pkts, dst2)
+	res3 = func(src3, n_pkts, dst3)
+	res4 = func(src4, n_pkts, dst4)
+
+	with open("./temp.json", "w") as f:
+		json.dump([res1, res2, res3, res4], f)
