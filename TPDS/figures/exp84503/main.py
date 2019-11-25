@@ -40,7 +40,7 @@ tf8 = "./tf8.txt"
 tf9 = "./tf9.txt"
 tf10 = "./tf10.txt"
 memory = 0.25*1024*1024
-n_pkts = 5000000
+n_pkts = 10000000
 
 def func(alg, memory, n_pkts, src, dst):
 	assert(alg in [AHF, CHF, TF])
