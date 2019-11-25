@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.5.8)  23 NOV 2019 19:27
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.5.8)  24 NOV 2019 21:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -847,40 +847,61 @@ Overfull \hbox (10.52884pt too wide) in paragraph at lines 214--219
  []
 
 [10] [11]
-File: figures/exp84501/hh_are.pdf Graphic file (type pdf)
-<use figures/exp84501/hh_are.pdf>
-File: figures/exp84501/hh_f1score.pdf Graphic file (type pdf)
-<use figures/exp84501/hh_f1score.pdf>
+File: figures/exp84501/hh_are_3.pdf Graphic file (type pdf)
+<use figures/exp84501/hh_are_3.pdf>
+File: figures/exp84501/hh_f1score_3.pdf Graphic file (type pdf)
+<use figures/exp84501/hh_f1score_3.pdf>
+File: figures/exp84501/plr_3.pdf Graphic file (type pdf)
+<use figures/exp84501/plr_3.pdf>
 
-Overfull \hbox (10.52884pt too wide) in paragraph at lines 256--257
+Overfull \hbox (10.52884pt too wide) in paragraph at lines 256--260
+ [][] 
+ []
+
+[12] [13]
+File: figures/exp84503/hh_are.pdf Graphic file (type pdf)
+<use figures/exp84503/hh_are.pdf>
+File: figures/exp84503/hh_f1score.pdf Graphic file (type pdf)
+<use figures/exp84503/hh_f1score.pdf>
+
+Overfull \hbox (10.52884pt too wide) in paragraph at lines 286--287
  [][] 
  []
 
 File: ./figures/AHashFlowDataStructure/AHashFlow.pdf Graphic file (type pdf)
 <use ./figures/AHashFlowDataStructure/AHashFlow.pdf>
+[14]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 279.
+put line 308.
 
-LaTeX Warning: Float too large for page by 55.1751pt on input line 340.
 
-[12] [13] [14]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 354.
- [15] [16]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 354.
+LaTeX Warning: Float too large for page by 22.29219pt on input line 359.
+
+[15]
+
+LaTeX Warning: Reference `alg: reset' on page 16 undefined on input line 372.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 373.
+[16] [17] [18]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 373.
  (./ExperimentPlan.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 354.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 354.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 373.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 373.
 Package rerunfilecheck Info: File `ExperimentPlan.out' has not changed.
-(rerunfilecheck)             Checksum: 7B95AEB56D4B05C6D48569EBC1F85CDE.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 354.
+(rerunfilecheck)             Checksum: 22362E977793F44D42F976C9AC340338.
+
+
+LaTeX Warning: There were undefined references.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 373.
  ) 
 Here is how much of TeX's memory you used:
- 23862 strings out of 492916
- 487842 string characters out of 6133346
- 572471 words of memory out of 5000000
- 27709 multiletter control sequences out of 15000+600000
+ 23882 strings out of 492916
+ 488462 string characters out of 6133346
+ 577091 words of memory out of 5000000
+ 27725 multiletter control sequences out of 15000+600000
  536664 words of font info for 64 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 60i,7n,73p,872b,446s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,8n,73p,872b,446s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on ExperimentPlan.pdf (16 pages).
+Output written on ExperimentPlan.pdf (18 pages).
