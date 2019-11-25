@@ -3,10 +3,13 @@ src1 = "/home/zongyi/traces/CAIDA.equinix-nyc.dirA.20180315-125910.UTC.anon.json
 src2 = "/home/zongyi/traces/CAIDA.equinix-nyc.dirA.20180315-130000.UTC.anon.json"
 src3 = "/home/zongyi/traces/HGC.20080415000.json"
 src4 = "/home/zongyi/traces/HGC.20080415001.json"
-dst = "./res.json"
+dst1 = "./CAIDA1.json"
+dst2 = "./CAIDA2.json"
+dst3 = "./HGC1.json"
+dst4 = "./HGC2.json"
 n_pkts = 5000000
 
-def func(src, n_pkts):
+def func(src, n_pkts, dst):
 	with open(src, "r") as f:
 		pkts = json.load(f)
 	flows = dict()
@@ -38,14 +41,11 @@ def func(src, n_pkts):
 			cdf.append(temp)
 	for i in range(len(cdf)):
 		cdf[i] = cdf[i]/float(pre)
-	print len(cdf)
-	return [idx, cdf]
+	with open(dst, "w") as f:
+		json.dump([idx, cdf], f)
 
 if __name__ == "__main__":
-	spans1 = func(src1, n_pkts)
-	spans2 = func(src2, n_pkts)
-	spans3 = func(src3, n_pkts)
-	spans4 = func(src4, n_pkts)
-	res = [spans1, spans2, spans3, spans4]
-	with open(dst, "w") as f:
-		json.dump(res, f)
+	func(src1, n_pkts, dst1)
+	func(src2, n_pkts, dst2)
+	func(src3, n_pkts, dst3)
+	func(src4, n_pkts, dst4)
