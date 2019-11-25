@@ -132,13 +132,13 @@ $$
 
 \subsection{Exp84494 $\surd$}
 \begin{itemize}
-	\item Randomly select a file from the traces of ChinaTelecom, HGC, Tsinghua and CAIDA respectively. 
-	\item Extract 5 million packets from each trace file.
-	\item Record the number of distinct flows in each trace file. Note that all the packets with the same source IP address, destination IP address, source port, destination port, and protocol belong to the same flow. The flow ID is the five tuple (srcip, dstip, srcport, dstport, protocol).
-	\item Map the flow ID of each flow to a digest using a given hash function.
-	\item Record the number of distinct digest for each trace file. 
-	\item Compare the number of distinct flows and the number of distinct digests for each trace file.
+	\item 从中国电信、HGC、清华校园网和CAIDA的网络流量数据中分别随机选取一个网络流量文件。
+	\item 从每个流量文件中分别提取500个数据包；对于清华校园网和中国电信，因为它们以流的形式记录网络流量，所以我们提取$n$个流，使得前$n$个流中的数据包总数不小于500万个，而前$n-1$个流中的数据包总数则小于500万。
+	\item 记录每一个流量记录文件的500万个数据包中的数据流的数目。这里我们认为所有具有相同源IP地址，目的IP地址，源端口号，目的端口号和协议类型的数据包都属于同一个流。
+	\item 将每个流的流标识符（即源IP地址，目的IP地址，源端口号，目的端口号和协议类型）都使用相同的哈希函数映射到一个32位的摘要，记录每个流量记录文件的前500万个包中流标识符对应的不同的摘要的数目。
 \end{itemize}
+
+
 
 \subsection{Exp84495}
 本实验的实验参数设置如下：
@@ -220,7 +220,7 @@ $$
 	\label{fig:x_distribution_coefficient}
 \end{figure*}
 
-\subsection{实验84499}
+\subsection{Exp84499}
 本实验的实验参数设置如下：
 \begin{itemize}
 	\item 实验方案为CHashFlow
@@ -263,7 +263,14 @@ $$
 
 
 \subsection{Exp84502}
-对于一个网络流量文件，对其前500万个数据包按流进行分类，同时记录每个流的第一个和最后一个数据包，并计算每个流的第一个和最后一个数据包在网络流量文件中的位置之差，比如某个流的第一个数据包在网络流量文件中的位置为$a$，最后一个数据包在文件中的位置为$b$，则它们的差为$b-a+1$，我们将这个差称之为这个流在网络流量文件中的跨度。分别选取CAIDA和HGC的两个网络流量文件，并绘制每个网络文件中各个流的跨度的CDF图。
+对于一个网络流量文件，对其前500万个数据包按流进行分类，同时记录每个流的第一个和最后一个数据包，并计算每个流的第一个和最后一个数据包在网络流量文件中的位置之差，比如某个流的第一个数据包在网络流量文件中的位置为$a$，最后一个数据包在文件中的位置为$b$，则它们的差为$b-a+1$，我们将这个差称之为这个流在网络流量文件中的跨度。分别选取CAIDA和HGC的两个网络流量文件，并绘制每个网络文件中各个流的跨度的CDF图。由图\ref{fig:flow_span}可知，对于我们考察的四个网络流量文件，大约有20\%的数据流的跨度超过100万个数据包，即它们的第一个数据包和最后一个数据包在网络流量文件中的位置相差在100万个数据包以上，说明有很多流在网络流量文件所记录的时期内会反复出现。
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{figures/exp84502/cdf}
+	\caption{四个不同的网络流量文件中数据流的跨度的CDF图}
+	\label{fig:flow_span}
+\end{figure}
 
 \subsection{Exp84503}
 本实验的实验参数设置如下：
