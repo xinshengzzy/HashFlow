@@ -21,15 +21,25 @@ def func(src, n_pkts):
 		temp = value["end"] - value["begin"] + 1
 		if temp > span_max:
 			span_max = temp
-	spans = [0]*span_max
+	spans = dict()	
 	for key, value in flows.items():
 		temp = value["end"] - value["begin"] + 1
-		spans[temp - 1] = spans[temp - 1] + 1
-	for i in range(1, span_max):
-		spans[i] = spans[i] + spans[i - 1]
-	for i in range(0, span_max):
-		spans[i] = spans[i]/float(spans[span_max - 1])
-	return spans
+		if temp not in spans:
+			spans[temp] = 0
+		spans[temp] = spans[temp] + 1
+	idx = []
+	cdf = []
+	pre = 0
+	for i in range(1, span_max + 1):
+		if i in spans:
+			idx.append(i)
+			temp = pre + spans[i]
+			pre = temp
+			cdf.append(temp)
+	for i in range(len(cdf)):
+		cdf[i] = cdf[i]/float(pre)
+	print len(cdf)
+	return [idx, cdf]
 
 if __name__ == "__main__":
 	spans1 = func(src1, n_pkts)
