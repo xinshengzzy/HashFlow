@@ -3,15 +3,15 @@ from nfdump_reader import nfcapdReader
 import csv
 from scapy.all import *
 
-path = "/home/zongyi/workspace/traces/"
+path = "/home/zongyi/traces/"
 tsinghua = path + "Tsinghua.20140204"
 hgc = path + "HGC.20080415000.pcap"
 chinatelecom = path + "ChinaTelecom.nfcapd.201512312300"
 caida = path + "CAIDA.equinix-nyc.dirA.20180315-125910.UTC.anon.pcap"
 limit = 5000000
-
-fres = open("./results.txt", "w")
-fres.write("#trace	n_flowID	n_digest\n")
+res = "./results.txt"
+with open(res, "w") as f:
+	f.write("#trace\tn_flowID\tn_digest\n")
 
 # processing the CAIDA trace file
 s1 = set()
@@ -41,14 +41,16 @@ def func(pkt):
 	else:
 		return False
 sniff(offline=caida, stop_filter=func, store=False)
-fres.write("\t".join(["CAIDA", str(len(s1)), str(len(s2))]) + "\n")
+with open(res, "a") as f:
+	f.write("\t".join(["CAIDA", str(len(s1)), str(len(s2))]) + "\n")
 
 # processing the HGC trace file
 s1 = set()
 s2 = set()
 count = 0
 sniff(offline=hgc, stop_filter=func, store=False)
-fres.write("\t".join(["HGC", str(len(s1)), str(len(s2))]) + "\n")
+with open(res, "a") as f:
+	f.write("\t".join(["HGC", str(len(s1)), str(len(s2))]) + "\n")
 
 # processing the ChinaTelecom trace file
 reader = nfcapdReader(chinatelecom)
@@ -66,7 +68,8 @@ for row in reader.reader:
 	count = count + pktCnt
 	if count >= limit:
 		break
-fres.write("\t".join(["ChinaTelecom", str(len(s1)), str(len(s2))]) + "\n")
+with open(res, "a") as f:
+	f.write("\t".join(["ChinaTelecom", str(len(s1)), str(len(s2))]) + "\n")
 
 # processing the Tsinghua trace file
 count = 0
@@ -87,6 +90,7 @@ with open(tsinghua, "r") as f:
 		s2.add(digest)
 		if count >= limit:
 			break
-fres.write("\t".join(["Tsinghua", str(len(s1)), str(len(s2))]) + "\n")
+with open(res, "a") as f:
+	f.write("\t".join(["Tsinghua", str(len(s1)), str(len(s2))]) + "\n")
 
 
