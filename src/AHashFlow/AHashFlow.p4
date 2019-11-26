@@ -9,6 +9,8 @@
 #include "includes/parser.p4"
 #include "includes/macro.p4"
 
+#define PKT_INSTANCE_TYPE_NORMAL 0
+
 field_list flow {
     ipv4.srcip;
     ipv4.dstip;
@@ -72,7 +74,7 @@ field_list_calculation fingerprint_hash {
 // metadata for measurement program
 header_type measurement_meta_t {
     fields {
-        promotion: 1; // indicating variable for resubmit;
+        promotion: 1; // indicating variable for recirculate;
         stage: 4; // indicating variable for stage of back inserting;
         stage2: 4; // indicating variable for stage of reporting;
         digest: 8; // digest for differentiating in ancillary table;
@@ -92,6 +94,7 @@ header_type measurement_meta_t {
 
 metadata measurement_meta_t measurement_meta;
 
+
 action nop()
 {
     // no operation conducted
@@ -110,6 +113,20 @@ table generate_fingerprint_t
         generate_fingerprint_action;
     }
     default_action: generate_fingerprint_action;
+}
+
+action do_recirc() {
+	recirculate(68);
+}
+
+table recirc_tbl {
+	reads {
+		measurement_meta.promotion: exact;	
+	}
+	actions {
+		do_recirc;
+		nop;
+	}
 }
 
 // action for generating digest which is used for comparing in anciliary table
@@ -737,27 +754,31 @@ table min_value_subtract_pktcnt_a_t
     max_size: 1;
 }
 
-field_list resubmit_fields
+field_list recirculate_fields
 {
     measurement_meta.promotion; //1-bit
     measurement_meta.stage; //4-bit
     measurement_meta.ac_flow_count; //32-bit
 }
 
-action resubmit_action()
+action cancel_recirc_action()
 {
-    modify_field(measurement_meta.promotion, 1);
-    resubmit(resubmit_fields);
+//    modify_field(measurement_meta.promotion, 1);
+//    recirculate(recirculate_fields);
+//	recirculate(68);
+//	clone_egress_pkt_to_ingress(0, recirculate_fields);
+	modify_field(standard_metadata.instance_type, PKT_INSTANCE_TYPE_NORMAL);
+//	modify_field(standard_metadata.instance_type, 0);
 }
 
-table handle_resubmit_t
+table cancel_recirc_t
 {
     reads {
         measurement_meta.ac_flow_count: range;
         measurement_meta.flag: ternary;
     }
     actions {
-        resubmit_action;//highest bit is 1;
+        cancel_recirc_action;//highest bit is 1;
         nop;
     }
     default_action: nop;
@@ -767,8 +788,9 @@ table handle_resubmit_t
 control ingress
 {
     apply(generate_fingerprint_t);
-//    apply(calc_digest_t);
-//    apply(update_main_table_1_key_t);
+    apply(calc_digest_t);
+	apply(recirc_tbl);
+    apply(update_main_table_1_key_t);
 //     {
 //         update_main_table_1_key_action {
 //             apply(copy_pkt_to_cpu_t_1);
@@ -777,13 +799,13 @@ control ingress
 //             apply(copy_pkt_to_cpu_t_2);
 //         }
 //     }
-//    apply(update_main_table_1_value_t);
-//    {
-//        read_main_table_1_value_action {
-//            apply(update_min_max_1_t);
-//        }
-//    }
-//    apply(update_main_table_2_key_t);
+    apply(update_main_table_1_value_t)
+    {
+        read_main_table_1_value_action {
+            apply(update_min_max_1_t);
+        }
+    }
+    apply(update_main_table_2_key_t);
     // {
         // update_main_table_2_key_action {
         //     apply(copy_pkt_to_cpu_t_3);
@@ -792,14 +814,15 @@ control ingress
         //     apply(copy_pkt_to_cpu_t_4);
         // }
     // }
-//    apply(update_main_table_2_value_t) {
-//        read_main_table_2_value_action {
-//            apply(min_max_value_subtract_pktcnt_2_t);
-//            apply(update_min_2_t);
-            // apply(update_max_2_t);
-//        }
-//    }
-//    apply(update_main_table_3_key_t);
+    apply(update_main_table_2_value_t) 
+	{
+        read_main_table_2_value_action {
+            apply(min_max_value_subtract_pktcnt_2_t);
+            apply(update_min_2_t);
+			apply(update_max_2_t);
+        }
+    }
+    apply(update_main_table_3_key_t);
     // {
         // update_main_table_3_key_action {
         //     apply(copy_pkt_to_cpu_t_5);
@@ -808,31 +831,30 @@ control ingress
         //     apply(copy_pkt_to_cpu_t_6);
         // }
     // }
-//    apply(update_main_table_3_value_t) {
-//        read_main_table_3_value_action {
-//            apply(min_max_value_subtract_pktcnt_3_t);
-//            apply(update_min_3_t);
-            // apply(update_max_3_t);
-//        }
-//    }
-//    apply(copy_to_cpu_t);
-//    apply(update_ancillary_table_t)
-//    {
-//        update_ancillary_table_action {
-//            apply(min_value_subtract_pktcnt_a_t);
-//            apply(handle_resubmit_t);
-//        }
-//    }
-    // apply(update_ancillary_table_key_t);
-    // apply(update_ancillary_table_value_t) {
-    //     update_ancillary_table_value_action {
-    //         apply(min_value_subtract_pktcnt_a_t);
-    //         apply(handle_resubmit_t);
-    //     }
-    // }
+    apply(update_main_table_3_value_t) {
+        read_main_table_3_value_action {
+            apply(min_max_value_subtract_pktcnt_3_t);
+            apply(update_min_3_t);
+            apply(update_max_3_t);
+        }
+    }
 }
 
 control egress
 {
-    // no operation
+//    apply(copy_to_cpu_t);
+    apply(update_ancillary_table_t)
+	{
+        update_ancillary_table_action {
+            apply(min_value_subtract_pktcnt_a_t);
+            apply(cancel_recirc_t);
+        }
+    }
+    // apply(update_ancillary_table_key_t);
+    // apply(update_ancillary_table_value_t) {
+    //     update_ancillary_table_value_action {
+    //         apply(min_value_subtract_pktcnt_a_t);
+    //         apply(handle_recirculate_t);
+    //     }
+    // }
 }
