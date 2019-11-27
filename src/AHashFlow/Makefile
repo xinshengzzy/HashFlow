@@ -8,5 +8,5 @@ push:
 	git push
 pull:
 	git pull
-read:
+register:
 	python ReadRegister.py
