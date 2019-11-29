@@ -21,6 +21,8 @@ send:
 test: 
 	echo $(APP)
 ptf:
+	$(SDE_INSTALL)/bin/veth_setup.sh
+	$(SDE_INSTALL)/bin/dma_setup.sh
 	cd $(SDE) && \
 	./run_p4_tests.sh -p $(APP)
 model:
