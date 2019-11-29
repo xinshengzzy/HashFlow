@@ -7,7 +7,8 @@ build:
 	make && \
 	make install
 run:
-	$(SDE)/run_switchd.sh -p $(APP)
+	cd $(SDE) && \
+	./run_switchd.sh -p $(APP)
 push:
 	git add -A
 	git commit -m "Automatic uploading. No comments!"

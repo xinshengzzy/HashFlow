@@ -20,6 +20,29 @@ limitations under the License.
 #include "includes/parser.p4"
 #include <tofino/intrinsic_metadata.p4>
 #include <tofino/constants.p4>
+#include "tofino/stateful_alu_blackbox.p4"
+
+register cntr {
+	width: 32;
+	instance_count: 10;
+}
+
+blackbox stateful_alu update_cntr {
+	reg: cntr;
+	update_lo_1_value: register_lo + 1;
+}
+
+action update_cntr_action() {
+	update_cntr.execute_stateful_alu(0);
+}
+
+table update_cntr_t {
+	actions {
+		update_cntr_action;
+	}
+	default_action: update_cntr_action;
+	size: 1;
+}
 
 action set_egr(egress_spec) {
     modify_field(ig_intr_md_for_tm.ucast_egress_port, egress_spec);
@@ -53,6 +76,7 @@ table acl {
 }
 
 control ingress {
+	apply(update_cntr_t);
     apply(forward);
 }
 
