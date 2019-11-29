@@ -1,4 +1,4 @@
-APP=knet_mgr_test
+APP=basic_switching
 build:
 	cd $(BUILD) && \
 	./autogen.sh && \
@@ -26,6 +26,4 @@ ptf:
 model:
 	$(SDE_INSTALL)/bin/veth_setup.sh
 	$(SDE_INSTALL)/bin/dma_setup.sh
-	export PATH=$(SDE_INSTALL)/bin:$(PATH)
-	export LD_LIBRARY_PATH=/usr/local/lib:$(SDE_INSTALL)/lib:$(LD_LIBRARY_PATH)
 	$(SDE)/run_tofino_model.sh -p $(APP)
